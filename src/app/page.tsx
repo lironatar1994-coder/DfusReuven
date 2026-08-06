@@ -7,36 +7,54 @@ import QuoteForm from "@/components/QuoteForm";
 import ContactBlock from "@/components/ContactBlock";
 import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import Estimator from "@/components/Estimator";
-import { CtaBand, Reveal, SectionHead, SpecLine } from "@/components/ui";
+import { Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
 import { featuredProducts, services } from "@/data/catalog";
 import { benefits, portfolio, processSteps, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
 import { whatsappProof } from "@/data/proof";
 
+/**
+ * Homepage section order, and why.
+ *
+ * 1  Hero          what this is, and one tap to act
+ * 2  Estimator     answers "how much" before asking for anything — the one
+ *                  question every print customer opens with
+ * 3  Situations    routes by need ("I'm opening a shop"), how people arrive
+ * 4  Catalogue     what we print + the products, with real prices
+ * 5  Why here      the differentiators and who we are, in one block
+ * 6  Proof         real customer messages (renders once they exist)
+ * 7  Process       what happens after you send — answers the last doubt
+ * 8  Quote form    the ask
+ * 9  Contact       reach a human instead
+ *
+ * Previously this ran to 13 sections with three separate ways to browse the
+ * same catalogue, two adjacent trust sections, and three consecutive asks at
+ * the end. Each cluster now does its job once.
+ */
 export default function HomePage() {
   return (
     <>
-      {/* ---------------- Hero ---------------- */}
+      {/* ---------------- 1 · Hero ---------------- */}
       <section className="hero">
         <div className="container hero__grid">
           <div className="hero__head">
             <h1>
-              הופכים כל רעיון <em>למוצר מודפס</em>
+              בית דפוס בבני ברק <em>שבודק את הקובץ לפני שמדפיסים</em>
             </h1>
             <p className="hero__lead">
-              עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום – משלב הרעיון ועד למוצר
-              המוגמר.
+              כרטיסי ביקור, הזמנות, שילוט, מדבקות ומוצרי פרסום — עיצוב והדפסה באותו מקום, מול
+              האנשים שמדפיסים בפועל.
             </p>
           </div>
 
           <div className="hero__actions">
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/quote">
-                לקבלת הצעת מחיר
+              <Link className="btn btn--primary" href="#estimator">
+                כמה זה עולה?
               </Link>
-              <Link className="btn btn--secondary" href="/portfolio">
-                צפו בעבודות שלנו
+              <Link className="btn btn--secondary" href="/quote">
+                לקבלת הצעת מחיר
               </Link>
             </div>
             <p className="trust-line">
@@ -75,9 +93,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Estimator ----------------
-          Price is the first question a print customer asks. Answering it before
-          asking for anything is the single biggest conversion lever on mobile. */}
+      {/* ---------------- 2 · Estimator ---------------- */}
       <section className="section section--paper" id="estimator">
         <div className="container container--narrow">
           <Reveal>
@@ -93,7 +109,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Situations ---------------- */}
+      {/* ---------------- 3 · Situations ---------------- */}
       <section className="section">
         <div className="container">
           <Reveal>
@@ -134,47 +150,29 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {/* ---------------- Services ---------------- */}
-      <section className="section section--paper" id="services">
+      {/* ---------------- 4 · Catalogue ----------------
+          Services used to be a six-card section of its own, immediately above a
+          product grid containing the same inventory. It is now a compact strip
+          of links into the services page, so the page offers one catalogue
+          rather than two overlapping ones. */}
+      <section className="section section--paper" id="products">
         <div className="container">
           <Reveal>
             <SectionHead
-              title="כל מה שהעסק שלכם צריך להדפיס"
-              lead="מכרטיס ביקור בודד ועד פרויקט מיתוג שלם – אצלנו הכול נעשה תחת קורת גג אחת, מהעיצוב הראשוני ועד למוצר המוגמר."
+              title="מה אנחנו מדפיסים"
+              lead="המחירים הם טווחי פתיחה, לא כולל מע״מ. המחיר הסופי נקבע לפי כמות, נייר וגימור."
               ruled
             />
           </Reveal>
 
-          <div className="grid grid--3 services-list">
-            {services.map((service, i) => (
-              <Reveal key={service.slug} delay={(i % 3) * 80}>
-                <Link className="card" href={`/services#${service.slug}`} style={{ height: "100%" }}>
-                  <span className="card__media">
-                    <Image src={service.image} alt={service.alt} width={800} height={500} />
-                  </span>
-                  <span className="card__body">
-                    <h3>{service.title}</h3>
-                    <p>{service.short}</p>
-                    <span className="card__foot">
-                      <span className="link-arrow">לפרטים נוספים</span>
-                    </span>
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Products ---------------- */}
-      <section className="section" id="products">
-        <div className="container">
           <Reveal>
-            <SectionHead
-              title="המוצרים המבוקשים ביותר"
-              lead="המחירים המוצגים הם מחירי פתיחה להמחשה. המחיר הסופי נקבע לפי כמות, סוג הנייר והגימור."
-              center
-            />
+            <nav className="print-list" aria-label="תחומי הדפוס שלנו">
+              {services.map((service) => (
+                <Link key={service.slug} href={`/services#${service.slug}`}>
+                  {service.title}
+                </Link>
+              ))}
+            </nav>
           </Reveal>
 
           <div className="grid grid--4">
@@ -193,28 +191,130 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Portfolio ---------------- */}
+      {/* ---------------- Portfolio (renders once real work exists) ---------------- */}
       {portfolio.length > 0 ? (
-        <section className="section section--paper" id="portfolio">
-        <div className="container">
-          <Reveal>
-            <SectionHead
-              title="עבודות שמדברות בעד עצמן"
-              lead="מבחר מתוך הפרויקטים האחרונים שלנו. לחצו על עבודה כדי לראות את החומרים והגימור שבהם השתמשנו."
-              center
-            />
-          </Reveal>
-          <PortfolioGallery items={portfolio} />
-          <div className="btn-row btn-row--center" style={{ marginTop: 36 }}>
-            <Link className="btn btn--secondary" href="/portfolio">
-              לתיק העבודות המלא
-            </Link>
+        <section className="section" id="portfolio">
+          <div className="container">
+            <Reveal>
+              <SectionHead
+                title="עבודות שמדברות בעד עצמן"
+                lead="מבחר מתוך הפרויקטים האחרונים שלנו. לחצו על עבודה כדי לראות את החומרים והגימור שבהם השתמשנו."
+                center
+              />
+            </Reveal>
+            <PortfolioGallery items={portfolio} />
+            <div className="btn-row btn-row--center" style={{ marginTop: 36 }}>
+              <Link className="btn btn--secondary" href="/portfolio">
+                לתיק העבודות המלא
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       ) : null}
 
-      {/* ---------------- Process ---------------- */}
+      {/* ---------------- 5 · Why here ----------------
+          Was two adjacent sections — "why us" and "about" — both arguing that
+          the shop is trustworthy, each with its own image. One block now. */}
+      <section className="section" id="why">
+        <div className="container split">
+          <Reveal>
+            <SectionHead
+              title="למה דפוס ראובן?"
+              lead="אנחנו מדפיסים בבני ברק לעסקים, למוסדות ולמשפחות — מכרטיס ביקור בודד ועד ערכת מיתוג שלמה. כל עבודה נבדקת לפני שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל."
+            />
+            <ul className="benefits">
+              {benefits.map((benefit) => {
+                const Icon = benefitIcons[benefit.icon] ?? ShieldIcon;
+                return (
+                  <li key={benefit.title}>
+                    <span className="ico" aria-hidden>
+                      <Icon />
+                    </span>
+                    <span>
+                      <strong>{benefit.title}</strong>
+                      <span>{benefit.text}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <SpecLine items={["דפוס אופסט", "דפוס דיגיטלי", "הדפסה רחבה", "מחלקת גימור"]} />
+            <div className="btn-row" style={{ marginTop: 24 }}>
+              <Link className="btn btn--secondary" href="/about">
+                קראו עוד עלינו
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100} className="media-stack">
+            <Image
+              src="/images/about-studio.svg"
+              alt="מעצב עובד בסטודיו של דפוס ראובן לצד מכונת הדפוס"
+              width={800}
+              height={600}
+            />
+            <Image
+              className="media-stack__sm"
+              src="/images/finishes.svg"
+              alt="דוגמאות נייר וגימורים: פויל, הבלטה, למינציה וצבעים"
+              width={800}
+              height={600}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- 6 · Proof ---------------- */}
+      {whatsappProof.length > 0 ? (
+        <section className="section section--paper" id="proof">
+          <div className="container">
+            <Reveal>
+              <SectionHead
+                title="מה לקוחות כותבים לנו"
+                lead="הודעות אמיתיות מלקוחות, מפורסמות באישורם."
+                center
+              />
+            </Reveal>
+            <Reveal delay={60}>
+              <WhatsAppProofStrip />
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      {testimonials.length > 0 ? (
+        <section className="section section--paper" id="testimonials">
+          <div className="container">
+            <Reveal>
+              <SectionHead title="לקוחות מספרים" center />
+            </Reveal>
+            <div className="grid grid--3">
+              {testimonials.map((item, i) => (
+                <Reveal key={item.quote} delay={i * 80}>
+                  <figure className="quote-card" style={{ height: "100%" }}>
+                    <Stars />
+                    <blockquote>“{item.quote}”</blockquote>
+                    <figcaption>
+                      <span className="avatar" aria-hidden>
+                        {item.initial}
+                      </span>
+                      <cite>
+                        <strong>{item.name}</strong>
+                        <span>{item.business}</span>
+                      </cite>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------------- 7 · Process ----------------
+          Moved down from the middle of the page. "What happens after I send
+          this?" is the doubt that stops a submission, so it belongs next to
+          the form rather than stranded between browse sections. */}
       <section className="section section--tint" id="process">
         <div className="container">
           <Reveal>
@@ -240,127 +340,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Why us ---------------- */}
-      <section className="section" id="why">
-        <div className="container split">
-          <Reveal>
-            <SectionHead
-              title="למה דפוס ראובן?"
-              lead="אנחנו לא מוכרים הדפסות – אנחנו אחראים על התוצאה. מבחירת הנייר ועד הגימור האחרון, כל פרט נבדק לפני שהעבודה יוצאת מהדלת."
-            />
-            <ul className="benefits">
-              {benefits.map((benefit) => {
-                const Icon = benefitIcons[benefit.icon] ?? ShieldIcon;
-                return (
-                  <li key={benefit.title}>
-                    <span className="ico" aria-hidden>
-                      <Icon />
-                    </span>
-                    <span>
-                      <strong>{benefit.title}</strong>
-                      <span>{benefit.text}</span>
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          </Reveal>
-
-          <Reveal delay={100} className="media-stack">
-            <Image
-              src="/images/finishes.svg"
-              alt="דוגמאות נייר וגימורים: פויל, הבלטה, למינציה וצבעים"
-              width={800}
-              height={600}
-            />
-            <Image
-              className="media-stack__sm"
-              src="/images/machine.svg"
-              alt="מכונת דפוס אופסט בעבודה"
-              width={800}
-              height={600}
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- About ---------------- */}
-      <section className="section section--paper" id="about">
-        <div className="container split split--wide-media">
-          <Reveal className="media-stack">
-            <Image
-              src="/images/about-studio.svg"
-              alt="מעצב עובד בסטודיו של דפוס ראובן לצד מכונת הדפוס"
-              width={800}
-              height={600}
-            />
-          </Reveal>
-          <Reveal delay={100}>
-            <SectionHead title="יותר מבית דפוס" />
-            <p style={{ color: "var(--ink-soft)", fontSize: "1.06rem" }}>
-              בדפוס ראובן אנחנו מלווים עסקים ולקוחות פרטיים משלב הרעיון הראשוני ועד למוצר המודפס. אנו
-              משלבים יצירתיות, ניסיון, חומרי גלם איכותיים וטכנולוגיות דפוס מתקדמות, כדי שכל עבודה
-              תיראה מקצועית, מדויקת ומרשימה.
-            </p>
-            <SpecLine items={["דפוס אופסט", "דפוס דיגיטלי", "הדפסה רחבה", "מחלקת גימור"]} />
-            <div className="btn-row" style={{ marginTop: 26 }}>
-              <Link className="btn btn--secondary" href="/about">
-                קראו עוד עלינו
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- Testimonials ---------------- */}
-      {whatsappProof.length > 0 ? (
-        <section className="section" id="proof">
-          <div className="container">
-            <Reveal>
-              <SectionHead
-                title="מה לקוחות כותבים לנו"
-                lead="הודעות אמיתיות מלקוחות, מפורסמות באישורם."
-                center
-              />
-            </Reveal>
-            <Reveal delay={60}>
-              <WhatsAppProofStrip />
-            </Reveal>
-          </div>
-        </section>
-      ) : null}
-
-      {testimonials.length > 0 ? (
-        <section className="section" id="testimonials">
-        <div className="container">
-          <Reveal>
-            <SectionHead title="לקוחות מספרים" center />
-          </Reveal>
-          <div className="grid grid--3">
-            {testimonials.map((item, i) => (
-              <Reveal key={item.quote} delay={i * 80}>
-                <figure className="quote-card" style={{ height: "100%" }}>
-                  <Stars />
-                  <blockquote>“{item.quote}”</blockquote>
-                  <figcaption>
-                    <span className="avatar" aria-hidden>
-                      {item.initial}
-                    </span>
-                    <cite>
-                      <strong>{item.name}</strong>
-                      <span>{item.business}</span>
-                    </cite>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-      ) : null}
-
-      {/* ---------------- Quote form ---------------- */}
-      <section className="section section--tint" id="quote">
+      {/* ---------------- 8 · Quote form ---------------- */}
+      <section className="section" id="quote">
         <div className="container">
           <Reveal>
             <SectionHead
@@ -377,23 +358,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Contact ---------------- */}
-      <section className="section" id="contact">
+      {/* ---------------- 9 · Contact ----------------
+          The page ends here. A closing CTA band after a section that already
+          carries the phone, WhatsApp, email, address and a form would be the
+          fourth ask in a row. */}
+      <section className="section section--paper" id="contact">
         <div className="container">
           <Reveal>
             <SectionHead
               title="נשמח לשמוע מכם"
               lead="אפשר להתקשר, לשלוח וואטסאפ או פשוט לקפוץ אלינו לבית הדפוס."
+              ruled
             />
           </Reveal>
           <ContactBlock />
         </div>
       </section>
-
-      <CtaBand
-        title="יש לכם פרויקט באוויר?"
-        text="ספרו לנו מה אתם צריכים ונחזור אליכם עם הצעה, המלצה על חומרים ולוח זמנים מדויק."
-      />
     </>
   );
 }
