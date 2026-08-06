@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MobileBar } from "@/components/ui";
 import { absoluteUrl, allowIndexing, site } from "@/lib/site";
+import { openingHoursSchema } from "@/lib/hours";
 import "./globals.css";
 
 // Miriam Libre: the sturdy Hebrew workhorse — ink presence for a print house.
@@ -85,15 +86,8 @@ const businessSchema = {
     addressLocality: site.city,
     addressCountry: "IL",
   },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-      opens: "08:30",
-      closes: "17:30",
-    },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "08:30", closes: "13:00" },
-  ],
+  // Derived from lib/hours.ts so structured data never drifts from the site.
+  openingHoursSpecification: openingHoursSchema,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

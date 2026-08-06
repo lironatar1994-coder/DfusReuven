@@ -1,3 +1,5 @@
+import { businessHours } from "./hours";
+
 const configuredDomain = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
 export const allowIndexing = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
@@ -15,18 +17,25 @@ export const site = {
   currency: "ILS",
   serviceArea: "ישראל",
   socialImage: "/images/hero-collage.svg",
-  // TODO: החליפו במספרים ובכתובת האמיתיים לפני העלייה לאוויר
+
+  // Verified from the business's public listings (InPrint, דפי זהב), בני ברק.
+  phoneDisplay: "03-5785651",
+  phoneHref: "+97235785651",
+  fax: "03-5798656",
+  address: "ז'בוטינסקי 84, בני ברק",
+  addressShort: "ז'בוטינסקי 84",
+  city: "בני ברק",
+
+  // ⚠️ STILL PLACEHOLDERS — the public listings carry neither.
+  // WhatsApp is the site's primary call to action (header, mobile bar, every
+  // product page, the quote form). 03-5785651 is a landline and cannot receive
+  // WhatsApp, so this must be a mobile number before launch.
   whatsapp: "972500000000",
-  phoneDisplay: "050-000-0000",
-  phoneHref: "+972500000000",
   email: "info@dfusreuven.co.il",
-  address: "רחוב התעשייה 00, שם היישוב",
-  addressShort: "רחוב התעשייה 00",
-  city: "שם היישוב",
-  hours: [
-    { days: "ראשון–חמישי", time: "08:30–17:30" },
-    { days: "שישי", time: "08:30–13:00" },
-  ],
+
+  // Display hours come from lib/hours.ts so they can never disagree with the
+  // open/closed badge on the mobile bar.
+  hours: businessHours,
   facebook: "#",
   instagram: "#",
 } as const;

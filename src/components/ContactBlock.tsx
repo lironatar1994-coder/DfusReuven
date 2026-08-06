@@ -42,6 +42,17 @@ export default function ContactBlock() {
               </a>
             </span>
           </li>
+          {site.fax ? (
+            <li>
+              <span className="ico" aria-hidden>
+                <MailIcon />
+              </span>
+              <span>
+                <strong>פקס</strong>
+                <p dir="ltr">{site.fax}</p>
+              </span>
+            </li>
+          ) : null}
           <li>
             <span className="ico" aria-hidden>
               <PinIcon />

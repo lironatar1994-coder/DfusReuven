@@ -6,8 +6,56 @@ The site currently ships 18 hand-built SVG mock-ups as placeholders. They load f
 read as intentional, but they are illustrations of products, not products. Replacing them
 with real imagery is the single largest remaining quality upgrade to the site.
 
-Everything below is specified so the output drops straight into `public/images/` with no
-code changes.
+Everything in §4 drops straight into `public/images/` with no code changes. §5–§8 cover
+assets the site needs but does not yet have a slot for — those require small code edits,
+noted per item.
+
+---
+
+## 0. Coverage — read this first
+
+There are two different questions, and they have different answers.
+
+**"Does replacing the 19 files in §4 fix every image path in the code?"** Yes.
+
+**"Is 19 images enough for this site?"** No. The site currently reuses a small pool of
+images very heavily, because it was built with 18 placeholders wired into 60+ usages.
+Measured from the code:
+
+| Reuse problem | Measured |
+|---|---|
+| `svc-business` appears across the site | **8 times** |
+| `machine` appears inside product galleries | **10 of 12 products** |
+| `finishes` appears inside product galleries | **11 of 12 products** |
+| Distinct images used across all 12 product galleries | **13** (ideal: 48) |
+| Portfolio items drawn from the same shared pool | **12 of 12** |
+
+The practical consequence: a visitor who opens three product pages sees the *same two
+photographs* in half of every gallery, and the same business-stationery shot on the service
+card, the situation page, and the portfolio grid. No amount of quality in an individual
+frame fixes that — it needs more frames.
+
+### What this document now covers
+
+| § | Group | Count | Status |
+|---|---|---|---|
+| 4A–4E | Replacements for the existing 18 + `og-image` | 19 | Fixes all current paths |
+| 5 | Brand & icon assets | 4 | **Missing entirely today** |
+| 6 | Product gallery depth | 24 | Removes the repeated press/finish shots |
+| 7 | Portfolio project photography | 12 | Removes portfolio/product duplication |
+| 8 | Situation-page images | 4 | Currently reuse product shots |
+
+**Minimum viable set: 19** (§4 only) — every path filled, repetition still visible.
+**Recommended set: 35** (§4 + §5 + §7) — kills the two most noticeable duplications.
+**Complete set: 63** — every slot has a purpose-shot frame.
+
+### Not an image problem — don't try to generate these
+
+- **The Google Map** on the contact page is a placeholder `<div>`, not an image. It needs a
+  real embed (code), not a generated picture of a map. A fake map is worse than none.
+- **Testimonial avatars** are CSS circles with a Hebrew initial. That is a deliberate
+  choice — generated headshots of fake customers next to fabricated testimonials would be
+  dishonest. Replace with real customer photos only if you have permission, otherwise leave.
 
 ---
 
@@ -449,7 +497,126 @@ freer. Native 800×600 → **generate 1600×1200**.
 
 ---
 
-## 5. Acceptance checklist
+## 5. Brand and icon assets — missing entirely today
+
+The site has **no logo file**. The mark in the header is a CSS-styled Hebrew letter `ד` in a
+rounded navy square with a CMYK strip underneath (`src/components/Header.tsx`, `.brand-mark`).
+It looks deliberate, but it is a placeholder standing in for an identity.
+
+For a print shop that sells **graphic design as a service**, shipping without a real logo is
+a credibility problem — it is the one thing a prospective client will judge the design
+capability by.
+
+These are **design tasks, not photography**. A generative image model is the wrong tool;
+these need a vector designer (human or an agent producing real SVG).
+
+#### `logo.svg` — primary wordmark
+- **Content:** דפוס ראובן, with the `עיצוב • דפוס • שילוט` tagline as an optional lock-up variant.
+- **Constraints:** Hebrew letterforms must be correct — this is the one asset where a wrong
+  glyph is fatal. Set in a real Hebrew typeface (Miriam Libre matches the site's display face).
+- **Deliver:** horizontal lock-up, stacked lock-up, and mark-only, each in SVG, in full
+  colour / all-navy / all-white (reversed).
+- **Must work:** at 24px tall in a browser tab, and at 3 metres on a shop sign — this business
+  puts its own logo on signage.
+
+#### `icon.svg` — favicon *(exists, 496 bytes — review, may be fine)*
+- Currently the `ד` mark with a CMYK strip. Genuinely distinctive at small size. Keep it
+  unless the new logo supersedes it, in which case regenerate to match.
+
+#### `apple-icon.png` — **missing**
+- **Size:** 180×180 PNG, no transparency, no rounded corners (iOS applies its own mask).
+- **Why it matters here:** this is a mobile-first site aimed at people who will save it to a
+  home screen. Without this file iOS renders a blurry screenshot of the page instead.
+- **Where:** `src/app/apple-icon.png` — Next.js picks it up by filename, no code change.
+
+#### `opengraph-image` — see §4E
+- The `og-image.webp` in §4E covers this. Alternatively place it at
+  `src/app/opengraph-image.png` (1200×630) and Next wires it automatically, which is cleaner
+  than the current `site.socialImage` reference.
+
+---
+
+## 6. Product gallery depth — 24 additional frames
+
+Each product page shows a four-thumbnail gallery. Today slots 3 and 4 are almost always the
+same two shared images (`machine` in 10 of 12 galleries, `finishes` in 11 of 12), so the
+gallery stops being about the product.
+
+**Target: 2 additional product-specific frames per product**, replacing the two shared shots.
+Same art direction and technical spec as §4B.
+
+For each of the 12 products, shoot:
+
+| Slot | What it shows | Why |
+|---|---|---|
+| 1 | The hero product shot *(already specified in §4B)* | What it is |
+| 2 | **Detail / macro** — the edge, the foil, the die-cut, the eyelet, the binding | Proves quality |
+| 3 | **In context / in use** — on a desk, in a hand, on a shopfront, at an event | Proves it's real |
+| 4 | Shared press or finishing shot *(keep only if 2 and 3 don't exist yet)* | Filler |
+
+Naming: `prod-<slug>-detail.webp`, `prod-<slug>-context.webp`
+Products (slugs from `src/data/catalog.ts`): `business-cards`, `flyers`, `invitations`,
+`stickers`, `receipt-books`, `roll-ups`, `banners`, `business-signs`, `office-stationery`,
+`packaging`, `promotional`, `thank-you-cards`.
+
+**Code change required:** edit each product's `gallery: [...]` array in
+`src/data/catalog.ts`, replacing `pressShot` / `finishShot` with the new entries and giving
+each a Hebrew `alt` and `label`.
+
+---
+
+## 7. Portfolio photography — 12 frames
+
+`src/data/content.ts` defines 12 portfolio projects, each with a real title, description and
+materials list — but all 12 currently point at the shared product/service images. So the
+"portfolio" shows the same pictures as the catalogue, which undercuts the whole section's
+claim of being actual completed work.
+
+Shoot one frame per project, matching the spec already written in the data file. The
+`specs` array on each item tells you exactly what the photo must show:
+
+| id | Project | Must visibly show (from its `specs`) |
+|---|---|---|
+| `accounting-branding` | מיתוג משרד רואי חשבון | 350gsm chromo, matte lamination, blind emboss on the logo |
+| `gold-foil-wedding` | הזמנת חתונה בפויל זהב | 300gsm textured stock, hot gold foil, laser-cut edge, matching envelope |
+| `storefront-sign` | שלט חזית לחנות | 8mm perspex, 3D letters, LED backlight |
+| `cosmetics-labels` | תוויות למותג קוסמטיקה | white polypropylene, matte lam, die-cut, roll on a 76mm core |
+| `employee-gift-kit` | ערכת מתנה לעובדים | embroidered shirt, laser-etched pen, ceramic mug, branded carton |
+| `product-catalog` | קטלוג מוצרים 32 עמודים | 170gsm gloss, 250gsm laminated cover, thread sewn |
+| `expo-rollup` | רולאפ לתערוכה | 220gsm poly fabric, aluminium stand, carry bag |
+| `receipt-books` | פנקסי קבלות ממותגים | 3-part NCR, running numbering, glued head binding |
+| `food-packaging` | אריזת קרטון למותג מזון | 400gsm board, custom die, matte lam, machine glued |
+| `bar-mitzvah` | הזמנות לבר מצווה | 300gsm, shaped cut, royal blue, matching card |
+| `launch-banner` | שמשונית לאירוע השקה | 510gsm PVC, eyelets every 50cm, UV print |
+| `foil-business-cards` | כרטיסי ביקור עם פויל | 400gsm, soft-touch lam, foil, rounded corners |
+
+**These should be real jobs where possible.** A portfolio of generated images is a claim
+about work that was never done. If real archive photos exist, use them and skip generation
+entirely — this is the section where authenticity matters most and where a generated
+substitute is closest to a lie.
+
+Naming: `portfolio-<id>.webp`, 1600×1200, must survive 1:1 and 3:4 crops (§1.3).
+**Code change:** update the `image` field on each item in `src/data/content.ts`.
+
+---
+
+## 8. Situation-page images — 4 frames
+
+`src/data/situations.ts` drives four landing pages that currently borrow product shots.
+Each deserves a wider, more editorial "scene" frame than a product shot gives.
+
+| File | Page | Scene |
+|---|---|---|
+| `situation-new-business.webp` | פותחים עסק חדש | A full opening-day kit laid out together: cards, stamp, receipt book, folder, small sign |
+| `situation-wedding.webp` | מתחתנים | Invitation suite spread with envelopes, seating card and a thank-you card |
+| `situation-storefront.webp` | פותחים חנות | A finished shopfront exterior with fascia sign, window decal and A-frame |
+| `situation-campaign.webp` | יוצאים בקמפיין | Flyers, a roll-up and branded merch staged as a launch-day set |
+
+1600×1200. Same direction as §3. **Code change:** update `image` in `src/data/situations.ts`.
+
+---
+
+## 9. Acceptance checklist
 
 Run through this per image before delivering.
 
@@ -465,21 +632,41 @@ Run through this per image before delivering.
 - [ ] Filename matches exactly.
 - [ ] The Hebrew `alt` text in the code is still a truthful description of the image.
 
-## 6. Priority order
+## 10. Priority order
 
-If the whole set can't be produced at once, this is the order that buys the most:
+Ordered by what each frame actually buys, across all four groups.
 
-1. `hero-collage` — first thing every visitor sees
-2. `prod-invitations` — most-reused image on the site, and the highest-margin product
-3. `finishes` — the image that proves craftsmanship
-4. `about-studio` — the human proof behind "personal service" (**use a real photo if possible**)
-5. `prod-business-cards` — most-requested product
-6. `machine` — capability proof
-7. Remaining product shots
-8. Remaining service cards
-9. `og-image`
+**Tier 1 — do these first (9 assets).** Without these the site looks unfinished.
 
-## 7. What not to do
+1. `logo.svg` (§5) — **the single biggest gap.** A design studio with no logo undercuts
+   everything else on the page. Not photography; needs a vector designer.
+2. `hero-collage` (§4D) — first thing every visitor sees
+3. `prod-invitations` (§4B) — most-reused image on the site and the highest-margin product
+4. `finishes` (§4C) — the frame that proves craftsmanship
+5. `about-studio` (§4C) — the human behind "שירות אישי". **Use a real photo of Reuven if at
+   all possible**; this is where a generated stand-in costs the most credibility.
+6. `prod-business-cards` (§4B) — most-requested product
+7. `apple-icon.png` (§5) — mobile-first site, currently renders a blurry screenshot when saved
+8. `og-image` (§4E) — WhatsApp is a primary sharing channel here and the preview is wrong today
+9. `machine` (§4C) — capability proof
+
+**Tier 2 — removes the visible repetition (17 assets).**
+
+10. All 12 portfolio frames (§7) — stops the portfolio showing the same pictures as the catalogue.
+    **Use real archive photos of real jobs wherever they exist.**
+11. Remaining `prod-*` product shots (§4B)
+12. 4 situation scenes (§8)
+
+**Tier 3 — depth (26 assets).**
+
+13. Remaining service cards (§4A)
+14. Per-product detail + context frames (§6) — 24 frames, the last thing to do and the
+    thing that makes product pages feel genuinely photographed
+
+**If you only ever do Tier 1, the site is credible.** Tier 2 is what makes it stop looking
+like it reuses stock. Tier 3 is polish.
+
+## 11. What not to do
 
 - Don't generate a single wide image and slice it into the set — they need distinct subjects.
 - Don't upscale a low-resolution generation to hit the 2× requirement.
