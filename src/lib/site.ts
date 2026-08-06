@@ -26,11 +26,11 @@ export const site = {
   addressShort: "ז'בוטינסקי 84",
   city: "בני ברק",
 
-  // ⚠️ STILL PLACEHOLDERS — the public listings carry neither.
-  // WhatsApp is the site's primary call to action (header, mobile bar, every
-  // product page, the quote form). 03-5785651 is a landline and cannot receive
-  // WhatsApp, so this must be a mobile number before launch.
-  whatsapp: "972500000000",
+  // Supplied by the business owner: 052-721-0118.
+  whatsapp: "972527210118",
+  whatsappDisplay: "052-721-0118",
+
+  // ⚠️ STILL A PLACEHOLDER — verify this mailbox exists on the new domain.
   email: "info@dfusreuven.co.il",
 
   // Display hours come from lib/hours.ts so they can never disagree with the

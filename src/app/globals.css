@@ -760,6 +760,40 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .quote-card cite strong { display: block; color: var(--ink); font-size: .96rem; }
 .quote-card cite span { color: var(--muted); font-size: .87rem; }
 
+/* ---------- WhatsApp proof ----------
+   Screenshots are portrait and read best side by side: a scroll strip on
+   phones, a row on desktop. */
+.proof__strip {
+  display: flex; gap: 14px; overflow-x: auto;
+  padding-bottom: 10px; scroll-snap-type: x mandatory;
+  margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+.proof__strip::-webkit-scrollbar { display: none; }
+@media (min-width: 900px) {
+  .proof__strip {
+    overflow: visible; justify-content: center; flex-wrap: wrap;
+    margin-inline: 0; padding-inline: 0;
+  }
+}
+.proof__item { flex: 0 0 74vw; max-width: 300px; scroll-snap-align: center; }
+@media (min-width: 640px) { .proof__item { flex-basis: 280px; } }
+.proof__item figure {
+  background: #fff; border: 1px solid var(--rule);
+  border-radius: var(--trim); overflow: hidden; height: 100%;
+}
+.proof__item img { width: 100%; height: auto; display: block; }
+.proof__item figcaption {
+  display: flex; align-items: center; gap: 9px;
+  padding: 13px 15px; border-top: 1px solid var(--rule);
+  font-size: .9rem; color: var(--muted);
+}
+.proof__item figcaption svg { width: 17px; height: 17px; color: var(--wa); flex: none; }
+.proof__item figcaption strong { color: var(--ink); }
+.proof__note {
+  text-align: center; color: var(--muted); font-size: .85rem; margin: 18px 0 0;
+}
+
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; gap: 30px; }
 @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1.1fr; gap: 48px; } }

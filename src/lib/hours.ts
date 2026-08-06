@@ -19,23 +19,24 @@ export type OpenState = {
  * read from here, so the badge can never say "open now" while the footer shows
  * different hours.
  *
- * Source: the business's Dapey Zahav listing (ז'בוטינסקי 84, בני ברק).
- * Sunday = 0 … Saturday = 6.
+ * Source: supplied directly by the business owner. This supersedes the Dapey
+ * Zahav listing, which was last updated in 2014 and showed Friday as open.
+ * Sunday = 0 … Saturday = 6. null means closed.
  */
 const SCHEDULE: Record<number, { from: string; to: string } | null> = {
-  0: { from: "07:30", to: "19:30" },
-  1: { from: "07:30", to: "19:30" },
-  2: { from: "07:30", to: "19:30" },
-  3: { from: "07:30", to: "19:30" },
-  4: { from: "07:30", to: "19:30" },
-  5: { from: "09:00", to: "13:00" },
+  0: { from: "09:30", to: "18:30" },
+  1: { from: "09:30", to: "18:30" },
+  2: { from: "09:30", to: "18:30" },
+  3: { from: "09:30", to: "18:30" },
+  4: { from: "09:30", to: "18:30" },
+  5: null,
   6: null,
 };
 
-/** Human-readable hours for the footer and contact block, grouped by identical times. */
+/** Human-readable hours for the footer and contact block. */
 export const businessHours: { days: string; time: string }[] = [
   { days: "ראשון–חמישי", time: `${SCHEDULE[0]!.from}–${SCHEDULE[0]!.to}` },
-  { days: "שישי", time: `${SCHEDULE[5]!.from}–${SCHEDULE[5]!.to}` },
+  { days: "שישי–שבת", time: "סגור" },
 ];
 
 /** Opening hours in schema.org form for the JSON-LD block. */
@@ -45,12 +46,6 @@ export const openingHoursSchema = [
     dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
     opens: SCHEDULE[0]!.from,
     closes: SCHEDULE[0]!.to,
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: "Friday",
-    opens: SCHEDULE[5]!.from,
-    closes: SCHEDULE[5]!.to,
   },
 ];
 
@@ -125,6 +120,7 @@ export function getOpenState(now: Date = new Date()): OpenState {
   return {
     open: false,
     badge: "סגור",
-    message: `נחזור אליכם ${dayLabel} מ-${next.from}. שלחו הודעה ונטפל בזה ראשון.`,
+    // "ראשון" here would collide with "ביום ראשון" above and read as Sunday twice.
+    message: `נחזור אליכם ${dayLabel} מ-${next.from}. שלחו הודעה עכשיו ונטפל בה ראשונה.`,
   };
 }

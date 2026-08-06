@@ -27,7 +27,7 @@ export default function ContactBlock() {
             <span>
               <strong>WhatsApp</strong>
               <a href={waLink()} target="_blank" rel="noopener" dir="ltr">
-                {site.phoneDisplay}
+                {site.whatsappDisplay}
               </a>
             </span>
           </li>

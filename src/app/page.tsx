@@ -5,12 +5,14 @@ import ProductCard from "@/components/ProductCard";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import QuoteForm from "@/components/QuoteForm";
 import ContactBlock from "@/components/ContactBlock";
+import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import Estimator from "@/components/Estimator";
 import { CtaBand, Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
 import { featuredProducts, services } from "@/data/catalog";
 import { benefits, portfolio, processSteps, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
+import { whatsappProof } from "@/data/proof";
 
 export default function HomePage() {
   return (
@@ -45,7 +47,7 @@ export default function HomePage() {
               </span>
               <span>
                 <CheckIcon />
-                בני ברק · א׳–ה׳ עד 19:30
+                בני ברק · א׳–ה׳ עד 18:30
               </span>
             </p>
           </div>
@@ -64,7 +66,7 @@ export default function HomePage() {
                 <PressStrip />
               </div>
               <strong>בני ברק</strong>
-              <span>ז׳בוטינסקי 84 · א׳–ה׳ 07:30–19:30</span>
+              <span>ז׳בוטינסקי 84 · א׳–ה׳ 09:30–18:30</span>
             </div>
           </div>
         </div>
@@ -310,6 +312,23 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- Testimonials ---------------- */}
+      {whatsappProof.length > 0 ? (
+        <section className="section" id="proof">
+          <div className="container">
+            <Reveal>
+              <SectionHead
+                title="מה לקוחות כותבים לנו"
+                lead="הודעות אמיתיות מלקוחות, מפורסמות באישורם."
+                center
+              />
+            </Reveal>
+            <Reveal delay={60}>
+              <WhatsAppProofStrip />
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
       {testimonials.length > 0 ? (
         <section className="section" id="testimonials">
         <div className="container">
