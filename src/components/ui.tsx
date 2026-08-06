@@ -209,7 +209,7 @@ export function MobileBar() {
           <p className={`mobile-bar__status${open ? " is-open" : ""}`}>
             <span className="dot" aria-hidden />
             <strong>{state.badge}</strong>
-            <span>· {state.short}</span>
+            <span>{" · "}{state.short}</span>
           </p>
         ) : null}
         <div className="mobile-bar__actions">
