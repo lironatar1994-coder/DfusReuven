@@ -87,13 +87,21 @@ export function SectionHead({
   title,
   lead,
   center = false,
+  ruled = false,
 }: {
   title: string;
   lead?: string;
   center?: boolean;
+  /**
+   * Runs a hairline the full width of the container with a short blue tick at
+   * its start, like a rule across a press sheet. Used on some sections so the
+   * page does not repeat one identical centred header eight times.
+   */
+  ruled?: boolean;
 }) {
+  const variant = center ? " section-head--center" : ruled ? " section-head--ruled" : "";
   return (
-    <div className={`section-head${center ? " section-head--center" : ""}`}>
+    <div className={`section-head${variant}`}>
       <span className="head-rule" aria-hidden />
       <h2>{title}</h2>
       {lead ? <p>{lead}</p> : null}
@@ -201,7 +209,7 @@ export function MobileBar() {
           <p className={`mobile-bar__status${open ? " is-open" : ""}`}>
             <span className="dot" aria-hidden />
             <strong>{state.badge}</strong>
-            <span>{state.message}</span>
+            <span>· {state.short}</span>
           </p>
         ) : null}
         <div className="mobile-bar__actions">

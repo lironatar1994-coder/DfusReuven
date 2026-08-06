@@ -20,7 +20,7 @@ export default function HomePage() {
       {/* ---------------- Hero ---------------- */}
       <section className="hero">
         <div className="container hero__grid">
-          <div>
+          <div className="hero__head">
             <h1>
               הופכים כל רעיון <em>למוצר מודפס</em>
             </h1>
@@ -28,6 +28,9 @@ export default function HomePage() {
               עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום – משלב הרעיון ועד למוצר
               המוגמר.
             </p>
+          </div>
+
+          <div className="hero__actions">
             <div className="btn-row">
               <Link className="btn btn--primary" href="/quote">
                 לקבלת הצעת מחיר
@@ -97,7 +100,7 @@ export default function HomePage() {
             <SectionHead
               title="מה מביא אתכם אלינו?"
               lead="רוב הלקוחות שלנו לא מחפשים מוצר בודד אלא ערכה שלמה. אלה הצירופים הנפוצים."
-              center
+              ruled
             />
           </Reveal>
           <div className="grid grid--4">
@@ -138,27 +141,25 @@ export default function HomePage() {
             <SectionHead
               title="כל מה שהעסק שלכם צריך להדפיס"
               lead="מכרטיס ביקור בודד ועד פרויקט מיתוג שלם – אצלנו הכול נעשה תחת קורת גג אחת, מהעיצוב הראשוני ועד למוצר המוגמר."
-              center
+              ruled
             />
           </Reveal>
 
-          <div className="grid grid--3">
+          <div className="grid grid--3 services-list">
             {services.map((service, i) => (
               <Reveal key={service.slug} delay={(i % 3) * 80}>
-                <article className="card" style={{ height: "100%" }}>
-                  <div className="card__media">
+                <Link className="card" href={`/services#${service.slug}`} style={{ height: "100%" }}>
+                  <span className="card__media">
                     <Image src={service.image} alt={service.alt} width={800} height={500} />
-                  </div>
-                  <div className="card__body">
+                  </span>
+                  <span className="card__body">
                     <h3>{service.title}</h3>
                     <p>{service.short}</p>
-                    <div className="card__foot">
-                      <Link className="link-arrow" href={`/services#${service.slug}`}>
-                        לפרטים נוספים
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+                    <span className="card__foot">
+                      <span className="link-arrow">לפרטים נוספים</span>
+                    </span>
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>

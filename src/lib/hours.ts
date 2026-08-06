@@ -6,10 +6,16 @@
 
 export type OpenState = {
   open: boolean;
-  /** e.g. "סוגרים ב-17:30" or "נחזור אליכם מחר ב-8:30" */
+  /** Full sentence, for places with room to read it */
   message: string;
   /** Short badge label */
   badge: string;
+  /**
+   * Compact form for the fixed mobile bar, which is permanently on screen and
+   * must never wrap to a second line. Four words at most.
+   * e.g. "פתוח עד 18:30", "נפתח ראשון 09:30"
+   */
+  short: string;
 };
 
 /**
@@ -103,6 +109,7 @@ export function getOpenState(now: Date = new Date()): OpenState {
         message: closingSoon
           ? `סוגרים בעוד ${to - minutes} דקות, ב-${today.to}`
           : `פתוח עד ${today.to}`,
+        short: closingSoon ? `סוגרים ב-${today.to}` : `פתוח עד ${today.to}`,
       };
     }
 
@@ -111,16 +118,19 @@ export function getOpenState(now: Date = new Date()): OpenState {
         open: false,
         badge: "סגור",
         message: `נפתחים היום ב-${today.from}. אפשר לשלוח הודעה ונחזור אליכם.`,
+        short: `נפתח היום ${today.from}`,
       };
     }
   }
 
   const next = nextOpening(day);
-  const dayLabel = next.day === (day + 1) % 7 ? "מחר" : `ביום ${DAY_NAMES[next.day]}`;
+  const isTomorrow = next.day === (day + 1) % 7;
+  const dayLabel = isTomorrow ? "מחר" : `ביום ${DAY_NAMES[next.day]}`;
   return {
     open: false,
     badge: "סגור",
     // "ראשון" here would collide with "ביום ראשון" above and read as Sunday twice.
     message: `נחזור אליכם ${dayLabel} מ-${next.from}. שלחו הודעה עכשיו ונטפל בה ראשונה.`,
+    short: `נפתח ${isTomorrow ? "מחר" : DAY_NAMES[next.day]} ${next.from}`,
   };
 }
