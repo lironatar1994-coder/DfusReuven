@@ -12,134 +12,18 @@ export type PortfolioItem = {
   tall?: boolean;
 };
 
-export const portfolio: PortfolioItem[] = [
-  {
-    id: "accounting-branding",
-    title: "מיתוג משרד רואי חשבון",
-    category: "business",
-    categoryLabel: "דפוס לעסקים",
-    description:
-      "ערכת ניירת משרדית מלאה: כרטיסי ביקור, נייר מכתבים, מעטפות ותיקיות מצגת בעיצוב אחיד.",
-    specs: ["נייר כרומו 350 גרם", "למינציה מטית", "הבלטה עיוורת על הלוגו", "דפוס אופסט 4 צבעים"],
-    image: "/images/svc-business.svg",
-    alt: "ערכת ניירת משרדית ממותגת למשרד רואי חשבון",
-  },
-  {
-    id: "gold-foil-wedding",
-    title: "הזמנת חתונה בפויל זהב",
-    category: "events",
-    categoryLabel: "הזמנות",
-    description:
-      "הזמנה קלאסית בגוון שמנת עם הטבעת פויל זהב, מעטפה תואמת וכרטיס אישור הגעה.",
-    specs: ["נייר טקסטורה 300 גרם", "הטבעת פויל זהב חם", "חיתוך מדויק בליזר", "מעטפה מודפסת בהתאמה"],
-    image: "/images/prod-invitations.svg",
-    alt: "הזמנת חתונה עם פויל זהב ומעטפה תואמת",
-    tall: true,
-  },
-  {
-    id: "storefront-sign",
-    title: "שלט חזית לחנות",
-    category: "signage",
-    categoryLabel: "שילוט",
-    description:
-      "שלט חזית בגודל 3 מטר עם אותיות תלת-מימד ותאורה אחורית, כולל מדידה והתקנה באתר.",
-    specs: ["פרספקס 8 מ״מ", "אותיות תלת-מימד", "תאורת LED אחורית", "מדידה והתקנה כלולות"],
-    image: "/images/prod-signs.svg",
-    alt: "שלט חזית מואר לחנות",
-  },
-  {
-    id: "cosmetics-labels",
-    title: "תוויות למותג קוסמטיקה",
-    category: "stickers",
-    categoryLabel: "מדבקות ואריזות",
-    description: "סדרת תוויות מוצר בגלילים לשלושה גדלי אריזות, עמידות במים ובשמנים.",
-    specs: ["פוליפרופילן לבן", "למינציה מטית", "גזירת דייקאט", "אספקה בגליל עם ליבה 76 מ״מ"],
-    image: "/images/prod-stickers.svg",
-    alt: "תוויות מוצר עגולות ומדבקות דייקאט למותג קוסמטיקה",
-  },
-  {
-    id: "employee-gift-kit",
-    title: "ערכת מתנה לעובדים",
-    category: "promo",
-    categoryLabel: "מוצרי פרסום",
-    description: "ערכת מתנה ממותגת לסוף שנה: ספל, חולצה, עט ופנקס – באריזת קרטון ייעודית.",
-    specs: ["הדפסת רקמה על חולצה", "צריבת לייזר על עט", "הדפסה קרמית על ספל", "אריזת קרטון ממותגת"],
-    image: "/images/svc-promo.svg",
-    alt: "ערכת מתנה ממותגת: ספל, חולצה ועטים",
-  },
-  {
-    id: "product-catalog",
-    title: "קטלוג מוצרים 32 עמודים",
-    category: "business",
-    categoryLabel: "דפוס לעסקים",
-    description: "קטלוג מוצרים לחברת ייבוא, כולל עימוד מלא, צילום מוצר וכריכה בתפר חוט.",
-    specs: ["כרומו מבריק 170 גרם", "כריכה 250 גרם עם למינציה", "תפר חוט", "דפוס אופסט"],
-    image: "/images/prod-flyers.svg",
-    alt: "קטלוג מוצרים מודפס ופליירים נלווים",
-  },
-  {
-    id: "expo-rollup",
-    title: "רולאפ לתערוכה",
-    category: "signage",
-    categoryLabel: "שילוט",
-    description: "רולאפ 85×200 ס״מ לתערוכה מקצועית, כולל עיצוב גרפי מלא ותיק נשיאה.",
-    specs: ["בד פולי 220 גרם", "מעמד אלומיניום", "הדפסה בהזרקת דיו", "תיק נשיאה כלול"],
-    image: "/images/prod-rollup.svg",
-    alt: "רולאפ שיווקי לתערוכה",
-    tall: true,
-  },
-  {
-    id: "receipt-books",
-    title: "פנקסי קבלות ממותגים",
-    category: "business",
-    categoryLabel: "דפוס לעסקים",
-    description:
-      "סדרת פנקסי קבלות ממוספרים בשלושה העתקים, בהתאמה מלאה לדרישות הנהלת חשבונות.",
-    specs: ["נייר NCR בשלושה צבעים", "מספור רץ", "כריכה עליונה מודבקת", "לוגו בשני צבעים"],
-    image: "/images/prod-receipts.svg",
-    alt: "פנקסי קבלות ממוספרים עם העתקים",
-  },
-  {
-    id: "food-packaging",
-    title: "אריזת קרטון למותג מזון",
-    category: "stickers",
-    categoryLabel: "מדבקות ואריזות",
-    description: "אריזה ממותגת עם חיתוך סכין ייעודי, מותאמת למידות המוצר ולשילוח.",
-    specs: ["קרטון 400 גרם", "סכין חיתוך ייעודית", "למינציה מטית", "הדבקה מכנית"],
-    image: "/images/svc-stickers.svg",
-    alt: "אריזת קרטון ממותגת עם מדבקות מוצר",
-  },
-  {
-    id: "bar-mitzvah",
-    title: "הזמנות לבר מצווה",
-    category: "events",
-    categoryLabel: "הזמנות",
-    description: "הזמנות בעיצוב מודרני עם חיתוך מיוחד, בהתאמה אישית לצבעי האירוע.",
-    specs: ["נייר 300 גרם", "חיתוך צורני", "צבע כחול מלכותי", "כרטיס ברכה תואם"],
-    image: "/images/svc-invitations.svg",
-    alt: "הזמנות לבר מצווה עם עיצוב מודרני",
-  },
-  {
-    id: "launch-banner",
-    title: "שמשונית לאירוע השקה",
-    category: "signage",
-    categoryLabel: "שילוט",
-    description: "שמשונית רחבה לאירוע השקה, בהדפסה עמידה לשמש ולגשם.",
-    specs: ["בד PVC 510 גרם", "עיניות מתכת כל 50 ס״מ", "הדפסה UV", "מידות לפי הזמנה"],
-    image: "/images/prod-banner.svg",
-    alt: "שמשונית מודפסת לאירוע השקה",
-  },
-  {
-    id: "foil-business-cards",
-    title: "כרטיסי ביקור עם פויל",
-    category: "business",
-    categoryLabel: "דפוס לעסקים",
-    description: "כרטיסי ביקור כהים עם הטבעת פויל ולמינציה רכה למגע קטיפתי.",
-    specs: ["נייר 400 גרם", "למינציה סופט-טאץ׳", "הטבעת פויל", "פינות מעוגלות"],
-    image: "/images/prod-business-cards.svg",
-    alt: "כרטיסי ביקור כהים עם הטבעת פויל",
-  },
-];
+/**
+ * Empty on purpose.
+ *
+ * This previously held 12 invented projects — titles, descriptions and
+ * materials specs — presented as completed work for a real business. None of it
+ * happened. Removed rather than relabelled.
+ *
+ * Add real jobs here as photographs become available (see docs/IMAGE-BRIEF.md §7).
+ * The portfolio page and the homepage section render an honest empty state while
+ * this is empty, and appear automatically once it is not.
+ */
+export const portfolio: PortfolioItem[] = [];
 
 export const processSteps = [
   {
@@ -160,68 +44,66 @@ export const processSteps = [
   },
 ];
 
+/**
+ * Every claim here must be something a competitor could not copy verbatim, and
+ * something this shop can actually be held to. "איכות ללא פשרות" fails both:
+ * no printer claims the opposite, so it carries no information.
+ */
 export const benefits = [
   {
+    icon: "shield" as const,
+    title: "בודקים את הקובץ לפני שמדפיסים",
+    text: "רזולוציה, בליד וצבעים נבדקים לפני שהמכונה מתחילה. אם משהו ייצא מטושטש — תדעו לפני, לא אחרי.",
+  },
+  {
     icon: "palette" as const,
-    title: "עיצוב והדפסה במקום אחד",
-    text: "לא צריך לרוץ בין מעצב לבית דפוס – הכול קורה אצלנו.",
+    title: "עיצוב והדפסה באותו מקום",
+    text: "אין העברות בין מעצב לבית דפוס, ואין על מי להאשים כשמשהו יוצא לא נכון.",
   },
   {
     icon: "users" as const,
-    title: "שירות אישי וליווי מקצועי",
-    text: "איש קשר אחד שמכיר את העבודה שלכם מההתחלה ועד הסוף.",
-  },
-  {
-    icon: "shield" as const,
-    title: "חומרי גלם איכותיים",
-    text: "ניירות, בדים וחומרי שילוט מהיצרנים המובילים בלבד.",
+    title: "מדברים עם מי שמדפיס",
+    text: "לא מוקד ולא טופס אוטומטי — אותו איש קשר מתחילת העבודה ועד המסירה.",
   },
   {
     icon: "check" as const,
-    title: "התאמה אישית לכל לקוח",
-    text: "גם כמות קטנה וגם פרויקט מיתוג שלם – באותה רמת תשומת לב.",
+    title: "גם 100 יחידות זו הזמנה",
+    text: "כמות קטנה מקבלת את אותו יחס. לא צריך להזמין אלפים כדי שנתייחס אליכם.",
   },
   {
     icon: "clock" as const,
-    title: "זמני ביצוע מהירים",
-    text: "עבודות דחופות מטופלות תוך 48 שעות, בתיאום מראש.",
+    title: "אפשר לבוא לראות ולגעת",
+    text: "דוגמאות נייר, פויל וגימור נמצאות אצלנו בחנות בבני ברק. נייר נבחר ביד, לא במסך.",
   },
 ];
 
-export const testimonials = [
-  {
-    quote: "שירות מהיר, עיצוב מקצועי והתוצאה יצאה אפילו יותר יפה ממה שדמיינו.",
-    name: "שם הלקוח",
-    business: "שם העסק · הזמנות לאירוע",
-    initial: "מ",
-  },
-  {
-    quote:
-      "הזמנו כרטיסי ביקור וניירת לכל המשרד. קיבלנו הצעה תוך שעה והכול היה מוכן בזמן שהובטח.",
-    name: "שם הלקוח",
-    business: "שם העסק · דפוס לעסקים",
-    initial: "א",
-  },
-  {
-    quote:
-      "עשו לנו שילוט מלא לחנות החדשה, כולל מדידה והתקנה. ליווי אמיתי לאורך כל הדרך.",
-    name: "שם הלקוח",
-    business: "שם העסק · שילוט לעסקים",
-    initial: "ר",
-  },
-];
+/**
+ * Empty on purpose — these were invented quotes shown under five-star ratings.
+ * Add real ones only with the customer's permission, using their actual words.
+ */
+export const testimonials: {
+  quote: string;
+  name: string;
+  business: string;
+  initial: string;
+}[] = [];
 
-export const stats = [
-  { value: "+2,500", label: "עבודות בשנה" },
-  { value: "+800", label: "לקוחות עסקיים" },
-  { value: "48 שעות", label: "לעבודות דחופות" },
-  { value: "100%", label: "בדיקת קובץ לפני דפוס" },
-];
+/**
+ * Empty on purpose.
+ *
+ * This previously held invented figures (+2,500 jobs a year, +800 clients,
+ * 15 years). Nobody supplied them and they are attached to a real business with
+ * a real phone number, so they were removed rather than softened.
+ *
+ * To bring the band back, fill in numbers Reuven can stand behind. The homepage
+ * and about page render it only when this array is non-empty.
+ */
+export const stats: { value: string; label: string }[] = [];
 
 export const productFaq = [
   {
     q: "כמה זמן לוקחת הדפסה?",
-    a: "מוצרי דפוס דיגיטלי מוכנים בדרך כלל תוך 1–3 ימי עסקים מרגע אישור הקובץ. עבודות אופסט, שילוט ומוצרי פרסום דורשות 3–7 ימי עסקים. לעבודות דחופות יש לנו מסלול מזורז של עד 48 שעות בתיאום מראש.",
+    a: "זה תלוי במוצר, בכמות ובגימור. נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר, לפני שאתם מאשרים. אם יש לכם תאריך יעד — אמרו לנו אותו מראש ונגיד בכנות אם הוא אפשרי.",
   },
   {
     q: "אין לי קובץ מוכן – אתם יכולים לעצב?",
@@ -248,7 +130,7 @@ export const contactFaq = [
   },
   {
     q: "כמה מהר תחזרו אליי?",
-    a: "פניות שמגיעות בשעות הפעילות מקבלות מענה באותו יום, בדרך כלל תוך שעה-שעתיים. פניות שנשלחות בערב או בסוף שבוע מטופלות ביום העסקים הבא.",
+    a: "אנחנו עונים בשעות הפעילות — א׳–ה׳ 07:30–19:30 ובשישי עד 13:00. פנייה שנשלחת אחרי הסגירה מטופלת ביום העסקים הבא.",
   },
   {
     q: "אתם עובדים גם מול לקוחות מחוץ לאזור?",
@@ -256,6 +138,6 @@ export const contactFaq = [
   },
   {
     q: "יש חניה במקום?",
-    a: "כן, יש חניה חופשית בסמוך לבית הדפוס. אפשר גם לתאם איסוף מהיר של עבודה מוכנה.",
+    a: "אנחנו נמצאים בז׳בוטינסקי 84 בבני ברק. אפשר לתאם איתנו מראש איסוף של עבודה מוכנה.",
   },
 ];

@@ -567,6 +567,18 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .gallery__cap strong { display: block; font-family: var(--ff-display); font-size: 1rem; }
 .gallery__cap span { font-size: .8rem; opacity: .8; }
 
+/* Honest empty state — used where real content does not exist yet. */
+.empty-state {
+  border: 1.5px dashed var(--rule-strong);
+  border-radius: var(--trim-lg);
+  padding: 44px 24px;
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.empty-state h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); margin-bottom: 12px; }
+.empty-state p { color: var(--muted); margin-bottom: 26px; }
+
 /* ---------- Lightbox ---------- */
 .lightbox {
   position: fixed; inset: 0; z-index: 150; display: none;

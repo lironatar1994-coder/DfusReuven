@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import { CtaBand, Crumbs, Reveal, SectionHead } from "@/components/ui";
 import { portfolio } from "@/data/content";
@@ -26,7 +27,28 @@ export default function PortfolioPage() {
 
       <section className="section">
         <div className="container">
-          <PortfolioGallery items={portfolio} />
+          {portfolio.length > 0 ? (
+            <PortfolioGallery items={portfolio} />
+          ) : (
+            <Reveal>
+              <div className="empty-state">
+                <h2>העבודות בדרך לכאן</h2>
+                <p>
+                  אנחנו מצלמים כרגע מבחר עבודות שיצאו מבית הדפוס — ניירת עסקית, הזמנות עם פויל,
+                  שילוט ואריזות — ונעלה אותן לכאן. בינתיים, אם יש משהו מסוים שאתם רוצים לראות,
+                  דברו איתנו ונשלח לכם דוגמאות של עבודות דומות שביצענו.
+                </p>
+                <div className="btn-row btn-row--center">
+                  <Link className="btn btn--primary" href="/quote">
+                    בקשו לראות דוגמאות
+                  </Link>
+                  <Link className="btn btn--secondary" href="/products">
+                    לקטלוג המוצרים
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 

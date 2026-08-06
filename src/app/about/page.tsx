@@ -66,34 +66,17 @@ export default function AboutPage() {
             />
           </Reveal>
           <Reveal delay={100}>
-            <SectionHead title="מבית דפוס שכונתי לבית הפקה מלא" />
+            <SectionHead title="הסיפור שלנו" />
             <p style={{ color: "var(--ink-soft)", fontSize: "1.05rem" }}>
               בדפוס ראובן אנחנו מלווים עסקים ולקוחות פרטיים משלב הרעיון הראשוני ועד למוצר המודפס. אנו
               משלבים יצירתיות, ניסיון, חומרי גלם איכותיים וטכנולוגיות דפוס מתקדמות, כדי שכל עבודה
               תיראה מקצועית, מדויקת ומרשימה.
             </p>
-            <p>
-              התחלנו כבית דפוס קטן שנתן שירות לעסקים בשכונה, והיום אנחנו מפיקים מדי שנה אלפי עבודות –
-              מכרטיס ביקור בודד ועד פרויקטי מיתוג ושילוט מלאים. מה שלא השתנה זה היחס: כל לקוח מקבל איש
-              קשר אחד שמלווה אותו לאורך כל הדרך.
-            </p>
-            <SpecLine items={["+15 שנות ניסיון", "אופסט ודיגיטלי", "מדידה והתקנה"]} />
+
           </Reveal>
         </div>
       </section>
 
-      <section className="section section--paper section--tight">
-        <div className="container">
-          <Reveal className="stats">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
 
       <section className="section">
         <div className="container">

@@ -120,8 +120,8 @@ export default async function ProductPage({ params }: Params) {
             <div className="note">
               <TruckIcon />
               <span>
-                <strong>אספקה ואיסוף:</strong> זמן ייצור של {product.leadTime}. אפשר לאסוף מבית הדפוס
-                בשעות הפעילות או לקבל משלוח עד הבית או המשרד.
+                <strong>אספקה ואיסוף:</strong> {product.leadTime}. אפשר לאסוף מבית הדפוס בשעות
+                הפעילות או לקבל משלוח עד הבית או המשרד.
               </span>
             </div>
           </Reveal>
@@ -153,7 +153,7 @@ export default async function ProductPage({ params }: Params) {
         <div className="container">
           <Reveal>
             <SectionHead
-              title="לקוחות הזמינו גם"
+              title="מוצרים משלימים"
               center
             />
           </Reveal>

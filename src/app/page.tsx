@@ -37,15 +37,15 @@ export default function HomePage() {
             <p className="trust-line">
               <span>
                 <CheckIcon />
-                שירות אישי
+                בודקים כל קובץ לפני הדפסה
               </span>
               <span>
                 <CheckIcon />
-                איכות ללא פשרות
+                מדברים ישירות עם בית הדפוס
               </span>
               <span>
                 <CheckIcon />
-                זמני ביצוע מהירים
+                בני ברק · א׳–ה׳ עד 19:30
               </span>
             </p>
           </div>
@@ -60,11 +60,11 @@ export default function HomePage() {
             />
             <div className="ticket-tag">
               <div className="ticket-tag__top">
-                <span>עבודה מס׳ 2847</span>
+                <span>בית הדפוס</span>
                 <PressStrip />
               </div>
-              <strong>+15 שנים</strong>
-              <span>של דפוס, עיצוב ושילוט</span>
+              <strong>בני ברק</strong>
+              <span>ז׳בוטינסקי 84 · א׳–ה׳ 07:30–19:30</span>
             </div>
           </div>
         </div>
@@ -114,19 +114,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Stats ---------------- */}
-      <section className="section section--tight">
-        <div className="container">
-          <Reveal className="stats">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
+      {stats.length > 0 ? (
+        <section className="section section--tight">
+          <div className="container">
+            <Reveal className="stats">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
 
       {/* ---------------- Services ---------------- */}
       <section className="section section--paper" id="services">
@@ -190,7 +191,8 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- Portfolio ---------------- */}
-      <section className="section section--paper" id="portfolio">
+      {portfolio.length > 0 ? (
+        <section className="section section--paper" id="portfolio">
         <div className="container">
           <Reveal>
             <SectionHead
@@ -207,6 +209,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      ) : null}
 
       {/* ---------------- Process ---------------- */}
       <section className="section section--tint" id="process">
@@ -307,7 +310,8 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- Testimonials ---------------- */}
-      <section className="section" id="testimonials">
+      {testimonials.length > 0 ? (
+        <section className="section" id="testimonials">
         <div className="container">
           <Reveal>
             <SectionHead title="לקוחות מספרים" center />
@@ -333,6 +337,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      ) : null}
 
       {/* ---------------- Quote form ---------------- */}
       <section className="section section--tint" id="quote">
