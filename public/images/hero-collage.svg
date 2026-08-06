@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" role="img" aria-label="קולאז' מוצרי דפוס: כרטיסי ביקור, הזמנות, פליירים ואריזות">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3E8BFF"/><stop offset="1" stop-color="#1769E0"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6E2B0"/><stop offset=".45" stop-color="#D9B978"/>
+      <stop offset=".7" stop-color="#F8EDD2"/><stop offset="1" stop-color="#C9A55F"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1EFEA"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#102033" flood-opacity=".22"/>
+    </filter>
+    <filter id="sh2" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#102033" flood-opacity=".16"/>
+    </filter>
+    <pattern id="grain" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="none"/>
+      <circle cx="1" cy="1" r=".6" fill="#102033" opacity=".05"/>
+      <circle cx="4" cy="3.5" r=".5" fill="#102033" opacity=".04"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="720" fill="url(#bg)"/>
+  <circle cx="760" cy="90" r="150" fill="#1769E0" opacity=".07"/>
+  <circle cx="110" cy="640" r="130" fill="#1769E0" opacity=".06"/>
+
+  <!-- packaging box -->
+  <g filter="url(#sh)">
+    <path d="M556 232l150-52 148 52-148 54z" fill="#E7E2D8"/>
+    <path d="M556 232v168l150 56V286z" fill="#D8D2C6"/>
+    <path d="M854 232v168l-148 56V286z" fill="#C7C0B2"/>
+    <rect x="596" y="300" width="86" height="26" rx="6" fill="url(#blue)" opacity=".9"/>
+  </g>
+
+  <!-- large invitation card w/ foil -->
+  <g filter="url(#sh)" transform="rotate(-6 300 300)">
+    <rect x="170" y="120" width="290" height="380" rx="10" fill="url(#paper)"/>
+    <rect x="170" y="120" width="290" height="380" rx="10" fill="url(#grain)"/>
+    <rect x="196" y="146" width="238" height="328" rx="4" fill="none" stroke="url(#foil)" stroke-width="2.5"/>
+    <circle cx="315" cy="215" r="30" fill="none" stroke="url(#foil)" stroke-width="2.5"/>
+    <path d="M303 215l9 9 17-19" fill="none" stroke="url(#foil)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="245" y="272" width="140" height="13" rx="6" fill="#102033" opacity=".82"/>
+    <rect x="262" y="300" width="106" height="9" rx="4" fill="#102033" opacity=".42"/>
+    <rect x="238" y="340" width="154" height="7" rx="3" fill="#102033" opacity=".2"/>
+    <rect x="252" y="358" width="126" height="7" rx="3" fill="#102033" opacity=".2"/>
+    <rect x="268" y="404" width="94" height="26" rx="13" fill="url(#foil)"/>
+  </g>
+
+  <!-- business cards stack -->
+  <g filter="url(#sh)" transform="rotate(9 560 520)">
+    <rect x="430" y="452" width="270" height="160" rx="10" fill="#E9E5DD"/>
+    <rect x="424" y="442" width="270" height="160" rx="10" fill="#F5F2EC"/>
+    <rect x="418" y="430" width="270" height="160" rx="10" fill="url(#navy)"/>
+    <rect x="418" y="430" width="270" height="160" rx="10" fill="url(#grain)" opacity=".6"/>
+    <rect x="446" y="462" width="34" height="34" rx="9" fill="url(#blue)"/>
+    <rect x="492" y="470" width="88" height="10" rx="5" fill="#FFFFFF" opacity=".92"/>
+    <rect x="492" y="486" width="60" height="7" rx="3" fill="#93BDFF" opacity=".75"/>
+    <rect x="446" y="524" width="130" height="6" rx="3" fill="#FFFFFF" opacity=".28"/>
+    <rect x="446" y="540" width="100" height="6" rx="3" fill="#FFFFFF" opacity=".22"/>
+    <rect x="446" y="556" width="114" height="6" rx="3" fill="#FFFFFF" opacity=".18"/>
+  </g>
+
+  <!-- flyer -->
+  <g filter="url(#sh2)" transform="rotate(-13 130 400)">
+    <rect x="42" y="286" width="176" height="240" rx="8" fill="url(#paper)"/>
+    <rect x="42" y="286" width="176" height="86" rx="8" fill="url(#blue)"/>
+    <rect x="64" y="312" width="86" height="12" rx="6" fill="#FFFFFF" opacity=".95"/>
+    <rect x="64" y="334" width="58" height="8" rx="4" fill="#FFFFFF" opacity=".65"/>
+    <rect x="64" y="396" width="132" height="8" rx="4" fill="#102033" opacity=".24"/>
+    <rect x="64" y="414" width="112" height="8" rx="4" fill="#102033" opacity=".18"/>
+    <rect x="64" y="432" width="126" height="8" rx="4" fill="#102033" opacity=".18"/>
+    <rect x="64" y="470" width="74" height="24" rx="12" fill="#1769E0"/>
+  </g>
+
+  <!-- sticker roll -->
+  <g filter="url(#sh2)">
+    <circle cx="770" cy="560" r="72" fill="#F2EFE9"/>
+    <circle cx="770" cy="560" r="72" fill="url(#grain)"/>
+    <circle cx="770" cy="560" r="46" fill="url(#blue)"/>
+    <circle cx="770" cy="560" r="22" fill="#FFFFFF" opacity=".92"/>
+    <path d="M770 488a72 72 0 0 1 61 110" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+  </g>
+
+  <!-- paper swatches -->
+  <g filter="url(#sh2)">
+    <rect x="252" y="586" width="58" height="96" rx="8" fill="#102033"/>
+    <rect x="300" y="596" width="58" height="96" rx="8" fill="#1769E0"/>
+    <rect x="348" y="606" width="58" height="96" rx="8" fill="#EAF2FF"/>
+    <rect x="396" y="616" width="58" height="96" rx="8" fill="url(#foil)"/>
+  </g>
+</svg>

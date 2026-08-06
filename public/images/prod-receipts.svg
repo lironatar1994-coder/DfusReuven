@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="הדפסת פנקסי קבלות וחשבוניות ממוספרים">
+  <defs>
+    <linearGradient id="rb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F7F5"/><stop offset="1" stop-color="#EAEEF4"/></linearGradient>
+    <linearGradient id="rbl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <filter id="rs" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#rb)"/>
+  <circle cx="120" cy="470" r="140" fill="#1769E0" opacity=".06"/>
+
+  <g filter="url(#rs)" transform="rotate(-4 400 320)">
+    <!-- carbon copies -->
+    <rect x="216" y="150" width="380" height="330" rx="6" fill="#FBE9C8"/>
+    <rect x="204" y="136" width="380" height="330" rx="6" fill="#E7F0E4"/>
+    <rect x="192" y="122" width="380" height="330" rx="6" fill="#FFF"/>
+    <rect x="192" y="122" width="380" height="62" rx="6" fill="url(#rbl)"/>
+    <rect x="220" y="142" width="30" height="26" rx="7" fill="#FFF" opacity=".9"/>
+    <rect x="262" y="146" width="110" height="10" rx="5" fill="#FFF" opacity=".9"/>
+    <rect x="262" y="162" width="70" height="7" rx="3" fill="#FFF" opacity=".55"/>
+    <rect x="470" y="146" width="76" height="24" rx="6" fill="#FFF" opacity=".2"/>
+    <text x="508" y="163" font-family="Heebo, Arial, sans-serif" font-size="15" font-weight="700" fill="#FFF" text-anchor="middle">0001</text>
+
+    <g fill="#102033">
+      <rect x="220" y="216" width="150" height="8" rx="4" opacity=".2"/>
+      <rect x="220" y="240" width="322" height="1.5" opacity=".12"/>
+      <rect x="220" y="272" width="322" height="1.5" opacity=".12"/>
+      <rect x="220" y="304" width="322" height="1.5" opacity=".12"/>
+      <rect x="220" y="336" width="322" height="1.5" opacity=".12"/>
+      <rect x="220" y="368" width="322" height="1.5" opacity=".12"/>
+      <rect x="228" y="252" width="120" height="7" rx="3" opacity=".16"/>
+      <rect x="228" y="284" width="160" height="7" rx="3" opacity=".16"/>
+      <rect x="228" y="316" width="96" height="7" rx="3" opacity=".16"/>
+      <rect x="440" y="252" width="60" height="7" rx="3" opacity=".16"/>
+      <rect x="440" y="284" width="60" height="7" rx="3" opacity=".16"/>
+      <rect x="400" y="398" width="142" height="10" rx="5" opacity=".3"/>
+    </g>
+    <rect x="220" y="418" width="120" height="26" rx="13" fill="#EAF2FF"/>
+  </g>
+</svg>

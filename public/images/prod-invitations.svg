@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="הזמנות לחתונה עם הדפסת פויל זהב">
+  <defs>
+    <linearGradient id="ib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9F7F3"/><stop offset="1" stop-color="#EDE8DF"/></linearGradient>
+    <linearGradient id="ifo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E6BC"/><stop offset=".45" stop-color="#D3B071"/>
+      <stop offset=".7" stop-color="#FAF0D8"/><stop offset="1" stop-color="#C29C55"/>
+    </linearGradient>
+    <linearGradient id="ip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFDF9"/><stop offset="1" stop-color="#F2EDE3"/></linearGradient>
+    <filter id="is" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#ib)"/>
+  <circle cx="130" cy="120" r="130" fill="#D3B071" opacity=".14"/>
+
+  <g filter="url(#is)" transform="rotate(-6 300 340)">
+    <rect x="160" y="230" width="300" height="220" rx="8" fill="#F0EADE"/>
+    <path d="M160 238l150 108 150-108" fill="none" stroke="#DCD3C2" stroke-width="4"/>
+    <circle cx="310" cy="392" r="26" fill="url(#ifo)"/>
+  </g>
+
+  <g filter="url(#is)" transform="rotate(5 470 290)">
+    <rect x="330" y="80" width="280" height="400" rx="6" fill="url(#ip)"/>
+    <rect x="354" y="104" width="232" height="352" rx="3" fill="none" stroke="url(#ifo)" stroke-width="2.2"/>
+    <path d="M470 168c-16-24-50-16-50 9 0 23 34 39 50 53 16-14 50-30 50-53 0-25-34-33-50-9z" fill="url(#ifo)"/>
+    <rect x="386" y="266" width="168" height="15" rx="7" fill="#102033" opacity=".84"/>
+    <rect x="414" y="298" width="112" height="9" rx="4" fill="#102033" opacity=".38"/>
+    <rect x="370" y="348" width="200" height="7" rx="3" fill="#102033" opacity=".18"/>
+    <rect x="396" y="366" width="148" height="7" rx="3" fill="#102033" opacity=".18"/>
+    <rect x="430" y="408" width="80" height="26" rx="13" fill="url(#ifo)"/>
+  </g>
+</svg>

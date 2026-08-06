@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash -n deploy_linux.sh)",
+      "Bash(shellcheck --version)",
+      "Bash(shellcheck -S warning deploy_linux.sh)"
+    ]
+  }
+}

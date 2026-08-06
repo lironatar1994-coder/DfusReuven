@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="עיצוב גרפי, מיתוג עסקי והכנת קבצים לדפוס">
+  <defs>
+    <linearGradient id="b6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F7F5"/><stop offset="1" stop-color="#E9EEF6"/></linearGradient>
+    <linearGradient id="bl6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <linearGradient id="n6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <filter id="s6" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#b6)"/>
+
+  <!-- screen -->
+  <g filter="url(#s6)">
+    <rect x="150" y="70" width="500" height="320" rx="16" fill="url(#n6)"/>
+    <rect x="170" y="112" width="460" height="258" rx="8" fill="#F7F9FC"/>
+    <circle cx="190" cy="91" r="6" fill="#3E5273"/><circle cx="212" cy="91" r="6" fill="#3E5273"/><circle cx="234" cy="91" r="6" fill="#3E5273"/>
+    <!-- canvas -->
+    <rect x="196" y="140" width="220" height="200" rx="6" fill="#FFF" stroke="#DDE3EC" stroke-width="2"/>
+    <circle cx="306" cy="206" r="42" fill="url(#bl6)"/>
+    <rect x="240" y="268" width="132" height="12" rx="6" fill="#102033" opacity=".8"/>
+    <rect x="264" y="292" width="84" height="8" rx="4" fill="#102033" opacity=".32"/>
+    <!-- guides -->
+    <path d="M196 206h220M306 140v200" stroke="#1769E0" stroke-width="1" stroke-dasharray="5 5" opacity=".5"/>
+    <!-- panel -->
+    <rect x="440" y="140" width="170" height="200" rx="6" fill="#FFF" stroke="#DDE3EC" stroke-width="2"/>
+    <rect x="462" y="164" width="34" height="34" rx="8" fill="#102033"/>
+    <rect x="506" y="164" width="34" height="34" rx="8" fill="#1769E0"/>
+    <rect x="550" y="164" width="34" height="34" rx="8" fill="#EAF2FF"/>
+    <rect x="462" y="222" width="122" height="7" rx="3" fill="#102033" opacity=".16"/>
+    <rect x="462" y="240" width="96" height="7" rx="3" fill="#102033" opacity=".12"/>
+    <rect x="462" y="258" width="110" height="7" rx="3" fill="#102033" opacity=".12"/>
+    <rect x="462" y="298" width="80" height="24" rx="12" fill="#1769E0"/>
+    <rect x="330" y="390" width="140" height="14" rx="4" fill="#22405F"/>
+    <rect x="288" y="404" width="224" height="12" rx="6" fill="#2C4C6E"/>
+  </g>
+
+  <!-- color swatches -->
+  <g filter="url(#s6)">
+    <rect x="120" y="386" width="48" height="70" rx="8" fill="#102033"/>
+    <rect x="162" y="396" width="48" height="70" rx="8" fill="#1769E0"/>
+    <rect x="204" y="406" width="48" height="70" rx="8" fill="#EAF2FF"/>
+  </g>
+
+  <!-- pen tool -->
+  <g filter="url(#s6)" transform="rotate(-18 660 400)">
+    <path d="M642 340l38 16-14 96-10 30-10-30z" fill="#1769E0"/>
+    <path d="M646 452h28l-14 30z" fill="#102033"/>
+  </g>
+</svg>

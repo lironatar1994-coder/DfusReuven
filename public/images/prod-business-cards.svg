@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="הדפסת כרטיסי ביקור עם למינציה מטית">
+  <defs>
+    <linearGradient id="pb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/></linearGradient>
+    <linearGradient id="pn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <linearGradient id="pbl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <filter id="ps" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#102033" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#pb)"/>
+  <circle cx="660" cy="110" r="150" fill="#1769E0" opacity=".07"/>
+
+  <g filter="url(#ps)" transform="rotate(-8 400 300)">
+    <rect x="180" y="210" width="430" height="250" rx="16" fill="#E6E2DA"/>
+    <rect x="168" y="188" width="430" height="250" rx="16" fill="#F3F0EA"/>
+    <rect x="156" y="164" width="430" height="250" rx="16" fill="url(#pn)"/>
+    <rect x="200" y="212" width="56" height="56" rx="15" fill="url(#pbl)"/>
+    <rect x="272" y="226" width="150" height="16" rx="8" fill="#FFF" opacity=".95"/>
+    <rect x="272" y="252" width="100" height="11" rx="5" fill="#93BDFF" opacity=".8"/>
+    <rect x="200" y="310" width="210" height="9" rx="4" fill="#FFF" opacity=".28"/>
+    <rect x="200" y="332" width="170" height="9" rx="4" fill="#FFF" opacity=".22"/>
+    <rect x="200" y="354" width="192" height="9" rx="4" fill="#FFF" opacity=".18"/>
+  </g>
+
+  <g filter="url(#ps)" transform="rotate(12 640 470)">
+    <rect x="540" y="392" width="230" height="134" rx="10" fill="#FFF"/>
+    <rect x="568" y="420" width="30" height="30" rx="8" fill="url(#pbl)"/>
+    <rect x="608" y="426" width="78" height="10" rx="5" fill="#102033" opacity=".85"/>
+    <rect x="608" y="442" width="52" height="7" rx="3" fill="#102033" opacity=".35"/>
+    <rect x="568" y="478" width="120" height="7" rx="3" fill="#102033" opacity=".16"/>
+  </g>
+</svg>

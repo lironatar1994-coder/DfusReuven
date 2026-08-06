@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="רולאפ שיווקי לתערוכות ולנקודות מכירה">
+  <defs>
+    <linearGradient id="ub" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/></linearGradient>
+    <linearGradient id="ubl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <linearGradient id="un" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <filter id="us" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#ub)"/>
+  <rect y="500" width="800" height="100" fill="#E0E5EB"/>
+  <ellipse cx="400" cy="524" rx="230" ry="18" fill="#102033" opacity=".07"/>
+
+  <g filter="url(#us)">
+    <rect x="270" y="40" width="260" height="450" rx="6" fill="#FFF"/>
+    <rect x="270" y="40" width="260" height="170" rx="6" fill="url(#un)"/>
+    <rect x="302" y="76" width="48" height="48" rx="13" fill="url(#ubl)"/>
+    <rect x="302" y="142" width="150" height="14" rx="7" fill="#FFF" opacity=".92"/>
+    <rect x="302" y="168" width="96" height="9" rx="4" fill="#93BDFF" opacity=".8"/>
+    <rect x="302" y="248" width="196" height="11" rx="5" fill="#102033" opacity=".24"/>
+    <rect x="302" y="274" width="160" height="11" rx="5" fill="#102033" opacity=".16"/>
+    <rect x="302" y="300" width="180" height="11" rx="5" fill="#102033" opacity=".16"/>
+    <rect x="302" y="356" width="130" height="34" rx="17" fill="#1769E0"/>
+    <rect x="302" y="426" width="120" height="8" rx="4" fill="#102033" opacity=".18"/>
+  </g>
+  <g filter="url(#us)">
+    <rect x="242" y="486" width="316" height="22" rx="11" fill="#B7C0CB"/>
+    <rect x="252" y="486" width="296" height="8" rx="4" fill="#CFD6DE"/>
+  </g>
+  <rect x="392" y="486" width="16" height="14" fill="#A8B2BE"/>
+</svg>

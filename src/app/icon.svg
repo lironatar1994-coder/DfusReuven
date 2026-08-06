@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#102033"/>
+  <text x="32" y="43" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#FFFFFF" text-anchor="middle">ד</text>
+  <rect x="0" y="56" width="16" height="8" fill="#00A3E0"/>
+  <rect x="16" y="56" width="16" height="8" fill="#E5007E"/>
+  <rect x="32" y="56" width="16" height="8" fill="#F5D400"/>
+  <rect x="48" y="56" width="16" height="8" fill="#1769E0"/>
+</svg>

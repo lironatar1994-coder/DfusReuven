@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="שילוט לעסקים, רולאפים ושמשוניות">
+  <defs>
+    <linearGradient id="b3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/></linearGradient>
+    <linearGradient id="n3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <linearGradient id="bl3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <filter id="s3" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#b3)"/>
+  <rect y="400" width="800" height="100" fill="#E1E5EA"/>
+
+  <!-- storefront sign -->
+  <g filter="url(#s3)">
+    <rect x="70" y="60" width="420" height="130" rx="10" fill="url(#n3)"/>
+    <rect x="102" y="92" width="42" height="42" rx="11" fill="url(#bl3)"/>
+    <rect x="158" y="98" width="150" height="16" rx="8" fill="#FFF" opacity=".92"/>
+    <rect x="158" y="124" width="96" height="10" rx="5" fill="#93BDFF" opacity=".8"/>
+    <rect x="90" y="190" width="16" height="42" fill="#C8CDD4"/>
+    <rect x="454" y="190" width="16" height="42" fill="#C8CDD4"/>
+  </g>
+
+  <!-- roll-up banner -->
+  <g filter="url(#s3)">
+    <rect x="556" y="60" width="180" height="330" rx="6" fill="#FFF"/>
+    <rect x="556" y="60" width="180" height="120" rx="6" fill="url(#bl3)"/>
+    <rect x="580" y="94" width="36" height="36" rx="10" fill="#FFF" opacity=".92"/>
+    <rect x="580" y="146" width="106" height="10" rx="5" fill="#FFF" opacity=".85"/>
+    <rect x="580" y="212" width="132" height="8" rx="4" fill="#102033" opacity=".22"/>
+    <rect x="580" y="232" width="106" height="8" rx="4" fill="#102033" opacity=".16"/>
+    <rect x="580" y="252" width="118" height="8" rx="4" fill="#102033" opacity=".16"/>
+    <rect x="580" y="300" width="86" height="26" rx="13" fill="#1769E0"/>
+    <rect x="540" y="386" width="212" height="18" rx="9" fill="#B9C1CB"/>
+    <rect x="640" y="404" width="12" height="30" fill="#C8CDD4"/>
+  </g>
+
+  <!-- banner / שמשונית -->
+  <g filter="url(#s3)">
+    <rect x="70" y="252" width="420" height="140" rx="6" fill="#FFF"/>
+    <rect x="70" y="252" width="128" height="140" rx="6" fill="url(#n3)"/>
+    <rect x="98" y="292" width="34" height="34" rx="9" fill="url(#bl3)"/>
+    <rect x="98" y="342" width="72" height="8" rx="4" fill="#FFF" opacity=".7"/>
+    <rect x="226" y="292" width="180" height="14" rx="7" fill="#102033" opacity=".8"/>
+    <rect x="226" y="320" width="130" height="9" rx="4" fill="#1769E0" opacity=".75"/>
+    <rect x="226" y="348" width="210" height="7" rx="3" fill="#102033" opacity=".18"/>
+    <circle cx="86" cy="268" r="5" fill="#A9B2BD"/>
+    <circle cx="474" cy="268" r="5" fill="#A9B2BD"/>
+    <circle cx="86" cy="376" r="5" fill="#A9B2BD"/>
+    <circle cx="474" cy="376" r="5" fill="#A9B2BD"/>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="מדבקות מבריקות בגזירת דייקאט">
+  <defs>
+    <linearGradient id="sb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/></linearGradient>
+    <linearGradient id="sbl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <linearGradient id="sn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <filter id="ss" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#sb)"/>
+
+  <g filter="url(#ss)">
+    <circle cx="270" cy="240" r="130" fill="#FFF"/>
+    <circle cx="270" cy="240" r="112" fill="url(#sbl)"/>
+    <circle cx="270" cy="240" r="88" fill="none" stroke="#FFF" stroke-width="3" opacity=".55"/>
+    <rect x="206" y="222" width="128" height="16" rx="8" fill="#FFF" opacity=".95"/>
+    <rect x="230" y="252" width="80" height="10" rx="5" fill="#FFF" opacity=".6"/>
+    <path d="M175 168a130 130 0 0 1 128-32" fill="none" stroke="#FFF" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  </g>
+
+  <g filter="url(#ss)">
+    <rect x="452" y="130" width="200" height="180" rx="30" fill="#FFF"/>
+    <rect x="472" y="150" width="160" height="140" rx="20" fill="url(#sn)"/>
+    <circle cx="552" cy="204" r="26" fill="url(#sbl)"/>
+    <rect x="504" y="248" width="96" height="9" rx="4" fill="#FFF" opacity=".8"/>
+    <rect x="522" y="266" width="60" height="7" rx="3" fill="#93BDFF" opacity=".7"/>
+  </g>
+
+  <g filter="url(#ss)">
+    <path d="M420 400h230l-30 160H450z" fill="#FFF"/>
+    <path d="M446 428h178l-22 104H468z" fill="#EAF2FF"/>
+    <rect x="482" y="464" width="106" height="12" rx="6" fill="#1769E0" opacity=".85"/>
+    <rect x="502" y="490" width="66" height="8" rx="4" fill="#102033" opacity=".3"/>
+  </g>
+
+  <g filter="url(#ss)">
+    <rect x="140" y="424" width="220" height="130" rx="16" fill="#FFF"/>
+    <rect x="164" y="452" width="34" height="34" rx="9" fill="url(#sbl)"/>
+    <rect x="210" y="460" width="94" height="10" rx="5" fill="#102033" opacity=".78"/>
+    <rect x="210" y="478" width="62" height="7" rx="3" fill="#102033" opacity=".3"/>
+    <rect x="164" y="512" width="150" height="7" rx="3" fill="#102033" opacity=".16"/>
+  </g>
+</svg>

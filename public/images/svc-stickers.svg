@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="מדבקות בגלילים, תוויות מוצר ואריזות ממותגות">
+  <defs>
+    <linearGradient id="b4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F7F5"/><stop offset="1" stop-color="#EDEFF2"/></linearGradient>
+    <linearGradient id="bl4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <linearGradient id="n4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <filter id="s4" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#b4)"/>
+  <circle cx="120" cy="420" r="140" fill="#1769E0" opacity=".06"/>
+
+  <!-- kraft box -->
+  <g filter="url(#s4)">
+    <path d="M436 150l138-46 136 46-136 50z" fill="#E3DCCE"/>
+    <path d="M436 150v170l138 52V200z" fill="#D5CCBB"/>
+    <path d="M710 150v170l-136 52V200z" fill="#C3B9A5"/>
+    <circle cx="500" cy="268" r="34" fill="#FFF" opacity=".95"/>
+    <circle cx="500" cy="268" r="22" fill="url(#bl4)"/>
+  </g>
+
+  <!-- sticker roll -->
+  <g filter="url(#s4)">
+    <circle cx="180" cy="230" r="110" fill="#F3F1EC"/>
+    <circle cx="180" cy="230" r="74" fill="url(#bl4)"/>
+    <circle cx="180" cy="230" r="34" fill="#FFF"/>
+    <path d="M180 120a110 110 0 0 1 94 167" fill="none" stroke="#FFF" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+    <path d="M290 230l64 22-64 24z" fill="#F3F1EC"/>
+  </g>
+
+  <!-- die-cut stickers -->
+  <g filter="url(#s4)">
+    <circle cx="380" cy="410" r="46" fill="#FFF" stroke="#DEE3EA" stroke-width="2"/>
+    <circle cx="380" cy="410" r="30" fill="url(#n4)"/>
+    <rect x="452" y="368" width="92" height="84" rx="16" fill="url(#bl4)"/>
+    <rect x="474" y="398" width="48" height="9" rx="4" fill="#FFF" opacity=".9"/>
+    <rect x="482" y="416" width="32" height="7" rx="3" fill="#FFF" opacity=".55"/>
+    <path d="M600 366h96l-14 88h-68z" fill="#FFF" stroke="#DEE3EA" stroke-width="2"/>
+    <rect x="622" y="400" width="52" height="8" rx="4" fill="#1769E0" opacity=".8"/>
+  </g>
+</svg>

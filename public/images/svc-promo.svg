@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="מוצרי פרסום ממותגים: ספלים, חולצות, עטים ומגנטים">
+  <defs>
+    <linearGradient id="b5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#F7F7F5"/></linearGradient>
+    <linearGradient id="bl5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A94FF"/><stop offset="1" stop-color="#1769E0"/></linearGradient>
+    <linearGradient id="n5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17324F"/><stop offset="1" stop-color="#102033"/></linearGradient>
+    <filter id="s5" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#102033" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#b5)"/>
+
+  <!-- t-shirt -->
+  <g filter="url(#s5)">
+    <path d="M300 120l52-26 30 22 30-22 52 26 26 62-44 18v168H318V300l-44-18z" fill="#FFF"/>
+    <path d="M352 94c0 18 14 30 30 30s30-12 30-30" fill="none" stroke="#DDE2E9" stroke-width="3"/>
+    <rect x="344" y="212" width="76" height="12" rx="6" fill="url(#bl5)"/>
+    <rect x="358" y="234" width="48" height="8" rx="4" fill="#102033" opacity=".3"/>
+  </g>
+
+  <!-- mug -->
+  <g filter="url(#s5)">
+    <rect x="86" y="228" width="150" height="160" rx="16" fill="url(#n5)"/>
+    <path d="M236 262h34a34 34 0 0 1 0 68h-34" fill="none" stroke="#22405F" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="150" cy="292" r="26" fill="url(#bl5)"/>
+    <rect x="112" y="336" width="98" height="9" rx="4" fill="#FFF" opacity=".7"/>
+  </g>
+
+  <!-- pens -->
+  <g filter="url(#s5)" transform="rotate(14 640 300)">
+    <rect x="596" y="150" width="24" height="220" rx="12" fill="url(#bl5)"/>
+    <path d="M596 370h24l-12 30z" fill="#102033"/>
+    <rect x="596" y="150" width="24" height="40" rx="12" fill="#102033"/>
+    <rect x="640" y="176" width="24" height="220" rx="12" fill="#FFF"/>
+    <path d="M640 396h24l-12 30z" fill="#102033"/>
+    <rect x="640" y="176" width="24" height="40" rx="12" fill="#102033"/>
+  </g>
+
+  <!-- magnets -->
+  <g filter="url(#s5)">
+    <rect x="86" y="70" width="118" height="90" rx="10" fill="#FFF"/>
+    <rect x="106" y="94" width="26" height="26" rx="7" fill="url(#bl5)"/>
+    <rect x="142" y="100" width="44" height="7" rx="3" fill="#102033" opacity=".65"/>
+    <rect x="142" y="114" width="30" height="6" rx="3" fill="#102033" opacity=".28"/>
+    <rect x="106" y="134" width="76" height="6" rx="3" fill="#102033" opacity=".18"/>
+  </g>
+</svg>
