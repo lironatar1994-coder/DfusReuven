@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Img";
 import Link from "next/link";
 import type { Product } from "@/data/catalog";
 import { formatShekels, getPricedProduct } from "@/data/pricing";

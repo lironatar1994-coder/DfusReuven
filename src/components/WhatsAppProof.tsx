@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Img";
 import { whatsappProof } from "@/data/proof";
 import { WhatsAppIcon } from "./icons";
 

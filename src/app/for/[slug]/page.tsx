@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import Image from "@/components/Img";
 import ProductCard from "@/components/ProductCard";
 import { CtaBand, Crumbs, Reveal, SectionHead } from "@/components/ui";
 import { getProduct } from "@/data/catalog";

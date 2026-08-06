@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/Img";
 import Link from "next/link";
 import { CtaBand, Crumbs, Marker, Reveal, SectionHead } from "@/components/ui";
 import { services } from "@/data/catalog";

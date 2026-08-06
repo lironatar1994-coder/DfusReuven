@@ -152,7 +152,78 @@ is wrong, not the alt.
 
 ---
 
-## 3. Global art direction
+## 3. Cultural register — בני ברק, קהל חרדי
+
+**This is the section that most changes the output, and the one the first batch got wrong.**
+
+The shop is on ז'בוטינסקי in בני ברק. Its customers are largely חרדי — businesses, gemachim,
+mosdot, and families printing for a chasuna, bar mitzvah, brit or sheva brachos. The imagery
+has to look like it was made for them, not for a wedding magazine.
+
+### The register to aim for
+
+Not *luxury European stationery boutique*. Aim for **a trusted neighbourhood press that
+prints for the whole kehilla** — warm, exact, respectable, unpretentious. Quality shown
+through craft and precision, not through expensive styling props.
+
+### Styling that must go
+
+The first batch leaned on a secular Pinterest-wedding vocabulary. Remove all of it:
+
+| Do not use | Why |
+|---|---|
+| Dried hydrangeas, gypsophila, floral sprigs | Secular wedding-blog styling; not the visual world of a chasuna invitation |
+| Draped silk / chiffon ribbon | Same |
+| Marble slabs, terrazzo, designer concrete props | Reads as a design studio in Tel Aviv, not a press in בני ברק |
+| Wax seals with botanical motifs | Not a convention in this market |
+| Doily / scalloped lace edges | Reads Victorian-European |
+| Islamic-geometry rosettes and mandalas | Wrong cultural reference for this customer |
+| Eucalyptus, olive branches as decoration | Secular-Israeli design cliché |
+
+### Styling that belongs
+
+- **Surfaces:** plain wood, warm off-white paper, a simple worktable. Ordinary, clean, real.
+- **Props:** the printed items themselves, envelopes, a stack of the same item, a plain
+  paper guillotine or ruler, seforim on a shelf in the background, a simple silver tray.
+- **Ornament:** symmetrical gold or silver foil borders and corner ornaments — formal and
+  balanced rather than organic and scattered. Think a formal certificate frame, not a
+  botanical wreath.
+- **Palette:** cream and ivory with gold or silver foil; navy; burgundy or deep wine as an
+  occasional second accent. Less pastel, less blush, less dusty blue.
+- **Density:** חרדי invitations are text-dense and formal — a large ornate frame with a
+  full block of text inside. Compose the *shape* of that layout even though the text itself
+  stays non-readable (§1.1). A near-empty card with one tiny ornament looks secular.
+
+### People in images
+
+In חרדי advertising, photographs of women are conventionally not published. Any image
+showing a person should show **a man, modestly dressed** — long sleeves, typically a white
+shirt, often a kippah or hat and a beard — or, better and simpler, **hands only**: hands
+holding a proof sheet, hands feeding paper into a guillotine, hands checking a foil edge.
+
+Hands-only solves several problems at once: it avoids the question entirely, it avoids the
+uncanny faces that image models still produce, and it puts the focus on the craft.
+
+**Confirm this with Reuven before publishing** — practice varies between kehillos, and he
+knows his customers.
+
+### Products the catalogue is missing
+
+Worth noting while you are commissioning imagery: the current catalogue is generic
+Israeli-secular and omits some of the highest-volume חרדי print products —
+
+- **ברכונים / זמירונים** (bentchers) — printed in the hundreds for every chasuna
+- **פשקווילים** — wall posters, an iconic בני ברק product
+- **שטר תנאים / כתובה** printing
+- **הזמנות לברית, לבר מצווה, לשבע ברכות** as distinct products, not one "events" bucket
+- **לוחות שנה** and מודעות for mosdot
+
+If Reuven prints these — and a בני ברק press almost certainly does — they deserve both
+catalogue entries and product photography. Tell me and I will add them to `catalog.ts`.
+
+---
+
+## 4. Global art direction
 
 **One studio, one day, one photographer.** All 18 images must look like a single shoot.
 Consistency matters more than any individual frame being spectacular.
@@ -170,7 +241,7 @@ Consistency matters more than any individual frame being spectacular.
 
 ---
 
-## 4. Image-by-image specification
+## 5. Image-by-image specification
 
 Display size is the CSS box; **generate at 2×**.
 
@@ -497,7 +568,7 @@ freer. Native 800×600 → **generate 1600×1200**.
 
 ---
 
-## 5. Brand and icon assets — missing entirely today
+## 6. Brand and icon assets — missing entirely today
 
 The site has **no logo file**. The mark in the header is a CSS-styled Hebrew letter `ד` in a
 rounded navy square with a CMYK strip underneath (`src/components/Header.tsx`, `.brand-mark`).
@@ -536,7 +607,7 @@ these need a vector designer (human or an agent producing real SVG).
 
 ---
 
-## 6. Product gallery depth — 24 additional frames
+## 7. Product gallery depth — 24 additional frames
 
 Each product page shows a four-thumbnail gallery. Today slots 3 and 4 are almost always the
 same two shared images (`machine` in 10 of 12 galleries, `finishes` in 11 of 12), so the
@@ -565,7 +636,7 @@ each a Hebrew `alt` and `label`.
 
 ---
 
-## 7. Portfolio photography — 12 frames
+## 8. Portfolio photography — 12 frames
 
 `src/data/content.ts` defines 12 portfolio projects, each with a real title, description and
 materials list — but all 12 currently point at the shared product/service images. So the
@@ -600,7 +671,7 @@ Naming: `portfolio-<id>.webp`, 1600×1200, must survive 1:1 and 3:4 crops (§1.3
 
 ---
 
-## 8. Situation-page images — 4 frames
+## 9. Situation-page images — 4 frames
 
 `src/data/situations.ts` drives four landing pages that currently borrow product shots.
 Each deserves a wider, more editorial "scene" frame than a product shot gives.
@@ -616,7 +687,7 @@ Each deserves a wider, more editorial "scene" frame than a product shot gives.
 
 ---
 
-## 9. Acceptance checklist
+## 10. Acceptance checklist
 
 Run through this per image before delivering.
 
@@ -632,7 +703,7 @@ Run through this per image before delivering.
 - [ ] Filename matches exactly.
 - [ ] The Hebrew `alt` text in the code is still a truthful description of the image.
 
-## 10. Priority order
+## 11. Priority order
 
 Ordered by what each frame actually buys, across all four groups.
 
@@ -666,7 +737,7 @@ Ordered by what each frame actually buys, across all four groups.
 **If you only ever do Tier 1, the site is credible.** Tier 2 is what makes it stop looking
 like it reuses stock. Tier 3 is polish.
 
-## 11. What not to do
+## 12. What not to do
 
 - Don't generate a single wide image and slice it into the set — they need distinct subjects.
 - Don't upscale a low-resolution generation to hit the 2× requirement.

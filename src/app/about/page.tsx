@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/Img";
 import { CtaBand, Crumbs, Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { CheckIcon, PaletteIcon, ShieldIcon, UsersIcon } from "@/components/icons";
 import { stats } from "@/data/content";
