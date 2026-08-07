@@ -30,9 +30,9 @@ export default function ReorderPage() {
               lead="בלי חשבון, בלי סיסמה, בלי להעלות קובץ מחדש."
             />
           </Reveal>
-          <Reveal className="form-wrap">
+          <div className="form-wrap">
             <ReorderForm />
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

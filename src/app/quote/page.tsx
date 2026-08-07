@@ -44,9 +44,9 @@ export default function QuotePage() {
               lead="ככל שתפרטו יותר, כך ההצעה שתקבלו תהיה מדויקת יותר — אבל גם שם וטלפון מספיקים כדי להתחיל."
             />
           </Reveal>
-          <Reveal className="form-wrap">
+          <div className="form-wrap">
             <Suspense fallback={null}><QuoteForm /></Suspense>
-          </Reveal>
+          </div>
 
           <div className="grid grid--3" style={{ marginTop: 34 }}>
             {promises.map((item, i) => (

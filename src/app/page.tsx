@@ -337,11 +337,15 @@ export default function HomePage() {
               center
             />
           </Reveal>
-          <Reveal className="form-wrap" delay={80}>
+          {/* No Reveal here. The form is ~1,700px on a phone — two full
+              screens — and it renders inside <Suspense>, so its height is 0
+              when Reveal decides whether to hide it. Both of those point the
+              same way: never make someone wait for a fade to fill in a form. */}
+          <div className="form-wrap">
             <Suspense fallback={null}>
               <QuoteForm />
             </Suspense>
-          </Reveal>
+          </div>
         </div>
       </section>
 

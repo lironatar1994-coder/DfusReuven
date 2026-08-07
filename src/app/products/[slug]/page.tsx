@@ -132,15 +132,15 @@ export default async function ProductPage({ params }: Params) {
               center
             />
           </Reveal>
-          <Reveal className="form-wrap" delay={80}>
+          <div className="form-wrap">
             <Suspense fallback={null}>
               <QuoteForm
-              presetProduct={product.name}
-              compact
-              waMessage={`היי, מעוניין בהצעת מחיר ל${product.name}`}
-            />
+                presetProduct={product.name}
+                compact
+                waMessage={`היי, מעוניין בהצעת מחיר ל${product.name}`}
+              />
             </Suspense>
-          </Reveal>
+          </div>
         </div>
       </section>
 
