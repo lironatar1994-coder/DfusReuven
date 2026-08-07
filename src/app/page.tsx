@@ -41,12 +41,14 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero__grid">
           <div className="hero__head">
+            {/* Names the two ends of the range instead of claiming "everything".
+                Same message, concrete, and keeps בית דפוס + בני ברק for search. */}
             <h1>
-              בית דפוס בבני ברק <em>שבודק את הקובץ לפני שמדפיסים</em>
+              בית דפוס וגרפיקה בבני ברק <em>מכרטיס ביקור ועד שלט חזית</em>
             </h1>
             <p className="hero__lead">
-              כרטיסי ביקור, הזמנות, שילוט, מדבקות ומוצרי פרסום — עיצוב והדפסה באותו מקום, מול
-              האנשים שמדפיסים בפועל.
+              עיצוב גרפי, דפוס אופסט ודיגיטלי, הזמנות, מדבקות, שילוט ומוצרי פרסום — הכול נעשה
+              אצלנו, מול האנשים שמדפיסים בפועל.
             </p>
           </div>
 
