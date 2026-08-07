@@ -1401,7 +1401,25 @@ fieldset { border: 0; margin: 0; padding: 0; }
 
   .section-head { margin-bottom: 24px; }
   .hero { padding-block: 30px 44px; }
-  .hero__grid { gap: 28px; }
+  /* Was 28px. The text block ends at 583 and the fixed bar starts at 719, so
+     every pixel between them is one the photograph could be using instead. */
+  .hero__grid { gap: 18px; }
+
+  /* The source is 5:4 and only its middle band carries the work — the top and
+     bottom are table. On a phone the slot sits under the fold's last 90-odd
+     pixels, so at 5:4 what actually showed above the bar was the empty cream
+     top of the frame: a strip of nothing standing in for the product shot.
+     A 16:9 window over the same file puts the card stack, the certificate, the
+     folded piece and the sticker roll in that strip instead.
+
+     Done here rather than by cropping the file, because on desktop the image
+     sits alongside the text and spans both rows, where 5:4 is the right shape
+     and a 16:9 file would leave the column short. One asset, two crops. */
+  .hero__media img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center 45%;
+  }
   .hero .btn-row { margin-bottom: 22px; }
   .hero .btn-row .btn { flex: 1 1 100%; }
 
