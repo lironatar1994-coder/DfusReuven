@@ -22,9 +22,27 @@ SUBJECT WORLD: a working print shop in Bnei Brak, Israel, serving a Haredi
 weddings, bar mitzvahs and community events. The register is a trusted neighbourhood press:
 warm, exact, respectable, unpretentious. NOT a luxury European stationery boutique.
 
-ABSOLUTELY NO TEXT. No Hebrew, no Latin, no numbers, no letterforms of any kind on any
-printed surface. Where a layout needs text, render it as clean abstract typographic bars or
-solid blocks, as a designer's mockup would. Any readable character ruins the image.
+TEXT — read this carefully, the first batch got it wrong.
+
+No generated Hebrew or Latin lettering. Image models cannot render Hebrew and will produce
+garbled characters, which is worse than none. That constraint stands.
+
+But the first batch obeyed it by filling every printed surface with rows of solid navy
+bars, dead centre and in sharp focus. The result reads as a REDACTED DOCUMENT, and across
+the whole site it means a print shop whose website shows no evidence it has ever printed a
+word. Do not do that again.
+
+Instead, hide the absence with photography rather than announcing it:
+- Angle printed pieces steeply, or crop them at the frame edge, so the text area is
+  foreshortened and only partly visible.
+- Throw the text area out of focus with a shallow depth of field and keep the sharp plane
+  on an edge, a fold, a foil ornament or a paper stack.
+- Let a hand, an envelope or another sheet overlap and cover most of the copy block.
+- Where marks do show, make them fine and irregular like distant body copy — never even
+  rows of thick solid blocks.
+
+Where a piece is unusable without real Hebrew — a shop's front sign, a wedding invitation
+seen head-on — do not generate it. Photograph the real thing.
 
 PALETTE: deep navy, royal blue, pale blue, cream, warm off-white paper, with gold or silver
 foil as the metallic accent. Burgundy or deep wine as an occasional second accent. No
@@ -76,18 +94,26 @@ Tactile, precise, premium editorial print photography. Not a 3D render.
 
 ### `prod-invitations.webp` — 1600×1200 · must survive 1:1 and 3:4 crops
 
-> **Regenerate.** The first versions used dried flowers, silk ribbon and lace edges.
+> **Regenerate — this is the worst image on the site.** The first versions used dried
+> flowers, silk ribbon and lace edges. The replacement fixed the props but filled the card
+> with even rows of solid navy bars inside a gold Victorian frame, which reads as a
+> **redacted classified document**, and kept a European art-deco ornament that is not the
+> Bnei Brak invitation vernacular. Shoot this one for real if you possibly can — an actual
+> invitation the shop printed, with permission, is worth more than any generation.
 
 ```
-Overhead photograph of a formal Jewish wedding invitation on heavy cream card stock, with
-an ornate symmetrical gold foil border and matching corner ornaments framing a large
-central panel. The panel is filled with evenly spaced abstract typographic bars standing in
-for dense Hebrew text — no readable letters. Beside it, its matching cream envelope and a
-smaller reply card in the same style. Resting on plain light wood. Warm directional light
-raking across the surface so the gold foil catches a genuine metallic highlight and the
-paper texture is visible. Centrally composed with calm negative space around it. Formal,
-balanced, respectable — not floral, not rustic, no ribbon, no dried flowers, no lace edges.
-Precise editorial stationery photography.
+Close three-quarter photograph of a formal Jewish wedding invitation on heavy cream card
+stock, lying at a steep angle on plain light wood so the printed panel is strongly
+foreshortened and recedes from the camera. The sharp focal plane sits on the NEAR EDGE of
+the card — its thickness, its cut edge, and a gold foil ornament in the corner. The body of
+the card falls away out of focus. A matching cream envelope overlaps and covers the lower
+half of the card. Only faint, fine, irregular marks are suggested where copy would be,
+softened by the shallow depth of field — no rows of solid blocks, no readable letters.
+Restrained geometric or floral-scroll foil ornament of the kind used on Israeli religious
+simcha invitations; NOT art-deco, NOT Victorian filigree, NOT a heavy full-perimeter frame.
+Warm directional light raking across the surface so the foil catches a genuine metallic
+highlight and the paper fibre shows. Formal, respectable, unpretentious. Precise editorial
+stationery photography, not a 3D render.
 ```
 
 ### `finishes.webp` — 1600×1200
@@ -241,11 +267,22 @@ readable text. Natural outdoor light, realistic.
 ```
 
 ### `prod-signs.webp`
+
+> **Regenerate.** What shipped is a Haussmann-style Parisian street at dusk — European
+> stonework, a café interior, wrought-iron balconies — captioned in the site's alt text as
+> `שלט חזית מותקן על חנות שכונתית`. Nobody in Bnei Brak will read that as a neighbourhood
+> shop. This is the other image worth photographing for real: one honest shot of a sign the
+> shop actually installed does more than any generation.
+
 ```
-Photograph of an illuminated shopfront fascia sign at dusk, with dimensional acrylic letters
-lit by warm halo backlighting against a deep navy panel, shot from a steep side angle so the
-letterforms read as abstract illuminated shapes rather than words. Modest urban shopfront,
-glass below, subtle pavement reflections. Realistic architectural photography.
+Photograph of an illuminated shopfront fascia sign, shot from a steep side angle close to
+the wall so the dimensional acrylic letters read as abstract illuminated shapes rather than
+words. Warm halo backlighting against a deep navy panel. The building is a plain modern
+Israeli street-level shopfront: flat rendered or stone-clad facade, a simple aluminium
+window frame, a roller shutter housing above, air-conditioning units, no ornament. Late
+afternoon daylight, not blue-hour dusk. ABSOLUTELY NOT European: no Haussmann stonework, no
+wrought-iron balconies, no cafe terrace, no cobblestones, no awnings. Realistic
+architectural photography.
 ```
 
 ---
