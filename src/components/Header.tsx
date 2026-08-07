@@ -6,8 +6,32 @@ import { useEffect, useRef, useState } from "react";
 import { assetPath, navLinks, site, waLink } from "@/lib/site";
 import { PressStrip, WhatsAppIcon } from "./icons";
 
-function BrandLogo() {
-  return <img className="brand-logo" src={assetPath("/images/logo.svg")} alt="" aria-hidden="true" />;
+/**
+ * Mark as an image, wordmark as real text.
+ *
+ * The lockup used to be a single flat SVG with the name baked into it. Setting
+ * the name as live text instead keeps it crisp at any size, lets it inherit
+ * Miriam Libre (already loaded), and means the shop's name is selectable and
+ * translatable rather than a picture of itself. The mark is the only part that
+ * has to be an image, because it is a raster with a continuous gradient.
+ */
+function BrandLogo({ light = false }: { light?: boolean }) {
+  return (
+    <>
+      <img
+        className="brand-mark-img"
+        src={assetPath(light ? "/images/logo-r-light.png" : "/images/logo-r.png")}
+        alt=""
+        aria-hidden="true"
+        width={122}
+        height={132}
+      />
+      <span className="brand-text">
+        <span className="brand-name">{site.name}</span>
+        <span className="brand-sub">{site.tagline}</span>
+      </span>
+    </>
+  );
 }
 
 export { BrandLogo };
