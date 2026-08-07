@@ -29,10 +29,9 @@ import { whatsappProof } from "@/data/proof";
  * 7  Quote form    the ask
  * 8  Contact       reach a human instead
  *
- * The price estimator deliberately lives on /products, not here. Prices belong
- * on the catalogue page where someone is shopping; leading with them turns a
- * print house into a comparison site, which is the ground where a local shop
- * loses to the online bulk printers.
+ * No prices anywhere on the site. A print price is a function of quantity,
+ * paper, finish and size, so any number published here is either wrong or a
+ * figure a competitor can undercut. Every product ends at "לפרטים והצעה".
  */
 export default function HomePage() {
   return (

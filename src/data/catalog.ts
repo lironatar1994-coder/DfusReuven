@@ -131,8 +131,6 @@ export type Product = {
   description: string;
   category: CategoryKey;
   categoryLabel: string;
-  priceFrom: string;
-  priceUnit: string;
   image: string;
   alt: string;
   gallery: { src: string; alt: string; label: string }[];
@@ -154,8 +152,6 @@ export const products: Product[] = [
       "כרטיס הביקור הוא הרושם הראשוני שהעסק שלכם משאיר. אנחנו מדפיסים כרטיסי ביקור על ניירות איכותיים בעובי 300–400 גרם, עם מגוון גימורים – למינציה מטית או מבריקה, סופט-טאץ׳, הטבעת פויל, הבלטה ופינות מעוגלות. אפשר להגיע עם קובץ מוכן או לקבל אצלנו עיצוב מלא.",
     category: "business",
     categoryLabel: "דפוס לעסקים",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-100 יח׳",
     image: "/images/prod-business-cards.webp",
     alt: "כרטיסי ביקור כהים עם הדפסה בצבע מלא ולמינציה מטית",
     gallery: [
@@ -180,8 +176,6 @@ export const products: Product[] = [
       "פליירים ועלונים הם עדיין אחד הכלים השיווקיים המשתלמים ביותר. אנחנו מדפיסים בצבע מלא משני הצדדים, על נייר כרומו מבריק או מט, בכל הגדלים הסטנדרטיים – עם אפשרות לקיפול, לחיתוך מיוחד וללמינציה.",
     category: "business",
     categoryLabel: "דפוס לעסקים",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-500 יח׳",
     image: "/images/prod-flyers.webp",
     alt: "פליירים צבעוניים בגודל A5 ו-A4",
     gallery: [
@@ -206,8 +200,6 @@ export const products: Product[] = [
       "הזמנות מודפסות בהתאמה אישית לאירוע שלכם. בוחרים סגנון, נייר וגימור – ואנחנו מעצבים, מדפיסים ומספקים כולל מעטפות תואמות וכרטיסי אישור הגעה. אפשר להתחיל מאפס או להביא עיצוב קיים.",
     category: "events",
     categoryLabel: "הזמנות",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-100 יח׳",
     image: "/images/prod-invitations.webp",
     alt: "הזמנה לחתונה עם פויל זהב ומעטפה",
     gallery: [
@@ -232,8 +224,6 @@ export const products: Product[] = [
       "מדבקות ותוויות לעסקים בכל צורה וגודל. מדפיסים על ויניל, פוליפרופילן או נייר, עם גזירת דייקאט מדויקת לפי הצורה שתבחרו, ומספקים בגיליונות או בגלילים מוכנים למכונת תיוג.",
     category: "stickers",
     categoryLabel: "מדבקות ואריזות",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-250 יח׳",
     image: "/images/prod-stickers.webp",
     alt: "מדבקות עגולות ומדבקות דייקאט בגזירה אישית",
     gallery: [
@@ -258,8 +248,6 @@ export const products: Product[] = [
       "פנקסי קבלות, חשבוניות ותעודות משלוח בהתאמה אישית לעסק שלכם, עם מספור רץ, שניים או שלושה העתקים בנייר NCR וכריכה עליונה מודבקת. מותאמים לדרישות הנהלת החשבונות שלכם.",
     category: "business",
     categoryLabel: "דפוס לעסקים",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "לפנקס",
     image: "/images/prod-receipts.webp",
     alt: "פנקס קבלות ממוספר עם העתקים",
     gallery: [
@@ -284,8 +272,6 @@ export const products: Product[] = [
       "רולאפ הוא הדרך המהירה להביא את המותג שלכם לכל מקום – כנס, תערוכה, חנות או אירוע. מגיע כערכה מלאה: הדפסה על בד פולי איכותי, מעמד אלומיניום נשלף ותיק נשיאה.",
     category: "signage",
     categoryLabel: "שילוט",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ליחידה",
     image: "/images/prod-rollup.webp",
     alt: "רולאפ שיווקי 85 על 200 ס״מ עם מעמד",
     gallery: [
@@ -310,8 +296,6 @@ export const products: Product[] = [
       "שמשוניות להדפסה רחבה בכל מידה, על בד PVC עמיד לשמש, לגשם ולרוח. כוללות עיניות מתכת מחוזקות ומכפלת בהיקף, ומתאימות לתלייה על גדר, על קיר או מעל חזית העסק.",
     category: "signage",
     categoryLabel: "שילוט",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "למ״ר",
     image: "/images/prod-banner.webp",
     alt: "שמשונית מודפסת עם עיניות מתכת",
     gallery: [
@@ -336,8 +320,6 @@ export const products: Product[] = [
       "שלט חזית הוא הפרסום שעובד עבורכם מסביב לשעון. אנחנו מגיעים למדידה באתר, מציעים חומר ותאורה שמתאימים לחזית ולתקציב, מייצרים ומתקינים – כולל אותיות תלת-מימד ותאורת LED.",
     category: "signage",
     categoryLabel: "שילוט",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "לשלט",
     image: "/images/prod-signs.webp",
     alt: "שלט חזית מואר לעסק",
     gallery: [
@@ -362,8 +344,6 @@ export const products: Product[] = [
       "ערכת ניירת משרדית אחידה שמשדרת מקצועיות בכל מסמך שיוצא מהעסק: נייר מכתבים, מעטפות בכל הגדלים, תיקיות מצגת וחשבוניות – הכול באותה שפה עיצובית.",
     category: "business",
     categoryLabel: "דפוס לעסקים",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "לערכה",
     image: "/images/svc-business.webp",
     alt: "ניירת משרדית ממותגת ותיקיית מצגת",
     gallery: [
@@ -387,8 +367,6 @@ export const products: Product[] = [
       "אריזה ממותגת הופכת מוצר טוב לחוויה. אנחנו מייצרים קופסאות קרטון בהתאמה למידות המוצר שלכם, כולל סכין חיתוך ייעודית, הדבקה מכנית וגימור למינציה – וגם שקיות נייר ממותגות.",
     category: "stickers",
     categoryLabel: "מדבקות ואריזות",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-250 יח׳",
     image: "/images/svc-stickers.webp",
     alt: "אריזת קרטון ממותגת עם תוויות מוצר",
     gallery: [
@@ -412,8 +390,6 @@ export const products: Product[] = [
       "מוצרי פרסום ממותגים לעובדים, ללקוחות ולכנסים. עוזרים לכם לבחור את המוצר שמתאים לתקציב ולמסר, מתאימים את הלוגו לשיטת ההדפסה הנכונה ומספקים ערכות מוכנות לחלוקה.",
     category: "promo",
     categoryLabel: "מוצרי פרסום",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-50 יח׳",
     image: "/images/svc-promo.webp",
     alt: "מוצרי פרסום ממותגים: חולצה, ספל ועטים",
     gallery: [
@@ -437,8 +413,6 @@ export const products: Product[] = [
       "המזכרות הקטנות שנשארות אחרי האירוע. כרטיסי תודה, מגנטים עם תמונה, תוויות למתנות ושלטי שולחן – בעיצוב שממשיך את קו ההזמנה שלכם.",
     category: "events",
     categoryLabel: "הזמנות",
-    priceFrom: "החל מ-₪___",
-    priceUnit: "ל-100 יח׳",
     image: "/images/svc-invitations.webp",
     alt: "כרטיסי תודה ומגנטים לאירוע",
     gallery: [

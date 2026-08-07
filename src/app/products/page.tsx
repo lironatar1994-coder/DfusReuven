@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ProductGrid from "@/components/ProductGrid";
-import Estimator from "@/components/Estimator";
 import { CtaBand, Crumbs, Faq, Reveal, SectionHead } from "@/components/ui";
 import { products } from "@/data/catalog";
 import { productFaq } from "@/data/content";
@@ -19,8 +18,8 @@ export default function ProductsPage() {
           <Crumbs trail={[{ label: "מוצרים" }]} />
           <h1>קטלוג מוצרי דפוס</h1>
           <p>
-            המוצרים הנפוצים ביותר בבית הדפוס שלנו. המחירים המוצגים הם מחירי פתיחה להמחשה – המחיר
-            הסופי נקבע לפי כמות, סוג הנייר והגימור שתבחרו.
+            המוצרים הנפוצים ביותר בבית הדפוס שלנו. לכל מוצר יש מגוון מידות, ניירות וגימורים —
+            ספרו לנו מה אתם צריכים ונכין לכם הצעה מדויקת.
           </p>
         </div>
       </section>
@@ -30,28 +29,11 @@ export default function ProductsPage() {
           <Reveal>
             <SectionHead
               title="כל המוצרים"
-              lead="סננו לפי קטגוריה. לאומדן מהיר לפי כמות וגימור, גללו לסוף העמוד."
+              lead="סננו לפי קטגוריה, או דברו איתנו ונכוון אתכם למוצר הנכון."
               ruled
             />
           </Reveal>
           <ProductGrid products={products} />
-        </div>
-      </section>
-
-      {/* The estimator lives here rather than on the homepage: prices belong on
-          the catalogue page, where someone is already shopping. */}
-      <section className="section section--paper" id="estimator">
-        <div className="container container--narrow">
-          <Reveal>
-            <SectionHead
-              title="אומדן מהיר"
-              lead="בחרו מוצר, כמות וגימור וקבלו טווח מחיר להתרשמות. ההצעה המחייבת נשלחת אחרי שנראה את הקובץ."
-              center
-            />
-          </Reveal>
-          <Reveal delay={60}>
-            <Estimator />
-          </Reveal>
         </div>
       </section>
 

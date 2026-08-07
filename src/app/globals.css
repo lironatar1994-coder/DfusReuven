@@ -109,7 +109,7 @@ html { caret-color: var(--blue); scrollbar-color: var(--rule-strong) transparent
 ::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted-light); }
 a { text-underline-offset: 3px; }
-:where(input, td, th, .price, .stats strong, .spec) { font-variant-numeric: tabular-nums; }
+:where(input, td, th, .stats strong, .spec) { font-variant-numeric: tabular-nums; }
 
 h1, h2, h3, h4 {
   font-family: var(--ff-display);
@@ -520,11 +520,6 @@ a.card:hover { color: inherit; }
 .product-card .card__body { padding: 26px 18px 18px; gap: 4px; }
 .product-card h3 { font-size: 1.14rem; }
 .product-card > .card__body > p { font-size: .92rem; margin-top: -2px; }
-.price {
-  font-family: var(--ff-display); font-size: 1.12rem;
-  color: var(--ink); font-variant-numeric: tabular-nums;
-}
-.price small { font-family: var(--ff-body); color: var(--muted); font-weight: 500; font-size: .8rem; }
 
 /* ---------- Process ---------- */
 .steps { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--trim); overflow: hidden; }
@@ -765,12 +760,6 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .pd-thumbs button[aria-current="true"] { border-color: var(--blue); }
 .pd-thumbs img { width: 100%; height: 100%; object-fit: cover; }
 
-.pd-price {
-  border-block: 1px solid var(--rule); padding: 18px 0; margin-bottom: 26px;
-  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
-}
-.pd-price strong { font-family: var(--ff-display); font-size: 1.7rem; color: var(--ink); }
-.pd-price span { color: var(--muted); font-size: .92rem; }
 
 .note {
   display: flex; gap: 12px; align-items: flex-start;
@@ -1002,45 +991,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .wa-float svg { width: 29px; height: 29px; }
 @media (min-width: 768px) { .wa-float { display: grid; } }
 
-/* ---------- Price estimator ---------- */
-.estimator {
-  background: #fff; border: 1px solid var(--rule);
-  border-radius: var(--trim-lg); overflow: hidden;
-}
-.estimator__controls { padding: 22px; display: grid; gap: 20px; }
-.est-group { display: grid; gap: 10px; }
-.est-group .field__legend { font-weight: 700; color: var(--ink); font-size: .94rem; }
-
-.estimator__result {
-  background: var(--ink); color: #B9C6D6;
-  padding: 24px 22px calc(24px + env(safe-area-inset-bottom));
-  display: grid; gap: 6px;
-}
-.estimator__label {
-  font-size: .78rem; font-weight: 700; letter-spacing: .14em; color: #7FB0FF;
-}
-.estimator__price {
-  font-family: var(--ff-display); font-size: clamp(2rem, 8vw, 2.8rem);
-  color: #fff; line-height: 1.05; font-variant-numeric: tabular-nums;
-}
-.estimator__meta { font-size: .9rem; color: #93A4B8; margin-bottom: 6px; }
-.estimator__vat { display: flex; gap: 8px; margin: 6px 0 14px; }
-.estimator__vat .chip-radio span {
-  border-color: rgba(255,255,255,.22); color: #C9D4E2;
-  padding: 8px 14px; min-height: 40px; font-size: .88rem;
-}
-.estimator__vat .chip-radio input:checked + span {
-  background: rgba(255,255,255,.12); border-color: #7FB0FF; color: #fff;
-}
-.estimator__note { font-size: .82rem; color: #7F8FA3; margin: 12px 0 0; }
-
-@media (min-width: 760px) {
-  .estimator { display: grid; grid-template-columns: 1.25fr 1fr; }
-  .estimator__controls { padding: 30px; }
-  .estimator__result { align-content: center; }
-}
-
-/* ---------- Print-areas strip ----------
+/* ---------- Services strip ----------
    Replaces a six-card services section that sat directly above a product grid
    of the same inventory. Links, not cards: the page should offer one catalogue,
    not two overlapping ones. */
@@ -1181,7 +1132,6 @@ fieldset { border: 0; margin: 0; padding: 0; }
   .product-card > .card__body > p:not(.spec) { display: none; }
   .product-card .btn { padding-inline: 8px; font-size: .88rem; }
   .product-card .spec { font-size: .72rem; gap: 2px 8px; }
-  .price { font-size: 1rem; }
 
   /* Services and testimonials stay one-up — they carry real copy. */
   .grid--3 { gap: 16px; }

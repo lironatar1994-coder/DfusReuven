@@ -32,15 +32,14 @@ export default function QuoteForm({
 }) {
   const formRef = useRef<HTMLFormElement>(null);
 
-  // The estimator hands over the spec the visitor just built, so nothing is retyped.
+  // A link may carry a product, quantity or spec (e.g. from a campaign URL) so
+  // the visitor doesn't retype what they already told us.
   const params = useSearchParams();
   const urlProduct = params.get("product") ?? "";
   const urlQty = params.get("qty") ?? "";
   const urlSpec = params.get("spec") ?? "";
-  const urlEstimate = params.get("est") ?? "";
   const carriedSpec = [
     urlSpec ? `מפרט: ${urlSpec}` : "",
-    urlEstimate ? `הערכה מהמחשבון: ${urlEstimate} (לא כולל מע״מ)` : "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -281,7 +280,7 @@ export default function QuoteForm({
         {compact ? null : (
           <div className="field">
             <label htmlFor="budget">תקציב משוער</label>
-            <input type="text" id="budget" name="budget" placeholder="לא חובה — לדוגמה: עד ₪1,000" />
+            <input type="text" id="budget" name="budget" placeholder="לא חובה — אם יש לכם תקציב בראש" />
           </div>
         )}
 

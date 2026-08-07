@@ -74,11 +74,6 @@ export default async function ProductPage({ params }: Params) {
             <h1 style={{ fontSize: "clamp(1.9rem, 5vw, 2.8rem)" }}>הדפסת {product.name}</h1>
             <p style={{ color: "var(--ink-soft)", fontSize: "1.05rem" }}>{product.description}</p>
 
-            <div className="pd-price">
-              <strong>{product.priceFrom}</strong>
-              <span>{product.priceUnit} · המחיר הסופי נקבע לפי כמות, חומר וגימור</span>
-            </div>
-
             <h2 className="pd-spec-heading">מפרט המוצר</h2>
 
             <div className="spec-block">
