@@ -6,19 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { navLinks, site, waLink } from "@/lib/site";
 import { PressStrip, WhatsAppIcon } from "./icons";
 
-function BrandLogo({ inFooter = false }: { inFooter?: boolean }) {
-  return (
-    <>
-      <span className="brand-mark" aria-hidden>
-        ד
-      </span>
-      <span className="brand-text">
-        <span className="brand-name">{site.name}</span>
-        <span className="brand-sub">{site.tagline}</span>
-      </span>
-      {inFooter ? null : null}
-    </>
-  );
+function BrandLogo() {
+  return <img className="brand-logo" src="/images/logo.svg" alt="" aria-hidden="true" />;
 }
 
 export { BrandLogo };

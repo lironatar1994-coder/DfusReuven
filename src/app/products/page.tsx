@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProductGrid from "@/components/ProductGrid";
+import Estimator from "@/components/Estimator";
 import { CtaBand, Crumbs, Faq, Reveal, SectionHead } from "@/components/ui";
 import { products } from "@/data/catalog";
 import { productFaq } from "@/data/content";
@@ -29,14 +30,32 @@ export default function ProductsPage() {
           <Reveal>
             <SectionHead
               title="כל המוצרים"
-              lead="סננו לפי קטגוריה, או השתמשו במחשבון בעמוד הבית לקבלת טווח מחיר מיידי."
+              lead="סננו לפי קטגוריה. לאומדן מהיר לפי כמות וגימור, גללו לסוף העמוד."
+              ruled
             />
           </Reveal>
           <ProductGrid products={products} />
         </div>
       </section>
 
-      <section className="section section--paper section--tight">
+      {/* The estimator lives here rather than on the homepage: prices belong on
+          the catalogue page, where someone is already shopping. */}
+      <section className="section section--paper" id="estimator">
+        <div className="container container--narrow">
+          <Reveal>
+            <SectionHead
+              title="אומדן מהיר"
+              lead="בחרו מוצר, כמות וגימור וקבלו טווח מחיר להתרשמות. ההצעה המחייבת נשלחת אחרי שנראה את הקובץ."
+              center
+            />
+          </Reveal>
+          <Reveal delay={60}>
+            <Estimator />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--tight">
         <div className="container">
           <Reveal>
             <SectionHead title="הזמנת מוצרי דפוס" center />

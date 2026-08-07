@@ -52,14 +52,14 @@ export default function AboutPage() {
         <div className="container split split--wide-media">
           <Reveal className="media-stack">
             <Image
-              src="/images/about-studio.svg"
+              src="/images/about-studio.webp"
               alt="מעצב עובד בסטודיו של דפוס ראובן לצד מכונת הדפוס"
               width={800}
               height={600}
             />
             <Image
               className="media-stack__sm"
-              src="/images/machine.svg"
+              src="/images/machine.webp"
               alt="מכונת דפוס אופסט בעבודה"
               width={800}
               height={600}
@@ -135,7 +135,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={100} className="media-stack">
             <Image
-              src="/images/finishes.svg"
+              src="/images/finishes.webp"
               alt="דוגמאות נייר וגימורים: פויל, הבלטה, למינציה וצבעים"
               width={800}
               height={600}

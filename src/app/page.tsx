@@ -6,7 +6,6 @@ import PortfolioGallery from "@/components/PortfolioGallery";
 import QuoteForm from "@/components/QuoteForm";
 import ContactBlock from "@/components/ContactBlock";
 import WhatsAppProofStrip from "@/components/WhatsAppProof";
-import Estimator from "@/components/Estimator";
 import { Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
 import { featuredProducts, services } from "@/data/catalog";
@@ -17,20 +16,23 @@ import { whatsappProof } from "@/data/proof";
 /**
  * Homepage section order, and why.
  *
- * 1  Hero          what this is, and one tap to act
- * 2  Estimator     answers "how much" before asking for anything — the one
- *                  question every print customer opens with
- * 3  Situations    routes by need ("I'm opening a shop"), how people arrive
- * 4  Catalogue     what we print + the products, with real prices
- * 5  Why here      the differentiators and who we are, in one block
- * 6  Proof         real customer messages (renders once they exist)
- * 7  Process       what happens after you send — answers the last doubt
- * 8  Quote form    the ask
- * 9  Contact       reach a human instead
+ * This is an אתר תדמית first: its job is to make the shop look established and
+ * worth trusting so that someone calls, not to run a self-serve pricing funnel.
+ * Order follows that.
  *
- * Previously this ran to 13 sections with three separate ways to browse the
- * same catalogue, two adjacent trust sections, and three consecutive asks at
- * the end. Each cluster now does its job once.
+ * 1  Hero          who this is and what they make
+ * 2  Catalogue     the range and the craft — the identity argument
+ * 3  Situations    how people actually arrive ("I'm opening a shop")
+ * 4  Why here      the differentiators and who we are
+ * 5  Proof         real customer messages (renders once they exist)
+ * 6  Process       how a job runs — reassurance before the ask
+ * 7  Quote form    the ask
+ * 8  Contact       reach a human instead
+ *
+ * The price estimator deliberately lives on /products, not here. Prices belong
+ * on the catalogue page where someone is shopping; leading with them turns a
+ * print house into a comparison site, which is the ground where a local shop
+ * loses to the online bulk printers.
  */
 export default function HomePage() {
   return (
@@ -50,11 +52,11 @@ export default function HomePage() {
 
           <div className="hero__actions">
             <div className="btn-row">
-              <Link className="btn btn--primary" href="#estimator">
-                כמה זה עולה?
+              <Link className="btn btn--primary" href="/quote">
+                דברו איתנו
               </Link>
-              <Link className="btn btn--secondary" href="/quote">
-                לקבלת הצעת מחיר
+              <Link className="btn btn--secondary" href="#products">
+                מה אנחנו מדפיסים
               </Link>
             </div>
             <p className="trust-line">
@@ -75,7 +77,7 @@ export default function HomePage() {
 
           <div className="hero__media">
             <Image
-              src="/images/hero-collage.svg"
+              src="/images/hero-collage.webp"
               alt="קולאז' של מוצרי דפוס: כרטיסי ביקור, הזמנה עם פויל זהב, פלייר, אריזה ממותגת ומדבקות בגליל"
               width={900}
               height={720}
@@ -93,63 +95,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- 2 · Estimator ---------------- */}
-      <section className="section section--paper" id="estimator">
-        <div className="container container--narrow">
-          <Reveal>
-            <SectionHead
-              title="כמה זה עולה?"
-              lead="בחרו מה אתם מדפיסים וקבלו טווח מחיר מיד — בלי למלא טופס ובלי לחכות."
-              center
-            />
-          </Reveal>
-          <Reveal delay={60}>
-            <Estimator />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- 3 · Situations ---------------- */}
-      <section className="section">
-        <div className="container">
-          <Reveal>
-            <SectionHead
-              title="מה מביא אתכם אלינו?"
-              lead="רוב הלקוחות שלנו לא מחפשים מוצר בודד אלא ערכה שלמה. אלה הצירופים הנפוצים."
-              ruled
-            />
-          </Reveal>
-          <div className="grid grid--4">
-            {situations.map((situation, i) => (
-              <Reveal key={situation.slug} delay={(i % 4) * 70}>
-                <Link className="situation" href={`/for/${situation.slug}`}>
-                  <span className="situation__title">{situation.title}</span>
-                  <span className="situation__tagline">{situation.tagline}</span>
-                  <span className="situation__count">
-                    {situation.products.length} מוצרים בערכה
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {stats.length > 0 ? (
-        <section className="section section--tight">
-          <div className="container">
-            <Reveal className="stats">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-        </section>
-      ) : null}
-
       {/* ---------------- 4 · Catalogue ----------------
           Services used to be a six-card section of its own, immediately above a
           product grid containing the same inventory. It is now a compact strip
@@ -160,7 +105,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHead
               title="מה אנחנו מדפיסים"
-              lead="המחירים הם טווחי פתיחה, לא כולל מע״מ. המחיר הסופי נקבע לפי כמות, נייר וגימור."
+              lead="מכרטיס ביקור בודד ועד שלט חזית — הכול נעשה כאן, מהעיצוב ועד הגימור."
               ruled
             />
           </Reveal>
@@ -187,6 +132,47 @@ export default function HomePage() {
             <Link className="btn btn--primary" href="/products">
               לכל המוצרים בקטלוג
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {stats.length > 0 ? (
+        <section className="section section--tight">
+          <div className="container">
+            <Reveal className="stats">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------------- 3 · Situations ---------------- */}
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              title="מה מביא אתכם אלינו?"
+              lead="רוב הלקוחות שלנו לא מחפשים מוצר בודד אלא ערכה שלמה. אלה הצירופים הנפוצים."
+              ruled
+            />
+          </Reveal>
+          <div className="grid grid--4">
+            {situations.map((situation, i) => (
+              <Reveal key={situation.slug} delay={(i % 4) * 70}>
+                <Link className="situation" href={`/for/${situation.slug}`}>
+                  <span className="situation__title">{situation.title}</span>
+                  <span className="situation__tagline">{situation.tagline}</span>
+                  <span className="situation__count">
+                    {situation.products.length} מוצרים בערכה
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -248,14 +234,14 @@ export default function HomePage() {
 
           <Reveal delay={100} className="media-stack">
             <Image
-              src="/images/about-studio.svg"
+              src="/images/about-studio.webp"
               alt="מעצב עובד בסטודיו של דפוס ראובן לצד מכונת הדפוס"
               width={800}
               height={600}
             />
             <Image
               className="media-stack__sm"
-              src="/images/finishes.svg"
+              src="/images/finishes.webp"
               alt="דוגמאות נייר וגימורים: פויל, הבלטה, למינציה וצבעים"
               width={800}
               height={600}

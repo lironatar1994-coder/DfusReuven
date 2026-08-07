@@ -16,7 +16,7 @@ export const site = {
   country: "IL",
   currency: "ILS",
   serviceArea: "ישראל",
-  socialImage: "/images/hero-collage.svg",
+  socialImage: "/images/og-image.webp",
 
   // Verified from the business's public listings (InPrint, דפי זהב), בני ברק.
   phoneDisplay: "03-5785651",

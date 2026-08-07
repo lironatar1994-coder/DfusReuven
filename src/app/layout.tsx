@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     url: site.domain,
     locale: site.locale,
     type: "website",
-    images: [{ url: absoluteUrl(site.socialImage), width: 900, height: 720, alt: site.description }],
+    images: [{ url: absoluteUrl(site.socialImage), width: 1200, height: 630, alt: site.description }],
   },
   twitter: {
     card: "summary_large_image",

@@ -303,6 +303,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 
 .brand { display: flex; align-items: center; gap: 12px; margin-inline-end: auto; }
 .brand:hover { color: inherit; }
+.brand-logo { display: block; width: 181px; height: 42px; object-fit: contain; }
 .brand-mark {
   width: 42px; height: 42px; flex: none;
   background: var(--ink); color: #fff;
@@ -937,7 +938,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .site-footer a:hover { color: #fff; }
 .footer-about p { font-size: .96rem; line-height: 1.75; max-width: 340px; }
 .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.footer-brand .brand-mark { background: #fff; color: var(--ink); }
+.footer-brand .brand-logo { width: 216px; height: 50px; object-position: right center; }
 .footer-brand .brand-name { color: #fff; }
 .footer-brand .brand-sub { color: #6E7F94; }
 

@@ -20,13 +20,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-about">
             <div className="footer-brand">
-              <span className="brand-mark" aria-hidden>
-                ד
-              </span>
-              <span className="brand-text">
-                <span className="brand-name">{site.name}</span>
-                <span className="brand-sub">{site.tagline}</span>
-              </span>
+              <img className="brand-logo" src="/images/logo-horizontal-white.svg" alt="" aria-hidden="true" />
             </div>
             <p>{site.description}</p>
             <div className="socials">

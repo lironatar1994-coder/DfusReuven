@@ -64,7 +64,7 @@ export default function PortfolioPage() {
           <div className="grid grid--2">
             <Reveal className="media-stack">
               <Image
-                src="/images/finishes.svg"
+                src="/images/finishes.webp"
                 alt="דוגמאות נייר וגימורים: פויל, הבלטה, למינציה וצבעים"
                 width={800}
                 height={600}
@@ -72,7 +72,7 @@ export default function PortfolioPage() {
             </Reveal>
             <Reveal delay={100} className="media-stack">
               <Image
-                src="/images/machine.svg"
+                src="/images/machine.webp"
                 alt="מכונת דפוס אופסט בעבודה בבית הדפוס"
                 width={800}
                 height={600}
