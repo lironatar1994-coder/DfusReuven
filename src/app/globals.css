@@ -1178,8 +1178,9 @@ fieldset { border: 0; margin: 0; padding: 0; }
   .grid--4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .product-card .card__body { padding: 22px 14px 14px; }
   .product-card h3 { font-size: 1.02rem; }
-  .product-card > .card__body > p { display: none; }
+  .product-card > .card__body > p:not(.spec) { display: none; }
   .product-card .btn { padding-inline: 8px; font-size: .88rem; }
+  .product-card .spec { font-size: .72rem; gap: 2px 8px; }
   .price { font-size: 1rem; }
 
   /* Services and testimonials stay one-up — they carry real copy. */

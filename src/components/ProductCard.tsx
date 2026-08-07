@@ -39,7 +39,7 @@ export default function ProductCard({ product }: { product: Product }) {
             href={`/products/${product.slug}`}
             style={{ marginTop: 12 }}
           >
-            לפרטים והצעת מחיר
+            לפרטים ומחיר
           </Link>
         </div>
       </div>
