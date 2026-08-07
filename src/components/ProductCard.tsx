@@ -22,22 +22,24 @@ export default function ProductCard({ product }: { product: Product }) {
         />
       </div>
       <div className="card__body">
-        <h3>{product.name}</h3>
+        {/* The whole card is the target now. It used to end in a full-width
+            outlined button repeated in every card — on the homepage that was
+            eight identical CTAs, half of every button on the page, all saying
+            the same thing and all going somewhere different. The link now sits
+            on the product name (so a screen-reader link list reads twelve
+            product names instead of "לפרטים והצעה" twelve times) and stretches
+            over the card via ::after, which is also a far bigger tap target
+            than the button ever was. */}
+        <h3>
+          <Link className="card__link" href={`/products/${product.slug}`}>
+            {product.name}
+          </Link>
+        </h3>
         <p>{product.short}</p>
         <SpecLine items={spec} />
-        <div className="card__foot">
-          {/* A screen reader listing this page's links got "לפרטים והצעה"
-              twelve times over. The visible label stays short; the accessible
-              one names the product. */}
-          <Link
-            className="btn btn--secondary btn--sm btn--block"
-            href={`/products/${product.slug}`}
-            aria-label={`${product.name} — לפרטים והצעה`}
-            style={{ marginTop: 12 }}
-          >
-            לפרטים והצעה
-          </Link>
-        </div>
+        <span className="card__go" aria-hidden>
+          ‹
+        </span>
       </div>
     </article>
   );

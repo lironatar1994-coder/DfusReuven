@@ -24,10 +24,23 @@ function formatSize(bytes: number) {
 export default function QuoteForm({
   presetProduct,
   compact = false,
+  short = false,
   waMessage,
 }: {
   presetProduct?: string;
+  /** Drops the date and budget fields. Used on product detail pages. */
   compact?: boolean;
+  /**
+   * Three fields: name, phone, and what you need.
+   *
+   * The full form is thirteen inputs and 1,932px — 18% of the homepage and the
+   * longest unbroken stretch on it. That is the wrong ask on a brand site whose
+   * job is to look established enough to phone: anyone ready to act already has
+   * חיוג and וואטסאפ pinned to the bottom of every screen. Someone who arrives
+   * ready to spec a job goes to /quote, where the full form lives along with
+   * the three reassurances the homepage version never had.
+   */
+  short?: boolean;
   waMessage?: string;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -67,7 +80,8 @@ export default function QuoteForm({
 
     if (email && !mailRe.test(email)) next.email = "נא להזין כתובת אימייל תקינה, לדוגמה name@example.com";
 
-    if (!product) next.product = "נא לבחור את סוג המוצר";
+    // The short form never renders the product select, so it cannot require it.
+    if (!short && !product) next.product = "נא לבחור את סוג המוצר";
 
     return next;
   };
@@ -206,6 +220,7 @@ export default function QuoteForm({
           </span>
         </div>
 
+        {short ? null : (
         <div className={fieldClass("email")}>
           <label htmlFor="email">אימייל</label>
           <input
@@ -222,7 +237,9 @@ export default function QuoteForm({
             {errors.email}
           </span>
         </div>
+        )}
 
+        {short ? null : (
         <div className={fieldClass("product")}>
           <label htmlFor="product">
             סוג המוצר <span className="req" aria-hidden>*</span>
@@ -247,17 +264,23 @@ export default function QuoteForm({
             {errors.product}
           </span>
         </div>
+        )}
 
+        {short ? null : (
         <div className="field">
           <label htmlFor="qty">כמות</label>
           <input type="text" id="qty" name="qty" inputMode="numeric" placeholder="לדוגמה: 500" defaultValue={urlQty} />
         </div>
+        )}
 
+        {short ? null : (
         <div className="field">
           <label htmlFor="size">גודל או מידות</label>
           <input type="text" id="size" name="size" placeholder="לדוגמה: A5 או 90×50 מ״מ" />
         </div>
+        )}
 
+        {short ? null : (
         <fieldset className="field field--full">
           <legend className="field__legend">האם נדרש עיצוב גרפי?</legend>
           <div className="chips-row" style={{ marginTop: 8 }}>
@@ -269,15 +292,16 @@ export default function QuoteForm({
             ))}
           </div>
         </fieldset>
+        )}
 
-        {compact ? null : (
+        {compact || short ? null : (
           <div className="field">
             <label htmlFor="date">תאריך רצוי</label>
             <input type="date" id="date" name="date" />
           </div>
         )}
 
-        {compact ? null : (
+        {compact || short ? null : (
           <div className="field">
             <label htmlFor="budget">תקציב משוער</label>
             <input type="text" id="budget" name="budget" placeholder="לא חובה — אם יש לכם תקציב בראש" />
@@ -285,15 +309,20 @@ export default function QuoteForm({
         )}
 
         <div className="field field--full">
-          <label htmlFor="details">תיאור הבקשה</label>
+          <label htmlFor="details">{short ? "מה אתם צריכים?" : "תיאור הבקשה"}</label>
           <textarea
             id="details"
             name="details"
             defaultValue={carriedSpec}
-            placeholder="ספרו לנו בקצרה מה אתם צריכים – סוג הנייר, גימור, צבעים, למה זה מיועד ומתי אתם צריכים את זה."
+            placeholder={
+              short
+                ? "לדוגמה: 500 כרטיסי ביקור, או שלט לחזית החנות."
+                : "ספרו לנו בקצרה מה אתם צריכים – סוג הנייר, גימור, צבעים, למה זה מיועד ומתי אתם צריכים את זה."
+            }
           />
         </div>
 
+        {short ? null : (
         <div className={`${fieldClass("file")} field--full`}>
           <label htmlFor="file">קבצים מצורפים</label>
           <label
@@ -365,7 +394,18 @@ export default function QuoteForm({
             </ul>
           ) : null}
         </div>
+        )}
       </div>
+
+      {/* The reassurance that used to live only on /quote — the page far fewer
+          people reach. One line, next to the ask, where the doubt actually is. */}
+      {short ? (
+        <p className="form-assure">
+          <span>מענה תוך יום עסקים</span>
+          <span>בדיקת קובץ ללא עלות</span>
+          <span>בלי התחייבות</span>
+        </p>
+      ) : null}
 
       <div className="btn-row" style={{ marginTop: 26 }}>
         <button className="btn btn--primary" type="submit" disabled={status === "sending"}>
@@ -377,8 +417,17 @@ export default function QuoteForm({
         </a>
       </div>
       <p className="form-note" style={{ marginTop: 14 }}>
-        הפרטים שלכם נשמרים אצלנו בלבד ומשמשים למענה על הפנייה. ראו{" "}
-        <Link href="/privacy">מדיניות פרטיות</Link>.
+        {short ? (
+          <>
+            צריכים לצרף קובץ או לפרט מידות וגימור?{" "}
+            <Link href="/quote">לטופס המלא</Link>.
+          </>
+        ) : (
+          <>
+            הפרטים שלכם נשמרים אצלנו בלבד ומשמשים למענה על הפנייה. ראו{" "}
+            <Link href="/privacy">מדיניות פרטיות</Link>.
+          </>
+        )}
       </p>
     </form>
   );

@@ -9,7 +9,7 @@ import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import { Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
 import { featuredProducts, products, services } from "@/data/catalog";
-import { benefits, clientTypes, portfolio, processSteps, stats, testimonials } from "@/data/content";
+import { benefits, clientTypes, portfolio, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
 import { whatsappProof } from "@/data/proof";
 
@@ -119,19 +119,19 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <Reveal>
-            <nav className="print-list" aria-label="תחומי הדפוס שלנו">
-              {services.map((service) => (
-                <Link key={service.slug} href={`/services#${service.slug}`}>
-                  {service.title}
-                </Link>
-              ))}
-            </nav>
-          </Reveal>
+          {/* The six-pill services strip that sat here is gone. Between it, the
+              product grid and the situations section, the first quarter of the
+              page offered three different ways to browse one inventory — by
+              category, by thing, and by occasion. Three is one too many, and
+              the strip was the weakest: /services is in the header nav and all
+              six are listed in the footer. */}
 
-          <div className="grid grid--4">
-            {featuredProducts.slice(0, 8).map((product, i) => (
-              <Reveal key={product.slug} delay={(i % 4) * 60}>
+          {/* Six, not eight. Past four options the extra ones stop informing and
+              start costing — and eight cards was also eight identical buttons,
+              half of every CTA on the page. */}
+          <div className="grid grid--catalog">
+            {featuredProducts.slice(0, 6).map((product, i) => (
+              <Reveal key={product.slug} delay={(i % 3) * 60}>
                 <ProductCard product={product} />
               </Reveal>
             ))}
@@ -335,52 +335,29 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {/* ---------------- 7 · Process ----------------
-          Moved down from the middle of the page. "What happens after I send
-          this?" is the doubt that stops a submission, so it belongs next to
-          the form rather than stranded between browse sections. */}
-      <section className="section section--tint" id="process">
-        <div className="container">
-          <Reveal>
-            <SectionHead
-              title="איך זה עובד?"
-              lead="ארבעה שלבים, מהשיחה הראשונה ועד שהעבודה בידיים שלכם."
-              ruled
-            />
-          </Reveal>
-          <Reveal>
-            <ol className="steps">
-              {processSteps.map((step, i) => (
-                <li className="step" key={step.title}>
-                  <div className="step__num" aria-hidden>
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
-      </section>
+      {/* The "איך זה עובד" section stood here and is gone.
+          Four steps — tell us what you need, get a quote, approve, we print —
+          that are true of every print shop in the country, for 923px and 8% of
+          the page. It differentiated nothing, and on a brand site every pixel
+          has to earn its place. The reassurance it was really providing now
+          sits as one line directly under the form, which is where the doubt
+          actually is. processSteps still runs on /services and /quote, where a
+          visitor has asked for the detail. */}
 
-      {/* ---------------- 8 · Quote form ---------------- */}
+      {/* ---------------- 6 · Quote form ---------------- */}
       <section className="section" id="quote">
         <div className="container">
           <Reveal>
             <SectionHead
               title="מה תרצו להדפיס?"
-              lead="כמה פרטים, ואנחנו חוזרים אליכם עם המלצה והצעת מחיר."
+              lead="שם, טלפון, ומה אתם צריכים. נחזור אליכם עם המלצה והצעת מחיר."
               ruled
             />
           </Reveal>
-          {/* No Reveal here. The form is ~1,700px on a phone — two full
-              screens — and it renders inside <Suspense>, so its height is 0
-              when Reveal decides whether to hide it. Both of those point the
-              same way: never make someone wait for a fade to fill in a form. */}
+          {/* No Reveal here. A form should never be waiting on a fade. */}
           <div className="form-wrap">
             <Suspense fallback={null}>
-              <QuoteForm />
+              <QuoteForm short />
             </Suspense>
           </div>
         </div>
