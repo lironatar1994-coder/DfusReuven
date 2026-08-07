@@ -17,11 +17,26 @@ export default function PortfolioPage() {
       <section className="page-hero">
         <div className="container">
           <Crumbs trail={[{ label: "תיק עבודות" }]} />
-          <h1>עבודות שמדברות בעד עצמן</h1>
-          <p>
-            מבחר מתוך הפרויקטים שביצענו. לחצו על עבודה כדי לראות אילו חומרים, ניירות וגימורים
-            השתמשנו בה.
-          </p>
+          {/* The heading has to know whether there is anything below it. It used
+              to promise "עבודות שמדברות בעד עצמן" over an empty page — a title
+              that speaks for work that isn't there. */}
+          {portfolio.length > 0 ? (
+            <>
+              <h1>עבודות שמדברות בעד עצמן</h1>
+              <p>
+                מבחר מתוך הפרויקטים שביצענו. לחצו על עבודה כדי לראות אילו חומרים, ניירות וגימורים
+                השתמשנו בה.
+              </p>
+            </>
+          ) : (
+            <>
+              <h1>תיק העבודות בהכנה</h1>
+              <p>
+                אנחנו מצלמים עבודות שיצאו מבית הדפוס. עד שהן כאן — אפשר לבוא לראות אותן על הדלפק
+                בבני ברק, או לבקש שנשלח דוגמאות של עבודה דומה למה שאתם מתכננים.
+              </p>
+            </>
+          )}
         </div>
       </section>
 
@@ -32,15 +47,15 @@ export default function PortfolioPage() {
           ) : (
             <Reveal>
               <div className="empty-state">
-                <h2>העבודות בדרך לכאן</h2>
+                <h2>מה כן אפשר לראות עכשיו</h2>
                 <p>
-                  אנחנו מצלמים כרגע מבחר עבודות שיצאו מבית הדפוס — ניירת עסקית, הזמנות עם פויל,
-                  שילוט ואריזות — ונעלה אותן לכאן. בינתיים, אם יש משהו מסוים שאתם רוצים לראות,
-                  דברו איתנו ונשלח לכם דוגמאות של עבודות דומות שביצענו.
+                  דוגמאות נייר, פויל וגימורים נמצאות אצלנו בחנות בז׳בוטינסקי 84, ואפשר להיכנס
+                  ולגעת בהן בשעות הפעילות. אם אתם מתכננים משהו מסוים, כתבו לנו מה — ונשלח תמונות
+                  של עבודה דומה שיצאה מכאן.
                 </p>
                 <div className="btn-row btn-row--center">
                   <Link className="btn btn--primary" href="/quote">
-                    בקשו לראות דוגמאות
+                    בקשת הצעת מחיר
                   </Link>
                   <Link className="btn btn--secondary" href="/products">
                     לקטלוג המוצרים
@@ -57,8 +72,8 @@ export default function PortfolioPage() {
           <Reveal>
             <SectionHead
               title="הגימור הוא ההבדל"
-              lead="פויל, הבלטה, למינציה סופט-טאץ׳, חיתוך צורני וניירות מיוחדים – זה מה שהופך עבודת דפוס רגילה למוצר שנעים להחזיק ביד."
-              center
+              lead="פויל, הבלטה, למינציה סופט-טאץ׳, חיתוך צורני וניירות מיוחדים. זה השלב שבו שתי עבודות עם אותו קובץ יוצאות שונות לגמרי."
+              ruled
             />
           </Reveal>
           <div className="grid grid--2">
@@ -82,9 +97,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      {/* "ראיתם משהו שאהבתם?" on a page that shows nothing. Asks a question the
+          page has made impossible to answer. */}
       <CtaBand
-        title="ראיתם משהו שאהבתם?"
-        text="נשמח להתאים לכם עבודה דומה – בסגנון, בחומרים ובתקציב שמתאימים לכם."
+        title="יש לכם עבודה בראש?"
+        text="תארו לנו מה אתם מתכננים ונגיד לכם באילו חומרים וגימורים זה נעשה בדרך כלל."
       />
     </>
   );

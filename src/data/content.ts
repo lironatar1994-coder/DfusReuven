@@ -136,8 +136,12 @@ export const contactFaq = [
     q: "אתם עובדים גם מול לקוחות מחוץ לאזור?",
     a: "כן. חלק גדול מהעבודות מתנהל בוואטסאפ ובמייל, והמוצר המוגמר נשלח בדואר שליחים. לשילוט נדרשת מדידה באתר, ולכן נבדוק מולכם את אזור השירות.",
   },
+  // Was "יש חניה במקום?" — with an answer that talked about pickup and never
+  // mentioned parking, while the contact block separately claimed free parking
+  // on site. A question the page refuses to answer costs more than it earns,
+  // and neither of us can verify the parking, so both are gone.
   {
-    q: "יש חניה במקום?",
-    a: "אנחנו נמצאים בז׳בוטינסקי 84 בבני ברק. אפשר לתאם איתנו מראש איסוף של עבודה מוכנה.",
+    q: "אפשר לשלוח קובץ בוואטסאפ?",
+    a: "כן, וזו הדרך הכי מהירה. שלחו את הקובץ למספר שבאתר ונחזור אליכם אחרי שנבדוק אותו. אם הקובץ כבד מדי לוואטסאפ, אפשר לצרף אותו לטופס הצעת המחיר או לשלוח בדואר אלקטרוני.",
   },
 ];

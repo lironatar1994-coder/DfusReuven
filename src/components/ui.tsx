@@ -117,6 +117,13 @@ export function Marker({ label, num }: { label: string; num?: string }) {
  * Section heading. Deliberately has no eyebrow/kicker: a label that only
  * restates the heading below it is decoration. The hairline rule stays —
  * it does the structural work of dividing the sheet.
+ *
+ * `ruled` is the default treatment and the homepage now uses nothing else.
+ * Three variants were in play — ruled, center, and a bare one — with no rule
+ * saying which went where, so a reader could not learn what any of them meant.
+ * A treatment that varies at random is not hierarchy, it is noise. `center`
+ * survives for genuinely centred contexts (the CTA band, short interior
+ * pages); on a long left-edge-anchored RTL page it just breaks the margin.
  */
 export function SectionHead({
   title,
@@ -175,7 +182,7 @@ export function Crumbs({ trail }: { trail: { label: string; href?: string }[] })
 export function CtaBand({
   title,
   text,
-  primaryLabel = "לקבלת הצעת מחיר",
+  primaryLabel = "בקשת הצעת מחיר",
   primaryHref = "/quote",
 }: {
   title: string;

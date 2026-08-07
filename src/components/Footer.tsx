@@ -23,21 +23,29 @@ export default function Footer() {
               <img className="brand-logo" src={assetPath("/images/logo-horizontal-white.svg")} alt="" aria-hidden="true" />
             </div>
             <p>{site.description}</p>
+            {/* Each icon renders only if there is somewhere for it to go. */}
             <div className="socials">
-              <a href={site.facebook} aria-label={`${site.name} בפייסבוק`}>
-                <FacebookIcon />
-              </a>
-              <a href={site.instagram} aria-label={`${site.name} באינסטגרם`}>
-                <InstagramIcon />
-              </a>
+              {site.facebook ? (
+                <a href={site.facebook} target="_blank" rel="noopener" aria-label={`${site.name} בפייסבוק`}>
+                  <FacebookIcon />
+                </a>
+              ) : null}
+              {site.instagram ? (
+                <a href={site.instagram} target="_blank" rel="noopener" aria-label={`${site.name} באינסטגרם`}>
+                  <InstagramIcon />
+                </a>
+              ) : null}
               <a href={waLink()} target="_blank" rel="noopener" aria-label={`${site.name} בוואטסאפ`}>
                 <WhatsAppIcon />
               </a>
             </div>
           </div>
 
+          {/* h2, not h3. These are the top-level headings inside the footer
+              landmark, and on pages with no h2 of their own — the 404 — an h3
+              here produced an h1→h3 skip on every render. */}
           <nav aria-label="ניווט בתחתית האתר">
-            <h3>ניווט מהיר</h3>
+            <h2>ניווט מהיר</h2>
             <ul>
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -54,7 +62,7 @@ export default function Footer() {
           </nav>
 
           <div>
-            <h3>השירותים שלנו</h3>
+            <h2>השירותים שלנו</h2>
             <ul>
               {services.map((service) => (
                 <li key={service.slug}>
@@ -65,7 +73,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3>יצירת קשר</h3>
+            <h2>יצירת קשר</h2>
             <ul className="footer-contact">
               <li>
                 <PhoneIcon />

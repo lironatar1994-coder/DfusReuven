@@ -46,15 +46,19 @@ export default function HomePage() {
               בית דפוס וגרפיקה בבני ברק <em>מכרטיס ביקור ועד שלט חזית</em>
             </h1>
             <p className="hero__lead">
-              עיצוב גרפי, דפוס אופסט ודיגיטלי, הזמנות, מדבקות, שילוט ומוצרי פרסום — הכול נעשה
-              אצלנו, מול האנשים שמדפיסים בפועל.
+              עיצוב גרפי, דפוס אופסט ודיגיטלי, הזמנות, מדבקות, שילוט ומוצרי פרסום. הכול נעשה
+              בבניין אחד בז׳בוטינסקי, מול האנשים שמדפיסים בפועל.
             </p>
           </div>
 
           <div className="hero__actions">
             <div className="btn-row">
+              {/* Was "דברו איתנו" pointing at a form. One action carried eight
+                  labels across the site; there are two now — "בקשת הצעת מחיר"
+                  goes to the form, "דברו איתנו" reaches a person. A button
+                  should say where it lands. */}
               <Link className="btn btn--primary" href="/quote">
-                דברו איתנו
+                בקשת הצעת מחיר
               </Link>
               <Link className="btn btn--secondary" href="#products">
                 מה אנחנו מדפיסים
@@ -76,7 +80,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="hero__media">
+          {/* sheet = crop marks at the trim edge. The first thing on the page
+              is now a printed sheet, not a photo in a rounded frame. */}
+          <div className="hero__media sheet">
             <Image
               src="/images/hero-collage.webp"
               alt="קולאז' של מוצרי דפוס: כרטיסי ביקור, הזמנה עם פויל זהב, פלייר, אריזה ממותגת ומדבקות בגליל"
@@ -106,7 +112,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHead
               title="מה אנחנו מדפיסים"
-              lead="מכרטיס ביקור בודד ועד שלט חזית — הכול נעשה כאן, מהעיצוב ועד הגימור."
+              lead="שישה תחומים, שנים־עשר מוצרים נפוצים. אם מה שאתם צריכים לא כאן, כנראה שאנחנו בכל זאת עושים אותו — שאלו."
               ruled
             />
           </Reveal>
@@ -186,7 +192,7 @@ export default function HomePage() {
               <SectionHead
                 title="עבודות שמדברות בעד עצמן"
                 lead="מבחר מתוך הפרויקטים האחרונים שלנו. לחצו על עבודה כדי לראות את החומרים והגימור שבהם השתמשנו."
-                center
+                ruled
               />
             </Reveal>
             <PortfolioGallery items={portfolio} />
@@ -207,7 +213,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHead
               title="למה דפוס ראובן?"
-              lead="אנחנו מדפיסים בבני ברק לעסקים, למוסדות ולמשפחות — מכרטיס ביקור בודד ועד ערכת מיתוג שלמה. כל עבודה נבדקת לפני שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל."
+              lead="אנחנו מדפיסים בבני ברק לעסקים, למוסדות ולמשפחות. כל עבודה נבדקת לפני שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל."
+              ruled
             />
             <ul className="benefits">
               {benefits.map((benefit) => {
@@ -259,7 +266,7 @@ export default function HomePage() {
               <SectionHead
                 title="מה לקוחות כותבים לנו"
                 lead="הודעות אמיתיות מלקוחות, מפורסמות באישורם."
-                center
+                ruled
               />
             </Reveal>
             <Reveal delay={60}>
@@ -273,7 +280,7 @@ export default function HomePage() {
         <section className="section section--paper" id="testimonials">
           <div className="container">
             <Reveal>
-              <SectionHead title="לקוחות מספרים" center />
+              <SectionHead title="לקוחות מספרים" ruled />
             </Reveal>
             <div className="grid grid--3">
               {testimonials.map((item, i) => (
@@ -307,8 +314,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHead
               title="איך זה עובד?"
-              lead="ארבעה שלבים מהרעיון ועד למוצר שמגיע אליכם ליד."
-              center
+              lead="ארבעה שלבים, מהשיחה הראשונה ועד שהעבודה בידיים שלכם."
+              ruled
             />
           </Reveal>
           <Reveal>
@@ -333,8 +340,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHead
               title="מה תרצו להדפיס?"
-              lead="שלחו לנו כמה פרטים ונחזור אליכם עם המלצה והצעת מחיר."
-              center
+              lead="כמה פרטים, ואנחנו חוזרים אליכם עם המלצה והצעת מחיר."
+              ruled
             />
           </Reveal>
           {/* No Reveal here. The form is ~1,700px on a phone — two full

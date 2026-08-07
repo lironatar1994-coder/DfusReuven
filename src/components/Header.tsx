@@ -135,7 +135,7 @@ export default function Header() {
           </nav>
           <div className="drawer__cta">
             <Link className="btn btn--primary btn--block" href="/quote" onClick={() => setOpen(false)}>
-              לקבלת הצעת מחיר
+              בקשת הצעת מחיר
             </Link>
             <a className="btn btn--wa btn--block" href={waLink()} target="_blank" rel="noopener">
               שיחה ב-WhatsApp

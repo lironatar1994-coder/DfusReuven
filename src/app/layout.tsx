@@ -35,10 +35,17 @@ const defaultTitle = `${site.name} | בית דפוס, עיצוב גרפי ושי
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
+  // Only one route carried a canonical; the other eight had none. That matters
+  // more than usual here because the app is also served from a subpath on the
+  // staging host, so the same page is reachable at two URLs.
+  alternates: { canonical: "/" },
   applicationName: site.name,
   title: { default: defaultTitle, template: `%s | ${site.name}` },
+  // This is the Google snippet, so it was the single most-seen sentence on the
+  // property — and it ended "שירות אישי וזמני ביצוע מהירים", the exact phrase
+  // the owner called slop. Named the city instead: it is what people search.
   description:
-    "דפוס ראובן – בית דפוס לעיצוב גרפי, דפוס אופסט ודיגיטלי, הדפסת כרטיסי ביקור, פליירים, הזמנות לחתונה, מדבקות, שילוט לעסקים ומוצרי פרסום. שירות אישי וזמני ביצוע מהירים.",
+    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, כרטיסי ביקור, פליירים, הזמנות, מדבקות, שילוט לעסקים ומוצרי פרסום. עיצוב והדפסה באותו מקום.",
   authors: [{ name: site.name, url: site.domain }],
   creator: site.name,
   publisher: site.name,
@@ -55,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: defaultTitle,
     description:
-      "עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום – משלב הרעיון ועד למוצר המוגמר.",
+      "עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום — בבני ברק, בבניין אחד.",
     siteName: site.name,
     url: site.domain,
     locale: site.locale,

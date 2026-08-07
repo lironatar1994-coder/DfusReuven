@@ -369,7 +369,7 @@ export default function QuoteForm({
 
       <div className="btn-row" style={{ marginTop: 26 }}>
         <button className="btn btn--primary" type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "שולח…" : "שלחו בקשה להצעת מחיר"}
+          {status === "sending" ? "שולח…" : "שלחו את הבקשה"}
         </button>
         <a className="btn btn--wa" href={waLink(waMessage)} target="_blank" rel="noopener">
           <WhatsAppIcon />

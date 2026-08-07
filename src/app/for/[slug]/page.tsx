@@ -51,8 +51,9 @@ export default async function SituationPage({ params }: Params) {
         <div className="container">
           <Reveal>
             <SectionHead
-              title={`מה בדרך כלל מזמינים ל${situation.title.replace(/^פותחים |^מתחתנים|^יוצאים /, "")}`.trim()}
+              title={situation.kitHeading}
               lead="אפשר להזמין הכול יחד בעיצוב אחיד, או כל פריט בנפרד."
+              ruled
             />
           </Reveal>
           <div className="grid grid--4">

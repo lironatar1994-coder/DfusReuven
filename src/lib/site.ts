@@ -1,4 +1,5 @@
 import { businessHours } from "./hours";
+import { portfolio } from "@/data/content";
 
 const configuredDomain = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
@@ -8,8 +9,12 @@ export const site = {
   name: "דפוס ראובן",
   nameEn: "DFUS REUVEN",
   tagline: "עיצוב • דפוס • שילוט",
+  // Renders in the footer, the meta description and the OG card — so it is the
+  // most-read sentence on the property. It used to end "עם ליווי אישי משלב
+  // הרעיון ועד למוצר המוגמר", which is true of every print shop in the country
+  // and therefore says nothing. Every clause here is one this shop can be held to.
   description:
-    "בית דפוס לעיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט לעסקים, הזמנות, מדבקות ומוצרי פרסום – עם ליווי אישי משלב הרעיון ועד למוצר המוגמר.",
+    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות, מדבקות ומוצרי פרסום. עיצוב והדפסה באותו מקום, ומדברים ישירות עם מי שמדפיס.",
   domain: (configuredDomain || "https://www.dfusreuven.co.il").replace(/\/+$/, ""),
   locale: "he_IL",
   language: "he-IL",
@@ -36,8 +41,12 @@ export const site = {
   // Display hours come from lib/hours.ts so they can never disagree with the
   // open/closed badge on the mobile bar.
   hours: businessHours,
-  facebook: "#",
-  instagram: "#",
+
+  // null, not "#". Two icons that scroll the page back to the top are worse
+  // than no icons: they sit in the footer, which is exactly where a visitor
+  // goes to check whether a business is real.
+  facebook: null as string | null,
+  instagram: null as string | null,
 } as const;
 
 export function absoluteUrl(path = ""): string {
@@ -60,11 +69,22 @@ export function assetPath(path: string): string {
 
 export const defaultWaMessage = "היי, אשמח לקבל הצעת מחיר מדפוס ראובן";
 
+/**
+ * "תיק עבודות" only appears once there is one.
+ *
+ * It sat fourth in the primary nav while `portfolio` was an empty array, so the
+ * one link a stranger clicks to check whether this shop is real led to "העבודות
+ * בדרך לכאן". On a site whose whole job is looking established, advertising
+ * proof and then apologising is worse than never mentioning it.
+ *
+ * Derived, not commented out, so the link returns by itself the day real work
+ * lands in data/content.ts. The route stays reachable from the footer.
+ */
 export const navLinks = [
   { href: "/", label: "ראשי" },
   { href: "/services", label: "שירותים" },
   { href: "/products", label: "מוצרים" },
-  { href: "/portfolio", label: "תיק עבודות" },
+  ...(portfolio.length > 0 ? [{ href: "/portfolio", label: "תיק עבודות" }] : []),
   { href: "/about", label: "אודות" },
   { href: "/contact", label: "צור קשר" },
-] as const;
+];

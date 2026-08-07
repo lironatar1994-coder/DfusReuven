@@ -3,6 +3,8 @@ import { ClockIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./icons";
 import { Reveal } from "./ui";
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
+// Waze first: in Israel it is the default navigation app, not the alternative one.
+const wazeUrl = `https://waze.com/ul?q=${encodeURIComponent(site.address)}&navigate=yes`;
 
 export default function ContactBlock() {
   return (
@@ -73,32 +75,31 @@ export default function ContactBlock() {
           </li>
         </ul>
 
-        <div className="quick-actions">
-          <a className="btn btn--primary btn--sm" href={`tel:${site.phoneHref}`}>
-            התקשרו
-          </a>
-          <a className="btn btn--wa btn--sm" href={waLink()} target="_blank" rel="noopener">
-            WhatsApp
-          </a>
-          <a className="btn btn--secondary btn--sm" href={`mailto:${site.email}`}>
-            אימייל
-          </a>
-          <a className="btn btn--secondary btn--sm" href={mapsUrl} target="_blank" rel="noopener">
-            ניווט
-          </a>
-        </div>
+        {/* The four quick-action buttons that used to sit here repeated the four
+            rows directly above them, and on a phone two of them are already in
+            the fixed bottom bar. Eight ways to make contact in a screen and a
+            half is not eight times the chance of contact. */}
       </Reveal>
 
       <Reveal delay={100}>
-        <div className="map">
-          <div>
-            <span className="pin" aria-hidden>
-              <PinIcon />
-            </span>
-            <strong>מפת Google תוטמע כאן</strong>
-            <span>
-              {site.address} · חניה חופשית במקום
-            </span>
+        {/* Was a dashed box reading "מפת Google תוטמע כאן" — a note to a
+            developer, shipped as the last thing on the homepage. An address you
+            can hand to Waze is more useful on a phone than an embedded map
+            anyway, so this is the finished version, not a stand-in. */}
+        <div className="directions sheet">
+          <span className="directions__pin" aria-hidden>
+            <PinIcon />
+          </span>
+          <p className="directions__eyebrow">איפה אנחנו</p>
+          <p className="directions__address">{site.addressShort}</p>
+          <p className="directions__city">{site.city}</p>
+          <div className="directions__actions">
+            <a className="btn btn--ink btn--sm" href={wazeUrl} target="_blank" rel="noopener">
+              פתחו בוויז
+            </a>
+            <a className="btn btn--secondary btn--sm" href={mapsUrl} target="_blank" rel="noopener">
+              פתחו ב-Google Maps
+            </a>
           </div>
         </div>
       </Reveal>

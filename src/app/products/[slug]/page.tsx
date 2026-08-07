@@ -47,12 +47,10 @@ export default async function ProductPage({ params }: Params) {
     image: absoluteUrl(product.image),
     category: product.categoryLabel,
     brand: { "@type": "Brand", name: site.name },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "ILS",
-      availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: site.name },
-    },
+    // No `offers`. It used to declare an AggregateOffer with priceCurrency ILS,
+    // InStock and no price at all — lowPrice is required, so Google rejects the
+    // rich result outright. A site that deliberately publishes no prices has no
+    // business emitting an offer; the honest markup is a Product without one.
   };
 
   return (

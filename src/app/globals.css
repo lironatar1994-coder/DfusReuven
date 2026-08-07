@@ -44,10 +44,17 @@
   --wa-btn: #0C7C3E;
   --wa-btn-dark: #09622F;
 
-  /* Trim: paper is cut square, not pillowed */
+  /* Trim: paper is cut square, not pillowed.
+     This used to be a claim the stylesheet made and then broke — --trim held
+     the static containers nobody touches while --pill rounded every button,
+     filter, chip and nav pill on the site. The loudest, most-clicked layer was
+     the roundest shape in web design, so the "cut square" idea was invisible
+     to anyone who wasn't reading the CSS. --pill is now reserved for things
+     that are genuinely discs — a single icon in a circle — and nothing that
+     holds a line of text. */
   --trim: 3px;
   --trim-lg: 4px;
-  --pill: 999px;
+  --pill: 999px; /* discs only: icon buttons, avatars, the WhatsApp float */
 
   /* Elevation is declared once — a surface carries a border or a shadow, never both.
      Every shadow keeps a real offset; no zero-offset halos. */
@@ -82,6 +89,8 @@ body {
   font-family: var(--ff-body);
   font-size: 17px;
   line-height: 1.72;
+  /* The Hebrew equivalent of tracking: air between words, none inside them. */
+  word-spacing: .04em;
   color: var(--ink-body);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -111,12 +120,20 @@ html { caret-color: var(--blue); scrollbar-color: var(--rule-strong) transparent
 a { text-underline-offset: 3px; }
 :where(input, td, th, .stats strong, .spec) { font-variant-numeric: tabular-nums; }
 
+/* Hebrew is not tracked.
+   Latin display type is routinely tightened at large sizes because its
+   letterforms have ascenders and descenders that knit words together — take
+   space out and the word holds. Hebrew letters sit in one band with no such
+   scaffolding, so tracking (in either direction) is the fastest way to make a
+   Hebrew word stop reading as one word. Negative tracking at 4.4rem was closing
+   the counters on ק, ם and ס. What Hebrew does want is a little air between
+   words, which is word-spacing, not letter-spacing. This rule and the seven
+   below it are the same fix in different places. */
 h1, h2, h3, h4 {
   font-family: var(--ff-display);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.08;
-  letter-spacing: -0.015em;
   margin: 0 0 .5em;
 }
 h1 { font-size: clamp(2.15rem, 8vw, 4.4rem); text-wrap: balance; }
@@ -161,14 +178,21 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .section--ink { background: var(--ink); color: #B9C6D6; }
 .section--ink h2, .section--ink h3 { color: #fff; }
 
-/* Crop marks — used sparingly, only where a "sheet" is the point */
+/* Crop marks — used sparingly, only where a "sheet" is the point.
+   This class sat here defined and applied to nothing at all, which meant the
+   single most literal expression of the whole "page as a press sheet" idea
+   shipped as dead CSS. It now marks the two places where the metaphor is also
+   literally true: the hero image (the work, on the sheet) and the shop's own
+   address card (Reuven's own card, waiting to be trimmed). Two uses is the
+   right number — crop marks on every box would be wallpaper. */
 .sheet { position: relative; }
 .sheet::before, .sheet::after {
   content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
   border-color: var(--rule-ink); border-style: solid; border-width: 0;
+  z-index: 2;
 }
-.sheet::before { top: -1px; inset-inline-start: -1px; border-top-width: 1px; border-inline-start-width: 1px; }
-.sheet::after { bottom: -1px; inset-inline-end: -1px; border-bottom-width: 1px; border-inline-end-width: 1px; }
+.sheet::before { top: -7px; inset-inline-start: -7px; border-top-width: 1px; border-inline-start-width: 1px; }
+.sheet::after { bottom: -7px; inset-inline-end: -7px; border-bottom-width: 1px; border-inline-end-width: 1px; }
 
 /* Section marker: hairline rule + label, the printer's section divider */
 .marker {
@@ -178,14 +202,18 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .marker__label {
   font-family: var(--ff-body);
   font-size: .76rem; font-weight: 700;
-  letter-spacing: .16em;
+  /* .16em of letter-spacing on a Hebrew label read as loose letters, not a
+     label. uppercase is a no-op on Hebrew anyway — it only ever touched the
+     stray Latin word. Word-spacing does the separating work instead. */
+  word-spacing: .2em;
   color: var(--blue);
   white-space: nowrap;
-  text-transform: uppercase;
 }
 .marker__num {
+  /* --muted-light measured 3.11:1 on white here — 12px bold is not large text,
+     so it needs the full 4.5:1. --muted measures 5.84:1 / 5.45:1 on paper. */
   font-size: .76rem; font-weight: 700; letter-spacing: .08em;
-  color: var(--muted-light); font-variant-numeric: tabular-nums;
+  color: var(--muted); font-variant-numeric: tabular-nums;
 }
 .marker::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 .section--ink .marker::after { background: rgba(255,255,255,.16); }
@@ -227,7 +255,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .spec {
   font-size: .8rem;
   font-weight: 500;
-  letter-spacing: .04em;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
   display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center;
@@ -261,7 +288,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   min-height: 54px; padding: 14px 28px;
-  border: 1.5px solid transparent; border-radius: var(--pill);
+  border: 1.5px solid transparent; border-radius: var(--trim);
   font-family: var(--ff-body);
   font-size: 1.02rem; font-weight: 700; line-height: 1.2;
   cursor: pointer; text-align: center;
@@ -318,7 +345,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand-name { font-family: var(--ff-display); font-size: 1.34rem; font-weight: 700; color: var(--ink); }
-.brand-sub { font-size: .7rem; color: var(--muted); letter-spacing: .12em; font-weight: 500; }
+.brand-sub { font-size: .7rem; color: var(--muted); word-spacing: .16em; font-weight: 500; }
 
 .nav { display: none; }
 .nav ul { display: flex; align-items: center; gap: 2px; }
@@ -452,7 +479,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 .ticket-tag__top {
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  font-size: .68rem; font-weight: 700; word-spacing: .18em;
   color: var(--muted-light); margin-bottom: 7px;
 }
 .ticket-tag__top .press-strip { width: 40px; height: 3px; }
@@ -563,7 +590,7 @@ a.card:hover { color: inherit; }
 }
 @media (min-width: 768px) { .filters { flex-wrap: wrap; justify-content: center; overflow: visible; } }
 .filter {
-  flex: none; padding: 10px 20px; border-radius: var(--pill);
+  flex: none; padding: 10px 20px; border-radius: var(--trim);
   border: 1px solid var(--rule-strong); background: #fff;
   color: var(--ink); font-weight: 600; font-size: .94rem; cursor: pointer;
   transition: all .2s;
@@ -698,7 +725,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .chip-radio { position: relative; display: inline-flex; }
 .chip-radio input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
 .chip-radio span {
-  padding: 11px 20px; border: 1.5px solid var(--rule-strong); border-radius: var(--pill);
+  padding: 11px 20px; border: 1.5px solid var(--rule-strong); border-radius: var(--trim);
   font-weight: 600; font-size: .94rem; color: var(--ink);
   min-height: 46px; display: inline-flex; align-items: center; transition: all .18s;
 }
@@ -840,7 +867,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
   background: var(--blue-tint); color: var(--blue); display: grid; place-items: center;
 }
 .info-list svg { width: 20px; height: 20px; }
-.info-list strong { display: block; color: var(--ink); font-size: .88rem; letter-spacing: .04em; }
+.info-list strong { display: block; color: var(--ink); font-size: .88rem; }
 .info-list a, .info-list p { color: var(--ink-body); font-size: 1.02rem; margin: 0; }
 .info-list a:hover { color: var(--blue); }
 /* The phone number and the WhatsApp number are the point of this page, and a
@@ -850,23 +877,33 @@ fieldset { border: 0; margin: 0; padding: 0; }
   .info-list a { display: inline-flex; align-items: center; min-height: 44px; }
 }
 
-.map {
-  border-radius: var(--trim-lg); border: 1px dashed var(--blue-edge);
-  background: var(--blue-tint); min-height: 300px;
-  display: grid; place-items: center; text-align: center; padding: 26px;
+/* The shop's own address, set the way the shop would print it: a card waiting
+   to be trimmed, crop marks and all. This is the one place on the site where
+   the press-sheet idea is also literally true — it is Reuven's own card. */
+.directions {
+  background: #fff; border: 1px solid var(--rule);
+  border-radius: var(--trim); padding: 40px 34px 34px;
+  min-height: 300px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  justify-content: center; gap: 2px;
 }
-.map .pin {
-  width: 54px; height: 54px; border-radius: var(--pill); background: var(--blue);
-  color: #fff; display: grid; place-items: center; margin: 0 auto 14px;
-  box-shadow: 0 8px 22px rgba(23,105,224,.3);
-}
-.map svg { width: 25px; height: 25px; }
-.map strong { display: block; font-family: var(--ff-display); font-size: 1.1rem; color: var(--ink); }
-.map > div > span { display: block; color: var(--ink-soft); font-size: .94rem; margin-top: 6px; }
 
-.quick-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }
-@media (min-width: 560px) { .quick-actions { grid-template-columns: repeat(4, 1fr); } }
-.quick-actions .btn { padding-inline: 10px; font-size: .93rem; }
+.directions__pin {
+  width: 42px; height: 42px; border-radius: var(--pill);
+  background: var(--blue-tint); color: var(--blue);
+  display: grid; place-items: center; margin-bottom: 18px;
+}
+.directions__pin svg { width: 21px; height: 21px; }
+.directions__eyebrow {
+  margin: 0; font-size: .74rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase;
+}
+.directions__address {
+  margin: 4px 0 0; font-family: var(--ff-display);
+  font-size: clamp(1.5rem, 4.5vw, 2rem); line-height: 1.2; color: var(--ink);
+}
+.directions__city { margin: 2px 0 0; font-size: 1.05rem; color: var(--ink-soft); }
+.directions__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 
 /* ---------- CTA band ---------- */
 .cta-band {
@@ -931,7 +968,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 @media (min-width: 700px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 44px; } }
 
-.site-footer h3 { color: #fff; font-family: var(--ff-body); font-size: .82rem; letter-spacing: .14em; margin-bottom: 18px; }
+.site-footer h2 { color: #fff; font-family: var(--ff-body); font-size: .82rem; word-spacing: .18em; margin-bottom: 18px; }
 .site-footer ul { display: grid; gap: 11px; }
 .site-footer a { color: #93A4B8; font-size: .96rem; }
 .site-footer a:hover { color: #fff; }
@@ -939,7 +976,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .footer-brand .brand-logo { width: 216px; height: 50px; object-position: right center; }
 .footer-brand .brand-name { color: #fff; }
-.footer-brand .brand-sub { color: #6E7F94; }
+.footer-brand .brand-sub { color: #8496AC; }
 
 .socials { display: flex; gap: 10px; margin-top: 20px; }
 .socials a {
@@ -960,7 +997,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
   align-items: center; justify-content: space-between; font-size: .89rem;
 }
 .footer-bottom ul { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.footer-bottom .legal { color: #6E7F94; }
+.footer-bottom .legal { color: #8496AC; }
 
 /* ---------- Mobile action bar ---------- */
 .mobile-bar {
@@ -1020,7 +1057,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .print-list a {
   display: inline-flex; align-items: center;
   min-height: 44px; padding: 10px 18px;
-  border: 1px solid var(--rule-strong); border-radius: var(--pill);
+  border: 1px solid var(--rule-strong); border-radius: var(--trim);
   color: var(--ink); font-weight: 600; font-size: .95rem;
   transition: border-color .2s, color .2s, background-color .2s;
 }
@@ -1190,7 +1227,8 @@ fieldset { border: 0; margin: 0; padding: 0; }
   }
   .filters::-webkit-scrollbar { display: none; }
 
-  .quick-actions { gap: 10px; }
+  .directions { padding: 30px 22px 26px; min-height: 0; }
+  .directions__actions .btn { flex: 1 1 100%; }
   .footer-inner { padding-block: 40px 0; }
 
   /* The form's two actions are a stacked pair on a phone, not a row that

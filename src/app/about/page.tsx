@@ -1,36 +1,39 @@
 import type { Metadata } from "next";
 import Image from "@/components/Img";
-import { CtaBand, Crumbs, Reveal, SectionHead, SpecLine } from "@/components/ui";
-import { CheckIcon, PaletteIcon, ShieldIcon, UsersIcon } from "@/components/icons";
-import { stats } from "@/data/content";
+import { CtaBand, Crumbs, Reveal, SectionHead } from "@/components/ui";
+import { CheckIcon } from "@/components/icons";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "אודות — יותר מבית דפוס",
+  title: "אודות בית הדפוס",
   description:
-    "דפוס ראובן מלווה עסקים ולקוחות פרטיים משלב הרעיון ועד למוצר המודפס, בשילוב יצירתיות, ניסיון וטכנולוגיות דפוס מתקדמות.",
+    "דפוס ראובן, ז'בוטינסקי 84 בבני ברק. דפוס אופסט, דפוס דיגיטלי, הדפסה רחבה ומחלקת גימור — הכול בבניין אחד, לצד מחלקת העיצוב.",
 };
 
-const values = [
-  {
-    Icon: ShieldIcon,
-    title: "אחריות על התוצאה",
-    text: "אנחנו בודקים כל קובץ לפני ההדפסה – רזולוציה, בליד, צבעים וטקסטים. אם משהו לא ייראה טוב בדפוס, נגיד לכם לפני ולא אחרי.",
-  },
-  {
-    Icon: UsersIcon,
-    title: "שירות אישי",
-    text: "לא מוקד ולא טפסים אינסופיים. מדברים איתנו ישירות, בטלפון או בוואטסאפ, ומקבלים תשובה מהאדם שמטפל בעבודה שלכם.",
-  },
-  {
-    Icon: PaletteIcon,
-    title: "עיצוב שמבין דפוס",
-    text: "המעצבים שלנו יושבים ליד מכונות הדפוס. זה אומר עיצוב שיודע מראש איך ייראה הצבע על הנייר, איפה החיתוך עובר ומה יעבוד בגימור.",
-  },
-];
+/**
+ * This page was three times longer and said less.
+ *
+ * It opened with "יותר מבית דפוס", then a section headed הסיפור שלנו whose first
+ * sentence was copy-pasted verbatim from the hero 25 lines above it and whose
+ * second was "יצירתיות, ניסיון, חומרי גלם איכותיים וטכנולוגיות דפוס מתקדמות…
+ * מקצועית, מדויקת ומרשימה" — ten abstract nouns and not one fact. Below that sat
+ * three "values" cards, one of them titled שירות אישי, restating the homepage
+ * benefits in weaker words.
+ *
+ * All of it is gone. What is left is only what is true and checkable: where the
+ * shop is, what is in the building, and what those machines can make. A short
+ * honest page beats a long empty one, and on a site with no prices, no
+ * portfolio and no testimonials, this page cannot afford to bluff.
+ *
+ * To make it genuinely good it needs facts only Reuven has — the year the shop
+ * opened, who Reuven is, the make of the press on the floor, one category of
+ * regular customer. Those go here when they arrive. Nothing gets invented in
+ * the meantime.
+ */
 
 const capabilities = [
-  { title: "דפוס אופסט", text: "דיוק צבע גבוה ומחיר משתלם בכמויות גדולות." },
-  { title: "דפוס דיגיטלי", text: "כמויות קטנות, התאמה אישית וזמן ביצוע קצר." },
+  { title: "דפוס אופסט", text: "דיוק צבע גבוה, ומחיר שיורד ככל שהכמות עולה." },
+  { title: "דפוס דיגיטלי", text: "כמויות קטנות, התאמה אישית, וזמן ביצוע קצר." },
   { title: "הדפסה רחבה", text: "שמשוניות, רולאפים, קאפות ומדבקות בגדלים גדולים." },
   { title: "מחלקת גימור", text: "פויל, הבלטה, למינציה, חיתוך צורני, כריכה ומספור." },
 ];
@@ -41,9 +44,13 @@ export default function AboutPage() {
       <section className="page-hero">
         <div className="container">
           <Crumbs trail={[{ label: "אודות" }]} />
-          <h1>יותר מבית דפוס</h1>
+          {/* "יותר מבית דפוס" apologised for the noun the homepage is proud of.
+              This one names the street instead — a thing no competitor can copy
+              and the one detail a Bnei Brak local will recognise. */}
+          <h1>בית הדפוס ברחוב ז׳בוטינסקי</h1>
           <p>
-            בדפוס ראובן אנחנו מלווים עסקים ולקוחות פרטיים משלב הרעיון הראשוני ועד למוצר המודפס.
+            אנחנו יושבים ב{site.addressShort} ב{site.city}, ומדפיסים לעסקים, למוסדות ולמשפחות
+            באזור. מכונות הדפוס, מחלקת הגימור והמעצבים נמצאים באותו בניין.
           </p>
         </div>
       </section>
@@ -66,58 +73,10 @@ export default function AboutPage() {
             />
           </Reveal>
           <Reveal delay={100}>
-            <SectionHead title="הסיפור שלנו" />
-            <p style={{ color: "var(--ink-soft)", fontSize: "1.05rem" }}>
-              בדפוס ראובן אנחנו מלווים עסקים ולקוחות פרטיים משלב הרעיון הראשוני ועד למוצר המודפס. אנו
-              משלבים יצירתיות, ניסיון, חומרי גלם איכותיים וטכנולוגיות דפוס מתקדמות, כדי שכל עבודה
-              תיראה מקצועית, מדויקת ומרשימה.
-            </p>
-
-          </Reveal>
-        </div>
-      </section>
-
-
-      <section className="section">
-        <div className="container">
-          <Reveal>
-            <SectionHead title="הערכים שמנחים כל עבודה" center />
-          </Reveal>
-          <div className="grid grid--3">
-            {values.map((value, i) => (
-              <Reveal key={value.title} delay={i * 80}>
-                <div className="card" style={{ height: "100%", padding: 30 }}>
-                  <span
-                    className="ico"
-                    aria-hidden
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: "var(--trim)",
-                      background: "var(--blue-tint)",
-                      color: "var(--blue)",
-                      display: "grid",
-                      placeItems: "center",
-                      marginBottom: 16,
-                    }}
-                  >
-                    <value.Icon />
-                  </span>
-                  <h3>{value.title}</h3>
-                  <p style={{ color: "var(--muted)", fontSize: ".97rem", margin: 0 }}>{value.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--paper">
-        <div className="container split">
-          <Reveal>
             <SectionHead
-              title="טכנולוגיה וחומרים"
-              lead="בית הדפוס שלנו משלב דפוס אופסט לכמויות גדולות ודפוס דיגיטלי לכמויות קטנות ולזמני ביצוע קצרים, לצד מכונות גימור, חיתוך והדפסה רחבה לשילוט."
+              title="מה יש כאן"
+              lead="ארבע יכולות בבניין אחד. זה מה שמאפשר להגיד לכם בטלפון אם משהו אפשרי, בלי לבדוק מול ספק."
+              ruled
             />
             <ul className="benefits">
               {capabilities.map((item) => (
@@ -133,6 +92,22 @@ export default function AboutPage() {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--paper">
+        <div className="container split">
+          <Reveal>
+            <SectionHead
+              title="לבוא לראות"
+              lead="דוגמאות הנייר, הפויל והגימורים נמצאות אצלנו על הדלפק. אם אתם מתלבטים בין שני ניירות, זו שיחה של חמש דקות כאן ולא שלושה מיילים."
+              ruled
+            />
+            <p style={{ color: "var(--ink-soft)" }}>
+              אנחנו פתוחים {site.hours[0]?.days} {site.hours[0]?.time}. אפשר להיכנס בלי לתאם, ואם
+              אתם רוצים לשבת עם מעצב — עדיפה שיחה קצרה מראש כדי שנפנה לכם זמן.
+            </p>
+          </Reveal>
           <Reveal delay={100} className="media-stack">
             <Image
               src="/images/finishes.webp"
@@ -145,8 +120,8 @@ export default function AboutPage() {
       </section>
 
       <CtaBand
-        title="בואו נתחיל לעבוד יחד"
-        text="נשמח לשמוע על הפרויקט שלכם ולהציע את הדרך הנכונה לבצע אותו."
+        title="יש לכם עבודה בראש?"
+        text="ספרו לנו מה אתם צריכים ונגיד לכם מה אפשרי, בכמה זמן, ומה כדאי לשנות לפני שמדפיסים."
       />
     </>
   );
