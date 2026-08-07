@@ -801,6 +801,11 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .file-list button:hover { color: #C0392B; }
 
 .form-note { color: var(--muted); font-size: .87rem; margin: 0; }
+/* The route to the full form is the short form's only escape hatch, so on a
+   touch screen it gets a real target rather than a 21px line of text. */
+@media (pointer: coarse) {
+  .form-note a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+}
 .form-alert {
   border-radius: var(--trim); padding: 16px 20px; font-weight: 600; margin-bottom: 22px;
 }
