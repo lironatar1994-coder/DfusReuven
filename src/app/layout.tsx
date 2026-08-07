@@ -35,10 +35,12 @@ const defaultTitle = `${site.name} | בית דפוס, עיצוב גרפי ושי
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
-  // Only one route carried a canonical; the other eight had none. That matters
-  // more than usual here because the app is also served from a subpath on the
-  // staging host, so the same page is reachable at two URLs.
-  alternates: { canonical: "/" },
+  // "./" and not "/". A root-layout canonical is inherited by every page that
+  // does not set its own, so an absolute "/" told Google that /about, /products
+  // and /contact were all duplicates of the homepage — far worse than the
+  // missing canonicals it was meant to fix. "./" resolves against the current
+  // route, so each page points at itself.
+  alternates: { canonical: "./" },
   applicationName: site.name,
   title: { default: defaultTitle, template: `%s | ${site.name}` },
   // This is the Google snippet, so it was the single most-seen sentence on the
