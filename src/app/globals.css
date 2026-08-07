@@ -63,6 +63,14 @@
   --sh-md: 0 6px 18px rgba(16, 32, 51, .12);
   --sh-lg: 0 18px 34px rgba(16, 32, 51, .17);
 
+  /* Paper grain. #F7F7F5 against #FFFFFF is a 2% luminance step — on a phone in
+     daylight the "paper" sections were indistinguishable from the white ones,
+     so the page paid for a background change and got nothing. Paper now runs
+     warmer (--paper-warm) and carries a tile of fractal noise at 4.5%: enough
+     to read as stock rather than as a slightly-off white. One 120px tile,
+     rasterised once and repeated, so it costs nothing to scroll. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23g)' opacity='.045'/%3E%3C/svg%3E");
+
   --container: 1240px;
   --gutter: 20px;
   --sect: 68px;
@@ -139,6 +147,14 @@ h1, h2, h3, h4 {
 h1 { font-size: clamp(2.15rem, 8vw, 4.4rem); text-wrap: balance; }
 h2 { font-size: clamp(1.75rem, 5.6vw, 2.9rem); text-wrap: balance; }
 h3 { font-size: clamp(1.14rem, 3.4vw, 1.45rem); line-height: 1.22; text-wrap: balance; }
+
+/* 1.08 is a display value for a headline that occupies one line, which is what
+   h1 does from 1024px up. On a phone the same string wraps to four lines at
+   34px, and Hebrew descenders — ק ן ך ף ץ — then run into the line below.
+   Tight where the size earns it; readable where it does not. */
+@media (max-width: 1023px) {
+  h1, h2 { line-height: 1.22; }
+}
 p { margin: 0 0 1em; text-wrap: pretty; }
 
 /* ---------- Accessibility ---------- */
@@ -173,10 +189,25 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 
 .section { padding-block: var(--sect); }
 .section--tight { padding-block: calc(var(--sect) * .62); }
-.section--paper { background: var(--paper); }
+.section--paper { background-color: var(--paper-warm); background-image: var(--grain); }
 .section--tint { background: var(--blue-tint); }
 .section--ink { background: var(--ink); color: #B9C6D6; }
 .section--ink h2, .section--ink h3 { color: #fff; }
+.section--ink .section-head p { color: #B9C6D6; }
+
+/* ---------- The plate cycle ----------
+   The head rule's tick was --blue on all eight section heads. The CMYK press
+   marks — the most ownable thing in the palette — appeared three times each on
+   the entire page, which is to say the "press sheet" idea was legible only to
+   someone reading this stylesheet. The tick now walks the plates down the
+   homepage: cyan, yellow, magenta, black, and round again. Yellow is placed on
+   the one dark band, where #F5D400 is brilliant rather than invisible. */
+#products   { --tick: var(--c); }
+#clients    { --tick: var(--y); }
+#situations { --tick: var(--m); }
+#why        { --tick: var(--k); }
+#quote      { --tick: var(--c); }
+#contact    { --tick: var(--m); }
 
 /* Crop marks — used sparingly, only where a "sheet" is the point.
    This class sat here defined and applied to nothing at all, which meant the
@@ -229,7 +260,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* The divider that replaced the eyebrow: structure without a redundant label. */
 .head-rule {
   display: block; width: 56px; height: 2px;
-  background: var(--blue); margin-bottom: 20px;
+  background: var(--tick, var(--blue)); margin-bottom: 20px;
 }
 .section-head--center .head-rule { margin-inline: auto; }
 .section--ink .head-rule { background: #7FB0FF; }
@@ -243,8 +274,11 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 .section-head--ruled .head-rule::before {
   content: ""; position: absolute; inset-inline-start: 0; top: -1px;
-  width: 56px; height: 3px; background: var(--blue);
+  width: 56px; height: 3px; background: var(--tick, var(--blue));
 }
+/* The full-measure hairline is --rule, which on navy reads as a bright white
+   line rather than a hairline. */
+.section--ink .section-head--ruled .head-rule { background: rgba(255, 255, 255, .18); }
 .section-head--ruled h2 { max-width: 18ch; }
 .section-head--ruled p { max-width: 62ch; }
 @media (min-width: 900px) {
@@ -440,12 +474,19 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 .hero__grid { position: relative; display: grid; gap: 26px; align-items: center; }
 
-/* Phones see the work straight after the headline; the buttons follow it.
+/* Headline, then the ask, then the work.
+   This used to run head → media → actions, on the reasoning that a phone
+   should see what we make before it is asked for anything. Measured, that
+   reasoning cost the whole ask: 274px of image plus a 99px job ticket pushed
+   the primary button to y=687 on a 375×812 phone, where the fixed action bar
+   starts at 719 — so the first CTA was 32px of visible button, the second was
+   covered, and the trust line never appeared at all. The image is still in the
+   first screen; it just no longer sits between the promise and the button.
    On desktop the image sits alongside and spans both text rows. */
 @media (max-width: 1023px) {
   .hero__head { order: 1; }
-  .hero__media { order: 2; }
-  .hero__actions { order: 3; }
+  .hero__actions { order: 2; }
+  .hero__media { order: 3; }
 }
 @media (min-width: 1024px) {
   .hero { padding-block: 76px 96px; }
@@ -461,9 +502,17 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 
 .hero h1 { margin-bottom: 18px; }
-.hero h1 em { font-style: normal; color: var(--blue); display: block; }
+/* The second line was set at the same size as the first and only recoloured,
+   so across four wrapped phone lines it read as a blue block rather than as a
+   second beat. Colour alone is not hierarchy; size is. */
+.hero h1 em {
+  font-style: normal; color: var(--blue); display: block;
+  font-size: .74em; margin-top: .12em;
+}
+/* Was clamp(1.04rem, …) — 16.64px on a phone, against 17.28px section leads.
+   The most important paragraph on the page was the smallest one. */
 .hero__lead {
-  font-size: clamp(1.04rem, 2.4vw, 1.22rem);
+  font-size: clamp(1.19rem, 1.1rem + .4vw, 1.28rem);
   color: var(--ink-soft); max-width: 540px; margin-bottom: 0;
 }
 .hero .btn-row { margin-bottom: 22px; }
@@ -563,16 +612,11 @@ a.card:hover { color: inherit; }
 .card__link:focus-visible { outline: none; }
 .product-card:has(.card__link:focus-visible) { outline: 3px solid var(--blue); outline-offset: 3px; }
 
-.card__go {
-  margin-top: auto; padding-top: 12px;
-  color: var(--blue); font-size: 1.45rem; line-height: 1;
-  align-self: flex-start;
-  transition: transform .22s;
-}
-/* Negative X, because forward is leftward in RTL and the chevron points that way. */
-@media (hover: hover) {
-  .product-card:hover .card__go { transform: translateX(-4px); }
-}
+/* .card__go — a blue chevron in the corner of every product card — is gone.
+   Six identical arrows pointing at six cards that were already entirely
+   clickable is not affordance, it is wallpaper. The card lift and the link
+   colour carry it. The chevron survives on the phone services list, where it
+   is one per row in a ruled list with no other edge to read. */
 
 /* Six featured products: two up on a phone, three across from 1024px.
    Its own class rather than .grid--3, which stays one-up on phones because
@@ -629,7 +673,19 @@ a.card:hover { color: inherit; }
   position: absolute; inset-inline-end: -16px; bottom: -28px; width: 46%;
   border: 6px solid #fff !important; box-shadow: var(--sh-md) !important;
 }
-@media (max-width: 560px) { .media-stack__sm { display: none; } }
+/* This was display:none below 560px. The one image on the site showing foil,
+   embossing and lamination — the visual proof of "אפשר לבוא לראות ולגעת", four
+   lines above it — was hidden on the device where it argues hardest. It comes
+   back as a full-width plate under the studio photo rather than as a 46%
+   inset, because a 158px corner overlay shows texture to nobody. */
+@media (max-width: 560px) {
+  .media-stack { display: grid; gap: 12px; }
+  .media-stack__sm {
+    position: static; width: 100%; inset: auto;
+    border: 1px solid var(--rule) !important;
+    box-shadow: var(--sh-sm) !important;
+  }
+}
 
 /* ---------- Filters + gallery ---------- */
 .filters {
@@ -946,21 +1002,38 @@ fieldset { border: 0; margin: 0; padding: 0; }
   font-family: var(--ff-display); font-size: 1.02rem; color: var(--ink);
   display: flex; align-items: center; min-height: 84px;
 }
+/* On the ink band the grid inverts: navy cells, white type, and the 1px gaps
+   become the hairlines. Eight white boxes on a white page was the weakest
+   possible treatment for the section that carries the trust argument alone. */
+.section--ink .client-list { background: rgba(255, 255, 255, .16); border-color: rgba(255, 255, 255, .16); }
+.section--ink .client-list li { background: var(--ink); color: #fff; }
 
+/* The block that says "we are a real place in בני ברק" was 336px of pin icon,
+   two lines of address and two buttons — the one section whose entire argument
+   is physical, argued with no picture of anywhere. It carries a map now, and
+   the 42px pin disc that was standing in for one is gone with it. */
 .directions {
   background: #fff; border: 1px solid var(--rule);
-  border-radius: var(--trim); padding: 40px 34px 34px;
-  min-height: 300px;
+  border-radius: var(--trim);
+  display: flex; flex-direction: column;
+}
+.directions__map {
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-warm);
+  overflow: hidden;
+  border-radius: var(--trim) var(--trim) 0 0;
+}
+.directions__map iframe {
+  width: 100%; height: 100%; border: 0; display: block;
+  /* The default Google tile set is louder than anything else on the page. */
+  filter: saturate(.82) contrast(.96);
+}
+.directions__body {
+  padding: 26px 30px 30px;
   display: flex; flex-direction: column; align-items: flex-start;
-  justify-content: center; gap: 2px;
+  justify-content: center; gap: 2px; flex: 1;
 }
-
-.directions__pin {
-  width: 42px; height: 42px; border-radius: var(--pill);
-  background: var(--blue-tint); color: var(--blue);
-  display: grid; place-items: center; margin-bottom: 18px;
-}
-.directions__pin svg { width: 21px; height: 21px; }
 .directions__eyebrow {
   margin: 0; font-size: .74rem; font-weight: 700; color: var(--muted);
   text-transform: uppercase;
@@ -1150,6 +1223,14 @@ fieldset { border: 0; margin: 0; padding: 0; }
 @media (hover: hover) {
   .situation:hover { border-color: var(--blue); transform: translateY(-3px); color: var(--ink); }
 }
+/* Four cards, 210px each, differing only in the words inside them. One line
+   icon per card costs 30px of height and makes the set scannable — you can
+   tell the wedding one from the campaign one without reading either. */
+.situation__ico {
+  color: var(--blue); margin-bottom: 4px;
+  display: inline-flex; align-items: center;
+}
+.situation__ico svg { width: 26px; height: 26px; }
 .situation__title { font-family: var(--ff-display); font-size: 1.16rem; font-weight: 700; }
 .situation__tagline { color: var(--muted); font-size: .95rem; }
 .situation__count {
@@ -1249,20 +1330,50 @@ fieldset { border: 0; margin: 0; padding: 0; }
   /* A phone shows ~800px at a time. At 68px top and bottom, every section
      boundary was a 136px void — on the small screens that is a sixth of the
      viewport of nothing. Sections still breathe, they just stop shouting. */
-  :root { --sect: 52px; }
+  :root { --sect: 56px; }
 
-  /* Two products per row: one-up cards read as an endless scroll. */
-  .grid--4, .grid--catalog { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .product-card .card__body { padding: 22px 14px 14px; }
-  .product-card h3 { font-size: 1.02rem; }
+  /* --tight was .62 of --sect, which put the clients band on 32px between two
+     52px neighbours: squeezed, not deliberate. .85 still reads as tighter. */
+  .section--tight { padding-block: calc(var(--sect) * .85); }
+
+  /* Two-up put each product image in a 164×123 slot, at which size a business
+     card, a flyer and a sticker sheet are the same beige rectangle — and the
+     catalogue section exists to show the range, so illegible thumbnails cost
+     it its whole job. One scroll-snapped row at 240px doubles the image and
+     keeps the section's height, and the cut-off card at the edge says there
+     are more without a control that has to be discovered. */
+  .grid--catalog {
+    display: flex;
+    grid-template-columns: none;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .grid--catalog::-webkit-scrollbar { display: none; }
+  .grid--catalog > .reveal-wrap { flex: 0 0 240px; scroll-snap-align: start; }
+
+  /* Was 12px against a 20px page gutter — cards crowded each other harder than
+     they crowded the screen edge. Matched, and matched to each other: this and
+     the catalogue row used to run 12px and 10px for no reason. */
+  .grid--4 { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .product-card .card__body { padding: 20px 16px 16px; }
+  /* Card titles were 16.32px — below the 17px body text around them, separated
+     from it by weight alone. */
+  .product-card h3 { font-size: 1.12rem; }
   .product-card > .card__body > p:not(.spec) { display: none; }
-  .product-card .spec { font-size: .72rem; gap: 2px 8px; }
-  .card__go { font-size: 1.25rem; padding-top: 8px; }
+  .product-card .spec { font-size: .74rem; gap: 2px 8px; }
 
   /* Services and testimonials stay one-up — they carry real copy. */
   .grid--3 { gap: 16px; }
 
-  .section-head { margin-bottom: 26px; }
+  .section-head { margin-bottom: 24px; }
   .hero { padding-block: 30px 44px; }
   .hero__grid { gap: 28px; }
   .hero .btn-row { margin-bottom: 22px; }
@@ -1294,9 +1405,27 @@ fieldset { border: 0; margin: 0; padding: 0; }
   }
   .filters::-webkit-scrollbar { display: none; }
 
-  .directions { padding: 30px 22px 26px; min-height: 0; }
+  .directions__body { padding: 24px 20px 22px; }
   .directions__actions .btn { flex: 1 1 100%; }
-  .footer-inner { padding-block: 40px 0; }
+
+  /* --- Footer ---
+     1,481px on a phone: 17.5% of the page, taller than any content section,
+     and taller than the clients and situations sections put together. It is a
+     footer. The two link lists sit side by side instead of stacking, the
+     contact rows pair up, and the boilerplate paragraph — the meta description,
+     restated under a page that has just spent eight sections saying it — goes.
+     Every link survives; only the height does not. */
+  .footer-inner { padding-block: 32px 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+  .footer-about, .footer-col--contact { grid-column: 1 / -1; }
+  .footer-about p { display: none; }
+  .footer-brand { margin-bottom: 14px; }
+  .socials { margin-top: 0; }
+  .site-footer h2 { margin-bottom: 10px; }
+  .site-footer ul { gap: 2px; }
+  /* Scoped through .site-footer so it outranks the rule above it. */
+  .site-footer .footer-contact { grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+  .footer-bottom { margin-top: 26px; padding-block: 16px 20px; }
 
   /* The form's two actions are a stacked pair on a phone, not a row that
      happens to wrap: half-width ragged buttons read as an accident. */
@@ -1312,7 +1441,8 @@ fieldset { border: 0; margin: 0; padding: 0; }
 @media (max-width: 400px) {
   /* Give the smallest phones their width back. */
   :root { --gutter: 16px; }
-  .grid--4 { gap: 10px; }
+  .grid--4 { gap: 12px; }
+  .grid--catalog > .reveal-wrap { flex-basis: 220px; }
 }
 
 /* --- Lightbox becomes a bottom sheet on phones --- */

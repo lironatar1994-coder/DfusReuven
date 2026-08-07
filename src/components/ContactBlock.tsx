@@ -5,6 +5,13 @@ import { Reveal } from "./ui";
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
 // Waze first: in Israel it is the default navigation app, not the alternative one.
 const wazeUrl = `https://waze.com/ul?q=${encodeURIComponent(site.address)}&navigate=yes`;
+/**
+ * Keyless embed, geocoded from the address string rather than from hardcoded
+ * coordinates — a pin dropped on the wrong side of ז'בוטינסקי is worse than no
+ * pin, and the address is the one fact we hold. loading="lazy" keeps it off the
+ * wire until the reader is nearly at the bottom of the page.
+ */
+const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(site.address)}&hl=iw&z=16&output=embed`;
 
 export default function ContactBlock() {
   return (
@@ -82,24 +89,33 @@ export default function ContactBlock() {
       </Reveal>
 
       <Reveal delay={100}>
-        {/* Was a dashed box reading "מפת Google תוטמע כאן" — a note to a
-            developer, shipped as the last thing on the homepage. An address you
-            can hand to Waze is more useful on a phone than an embedded map
-            anyway, so this is the finished version, not a stand-in. */}
+        {/* This block's whole argument is that the shop is a physical place you
+            can walk into, and it was making it with a 42px pin icon and two
+            buttons that navigate somewhere the reader cannot see. The buttons
+            still do the work on a phone — they hand the address straight to
+            Waze — but a map is what makes the claim before anyone taps. The
+            pin disc is gone: it was standing in for exactly this. */}
         <div className="directions sheet">
-          <span className="directions__pin" aria-hidden>
-            <PinIcon />
-          </span>
-          <p className="directions__eyebrow">איפה אנחנו</p>
-          <p className="directions__address">{site.addressShort}</p>
-          <p className="directions__city">{site.city}</p>
-          <div className="directions__actions">
-            <a className="btn btn--ink btn--sm" href={wazeUrl} target="_blank" rel="noopener">
-              פתחו בוויז
-            </a>
-            <a className="btn btn--secondary btn--sm" href={mapsUrl} target="_blank" rel="noopener">
-              פתחו ב-Google Maps
-            </a>
+          <div className="directions__map">
+            <iframe
+              src={mapEmbedUrl}
+              title={`מפה: ${site.address}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="directions__body">
+            <p className="directions__eyebrow">איפה אנחנו</p>
+            <p className="directions__address">{site.addressShort}</p>
+            <p className="directions__city">{site.city}</p>
+            <div className="directions__actions">
+              <a className="btn btn--ink btn--sm" href={wazeUrl} target="_blank" rel="noopener">
+                פתחו בוויז
+              </a>
+              <a className="btn btn--secondary btn--sm" href={mapsUrl} target="_blank" rel="noopener">
+                פתחו ב-Google Maps
+              </a>
+            </div>
           </div>
         </div>
       </Reveal>

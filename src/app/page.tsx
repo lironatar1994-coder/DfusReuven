@@ -7,7 +7,7 @@ import QuoteForm from "@/components/QuoteForm";
 import ContactBlock from "@/components/ContactBlock";
 import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import { Reveal, SectionHead, SpecLine } from "@/components/ui";
-import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
+import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, situationIcons, Stars } from "@/components/icons";
 import { featuredProducts, products, services } from "@/data/catalog";
 import { benefits, clientTypes, portfolio, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
@@ -73,9 +73,15 @@ export default function HomePage() {
                 <CheckIcon />
                 מדברים ישירות עם בית הדפוס
               </span>
+              {/* Was "בני ברק · א׳–ה׳ עד 18:30". The address and the hours
+                  already appear on the job ticket a few pixels above, in the
+                  fixed bottom bar, in the contact section and in the footer —
+                  five times on one page. A trust line has three slots; spending
+                  one of them on a sixth restatement is a slot that argues
+                  nothing. This is the differentiator the other two are not. */}
               <span>
                 <CheckIcon />
-                בני ברק · א׳–ה׳ עד 18:30
+                גם 100 יחידות זו הזמנה
               </span>
             </p>
           </div>
@@ -165,7 +171,15 @@ export default function HomePage() {
           trusts us to make it. With no prices, no portfolio and no
           testimonials on the site, this list carries the trust argument
           almost single-handed — so it sits high, not buried on /about. */}
-      <section className="section section--tight" id="clients">
+      {/* Ink, not white.
+          Between here and the quote form the page ran four consecutive white
+          sections — 3,341px, 40% of a phone's scroll, with nothing but a 1px
+          #E2E4E7 hairline to say a new argument had started. This band splits
+          that run in half, and it lands on the right section: with no prices,
+          no portfolio and no testimonials, this list carries the trust
+          argument single-handed and was getting the quietest treatment on the
+          page to do it with. */}
+      <section className="section section--tight section--ink" id="clients">
         <div className="container">
           <Reveal>
             <SectionHead
@@ -185,7 +199,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- 3 · Situations ---------------- */}
-      <section className="section">
+      <section className="section" id="situations">
         <div className="container">
           <Reveal>
             <SectionHead
@@ -195,17 +209,28 @@ export default function HomePage() {
             />
           </Reveal>
           <div className="grid grid--4">
-            {situations.map((situation, i) => (
-              <Reveal key={situation.slug} delay={(i % 4) * 70}>
-                <Link className="situation" href={`/for/${situation.slug}`}>
-                  <span className="situation__title">{situation.title}</span>
-                  <span className="situation__tagline">{situation.tagline}</span>
-                  <span className="situation__count">
-                    {situation.products.length} מוצרים בערכה
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+            {situations.map((situation, i) => {
+              const Icon = situationIcons[situation.slug];
+              return (
+                <Reveal key={situation.slug} delay={(i % 4) * 70}>
+                  <Link className="situation" href={`/for/${situation.slug}`}>
+                    {/* Four cards of the same size differing only in their
+                        words. Aria-hidden: the title says which situation this
+                        is, and a briefcase does not need announcing twice. */}
+                    {Icon ? (
+                      <span className="situation__ico" aria-hidden>
+                        <Icon />
+                      </span>
+                    ) : null}
+                    <span className="situation__title">{situation.title}</span>
+                    <span className="situation__tagline">{situation.tagline}</span>
+                    <span className="situation__count">
+                      {situation.products.length} מוצרים בערכה
+                    </span>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -234,7 +259,7 @@ export default function HomePage() {
       {/* ---------------- 5 · Why here ----------------
           Was two adjacent sections — "why us" and "about" — both arguing that
           the shop is trustworthy, each with its own image. One block now. */}
-      <section className="section" id="why">
+      <section className="section section--paper" id="why">
         <div className="container split">
           {/* No lead here on purpose. The one that was — "כל עבודה נבדקת לפני
               שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל" — was the

@@ -120,6 +120,66 @@ export function InstagramIcon(props: IconProps) {
   );
 }
 
+/* ---------- Situations ----------
+   Drawn as strokes, not fills. These sit at 26px above a card title and their
+   whole job is to let you tell "מתחתנים" from "יוצאים בקמפיין" without reading
+   either — a filled glyph at that size is a blob, an outline is a shape. */
+const lineBase = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.6,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+} as const;
+
+export function BriefcaseIcon(props: IconProps) {
+  return (
+    <svg {...lineBase} {...props}>
+      <rect x="3" y="7" width="18" height="13" rx="2" />
+      <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+      <path d="M3 12h18" />
+    </svg>
+  );
+}
+
+export function RingsIcon(props: IconProps) {
+  return (
+    <svg {...lineBase} {...props}>
+      <circle cx="9" cy="15" r="5" />
+      <circle cx="16" cy="15" r="5" />
+    </svg>
+  );
+}
+
+export function StorefrontIcon(props: IconProps) {
+  return (
+    <svg {...lineBase} {...props}>
+      <path d="M2.5 9.5 4.5 4h15l2 5.5z" />
+      <path d="M4 9.5V20h16V9.5" />
+      <path d="M9 20v-6h6v6" />
+    </svg>
+  );
+}
+
+export function MegaphoneIcon(props: IconProps) {
+  return (
+    <svg {...lineBase} {...props}>
+      <path d="M4 10v4a1 1 0 0 0 1 1h2l7 4V5L7 9H5a1 1 0 0 0-1 1z" />
+      <path d="M17.5 8.5a5 5 0 0 1 0 7" />
+    </svg>
+  );
+}
+
+/** Keyed by situation slug, so a new situation without an icon simply has none. */
+export const situationIcons: Record<string, (props: IconProps) => React.JSX.Element> = {
+  "new-business": BriefcaseIcon,
+  wedding: RingsIcon,
+  storefront: StorefrontIcon,
+  campaign: MegaphoneIcon,
+};
+
 export const benefitIcons = {
   palette: PaletteIcon,
   users: UsersIcon,

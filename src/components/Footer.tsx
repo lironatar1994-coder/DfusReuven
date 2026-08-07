@@ -45,7 +45,10 @@ export default function Footer() {
           {/* h2, not h3. These are the top-level headings inside the footer
               landmark, and on pages with no h2 of their own — the 404 — an h3
               here produced an h1→h3 skip on every render. */}
-          <nav aria-label="ניווט בתחתית האתר">
+          {/* footer-col--* exists so the phone layout can pair the two link
+              lists side by side and keep contact full width, without the
+              stylesheet counting children. */}
+          <nav className="footer-col footer-col--nav" aria-label="ניווט בתחתית האתר">
             <h2>ניווט מהיר</h2>
             <ul>
               {navLinks.map((link) => (
@@ -62,7 +65,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div>
+          <div className="footer-col footer-col--services">
             <h2>השירותים שלנו</h2>
             <ul>
               {services.map((service) => (
@@ -73,7 +76,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="footer-col footer-col--contact">
             <h2>יצירת קשר</h2>
             <ul className="footer-contact">
               <li>

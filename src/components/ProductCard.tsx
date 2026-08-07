@@ -18,7 +18,7 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={product.alt}
           width={800}
           height={600}
-          sizes="(min-width: 1024px) 23vw, 47vw"
+          sizes="(min-width: 1024px) 23vw, 240px"
         />
       </div>
       <div className="card__body">
@@ -37,9 +37,9 @@ export default function ProductCard({ product }: { product: Product }) {
         </h3>
         <p>{product.short}</p>
         <SpecLine items={spec} />
-        <span className="card__go" aria-hidden>
-          ‹
-        </span>
+        {/* A blue chevron used to sit here. Six cards meant six identical
+            arrows pointing at six things that were already entirely clickable —
+            affordance repeated past the point where it informs. */}
       </div>
     </article>
   );
