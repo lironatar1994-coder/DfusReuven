@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { services } from "@/data/catalog";
-import { navLinks, site, waLink } from "@/lib/site";
+import { assetPath, navLinks, site, waLink } from "@/lib/site";
 import {
   ClockIcon,
   FacebookIcon,
@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-about">
             <div className="footer-brand">
-              <img className="brand-logo" src="/images/logo-horizontal-white.svg" alt="" aria-hidden="true" />
+              <img className="brand-logo" src={assetPath("/images/logo-horizontal-white.svg")} alt="" aria-hidden="true" />
             </div>
             <p>{site.description}</p>
             <div className="socials">

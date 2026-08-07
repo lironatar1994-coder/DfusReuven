@@ -429,7 +429,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 
 .hero h1 { margin-bottom: 18px; }
-.hero h1 em { font-style: normal; color: var(--blue); }
+.hero h1 em { font-style: normal; color: var(--blue); display: block; }
 .hero__lead {
   font-size: clamp(1.04rem, 2.4vw, 1.22rem);
   color: var(--ink-soft); max-width: 540px; margin-bottom: 0;

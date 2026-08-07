@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { navLinks, site, waLink } from "@/lib/site";
+import { assetPath, navLinks, site, waLink } from "@/lib/site";
 import { PressStrip, WhatsAppIcon } from "./icons";
 
 function BrandLogo() {
-  return <img className="brand-logo" src="/images/logo.svg" alt="" aria-hidden="true" />;
+  return <img className="brand-logo" src={assetPath("/images/logo.svg")} alt="" aria-hidden="true" />;
 }
 
 export { BrandLogo };
