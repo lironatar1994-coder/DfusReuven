@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "@/components/Img";
 import { CtaBand, Crumbs, Reveal, SectionHead } from "@/components/ui";
 import { CheckIcon } from "@/components/icons";
+import { clientTypes } from "@/data/content";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -115,6 +116,27 @@ export default function AboutPage() {
               width={800}
               height={600}
             />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The trust argument this page was missing. Not adjectives — a list of
+          who actually prints here. */}
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              title="מי מדפיס אצלנו"
+              lead="לאורך השנים הדפסנו לגופים ציבוריים, למוסדות חינוך, לחברות ולעסקים קטנים. אלה סוגי הלקוחות שחוזרים אלינו."
+              ruled
+            />
+          </Reveal>
+          <Reveal delay={60}>
+            <ul className="client-list">
+              {clientTypes.map((client) => (
+                <li key={client}>{client}</li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>

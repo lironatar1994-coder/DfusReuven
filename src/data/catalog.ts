@@ -428,6 +428,123 @@ export const products: Product[] = [
     quantities: ["50 יח׳", "100 יח׳", "250 יח׳", "500 יח׳ ומעלה"],
     leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
   },
+
+  /* ------------------------------------------------------------------
+     Added from the shop's own published material, August 2026.
+     Every one of these is work דפוס ראובן has actually done and
+     advertised — they were simply missing from the catalogue:
+       · a full hardcover הגדה של פסח for בית ספר "יבנה" רעננה
+       · silkscreen printing onto objects (a printed football)
+       · מודעות רחוב 50/70 and perforated rear-window vehicle stickers
+       · printing onto bubble mailers, for בית חינוך "מורשת מנחם"
+     IMAGES: these five reuse the nearest existing photograph and need
+     real ones. See docs/IMAGE-PROMPTS.md.
+     ------------------------------------------------------------------ */
+  {
+    slug: "books-booklets",
+    name: "ספרים וחוברות",
+    short: "כריכה קשה או רכה, הגדות ואלבומים למוסדות, ספירלה ותפירה.",
+    description:
+      "אנחנו מדפיסים וכורכים ספרים, חוברות, קטלוגים והגדות בהתאמה אישית — כולל עבודות למוסדות ולבתי ספר עם תמונות כיתות, הקדשות ולוגו של המוסד. כריכה קשה, כריכה רכה, ספירלה או תפירה, בכל כמות.",
+    category: "business",
+    categoryLabel: "דפוס לעסקים",
+    image: "/images/svc-business.webp",
+    alt: "ספרים וחוברות מודפסים בכריכה קשה",
+    gallery: [
+      { src: "/images/svc-business.webp", alt: "ספרים וחוברות מודפסים", label: "ספרים וחוברות" },
+      { src: "/images/finishes.webp", alt: "דוגמאות נייר וגימור לכריכה", label: "ניירות וגימורים" },
+    ],
+    sizes: ["A4", "A5", "21×21 ס״מ", "מידה מיוחדת לפי בקשה"],
+    materials: ["נייר כרומו", "נייר בוק", "כריכה קשה", "כריכה רכה"],
+    printing: ["דפוס דיגיטלי", "דפוס אופסט", "צבע מלא CMYK"],
+    finishes: ["כריכה קשה", "כריכת ספירלה", "כריכה תפורה", "למינציה על הכריכה", "הטבעת פויל"],
+    quantities: ["25 יח׳", "50 יח׳", "100 יח׳", "500 יח׳ ומעלה"],
+    leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
+  },
+  {
+    slug: "silkscreen",
+    name: "דפוס משי והדפסה על מוצרים",
+    short: "הדפסה ישירה על מוצרים, כולל דפוס משי והדפסת UV.",
+    description:
+      "לא כל עבודה היא על נייר. אנחנו מדפיסים גם ישירות על מוצרים — כדורים, בקבוקים, קופסאות ומוצרי פרסום — בדפוס משי או בהדפסת UV, לפי החומר והצורה. שלחו לנו את המוצר ונגיד לכם מה אפשר להדפיס עליו.",
+    category: "promo",
+    categoryLabel: "מוצרי פרסום",
+    image: "/images/svc-promo.webp",
+    alt: "מוצרי פרסום ממותגים בהדפסה ישירה",
+    gallery: [
+      { src: "/images/svc-promo.webp", alt: "מוצרי פרסום ממותגים", label: "מוצרים ממותגים" },
+      { src: "/images/prod-promotional-detail.webp", alt: "תקריב של הדפסה על מוצר", label: "תקריב ההדפסה" },
+    ],
+    sizes: ["לפי המוצר"],
+    materials: ["פלסטיק", "מתכת", "זכוכית", "בד", "עץ"],
+    printing: ["דפוס משי", "הדפסת UV", "הדפסה בצבע אחד", "צבע מלא"],
+    finishes: ["הדפסה ישירה", "מדבקה מותאמת"],
+    quantities: ["25 יח׳", "50 יח׳", "100 יח׳ ומעלה"],
+    leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
+  },
+  {
+    slug: "street-posters",
+    name: "מודעות רחוב",
+    short: "50×70 ס״מ, הדפסה בצבע מלא לתלייה על לוחות מודעות.",
+    description:
+      "מודעות לתלייה על לוחות מודעות ובחוצות, במידה הסטנדרטית 50×70 ס״מ או בכל מידה אחרת. הדפסה בצבע מלא על נייר מודעות, בכמויות שמתאימות לחלוקה באזור שלם.",
+    category: "signage",
+    categoryLabel: "שילוט ומיתוג",
+    image: "/images/prod-flyers.webp",
+    alt: "מודעות רחוב מודפסות בצבע מלא",
+    gallery: [
+      { src: "/images/prod-flyers.webp", alt: "מודעות רחוב מודפסות", label: "מודעות רחוב" },
+      { src: "/images/prod-flyers-detail.webp", alt: "תקריב של הדפסת המודעה", label: "תקריב ההדפסה" },
+    ],
+    sizes: ["50×70 ס״מ", "70×100 ס״מ", "A3", "מידה מיוחדת לפי בקשה"],
+    materials: ["נייר מודעות", "נייר כרומו 130 גרם"],
+    printing: ["דפוס אופסט", "דפוס דיגיטלי", "צבע מלא CMYK", "צד אחד"],
+    finishes: ["ללא גימור", "חיתוך למידה"],
+    quantities: ["100 יח׳", "250 יח׳", "500 יח׳", "1,000 יח׳ ומעלה"],
+    leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
+  },
+  {
+    slug: "vehicle-stickers",
+    name: "מדבקות לרכב",
+    short: "מדבקת רשת לשמשה אחורית, מיתוג צי רכבים ומדבקות ויניל.",
+    description:
+      "מדבקת רשת מחוררת לשמשה אחורית — נראית מבחוץ ושקופה מבפנים, כך שהנהג ממשיך לראות דרכה. אנחנו מייצרים גם מדבקות ויניל לדלתות הרכב ומיתוג מלא לצי רכבים, כולל חיתוך לפי צורה.",
+    category: "stickers",
+    categoryLabel: "מדבקות ואריזות",
+    image: "/images/prod-stickers.webp",
+    alt: "מדבקות ויניל מודפסות לרכב",
+    gallery: [
+      { src: "/images/prod-stickers.webp", alt: "מדבקות מודפסות", label: "מדבקות ויניל" },
+      { src: "/images/prod-stickers-detail.webp", alt: "תקריב של חומר המדבקה", label: "תקריב החומר" },
+    ],
+    sizes: ["לפי מידת השמשה", "מדבקות דלת", "מידה מיוחדת לפי בקשה"],
+    materials: ["ויניל מחורר (רשת)", "ויניל להדבקה", "ויניל קאסט"],
+    printing: ["הדפסה דיגיטלית רחבה", "צבע מלא CMYK"],
+    finishes: ["למינציה מגנה", "חיתוך לפי צורה", "התקנה אצלנו"],
+    quantities: ["יחידה אחת", "10 יח׳", "צי רכבים"],
+    leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
+  },
+  {
+    slug: "printed-mailers",
+    name: "הדפסה על מעטפות פץ פץ",
+    short: "מעטפות בועות ממותגות — הלוגו שלכם על האריזה שנשלחת.",
+    description:
+      "מעטפות בועות (פץ פץ) עם הדפסה של הלוגו ופרטי הקשר שלכם. במקום מעטפה אנונימית, החבילה שמגיעה ללקוח נושאת את השם שלכם. מתאים למוסדות, לחנויות אונליין ולכל מי ששולח דואר בכמות.",
+    category: "stickers",
+    categoryLabel: "מדבקות ואריזות",
+    image: "/images/prod-packaging-detail.webp",
+    alt: "מעטפות בועות ממותגות בהדפסה",
+    gallery: [
+      { src: "/images/prod-packaging-detail.webp", alt: "אריזה ממותגת", label: "אריזה ממותגת" },
+      { src: "/images/prod-packaging-context.webp", alt: "אריזות מוכנות למשלוח", label: "מוכן למשלוח" },
+    ],
+    sizes: ["C4", "C5", "B5", "מידה מיוחדת לפי בקשה"],
+    materials: ["מעטפת בועות לבנה", "מעטפת בועות חומה"],
+    printing: ["הדפסה בצבע אחד", "הדפסה בשני צבעים", "צבע מלא"],
+    finishes: ["הדפסה ישירה על המעטפה"],
+    quantities: ["100 יח׳", "250 יח׳", "500 יח׳", "1,000 יח׳ ומעלה"],
+    leadTime: "נמסור לכם זמן ביצוע מדויק יחד עם הצעת המחיר",
+  },
 ];
 
 export const featuredProducts = products.filter((product) => product.featured);

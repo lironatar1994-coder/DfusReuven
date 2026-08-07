@@ -78,6 +78,32 @@ export const benefits = [
 ];
 
 /**
+ * Real, and confirmed by the owner.
+ *
+ * Taken verbatim from the shop's own capabilities flyer ("בין לקוחותינו
+ * המרוצים: משרד הביטחון, משטרת ישראל, עיריות, חברות הייטק, בתי ספר, גנים,
+ * משרדי רו״ח, משרדי עו״ד ועסקים פרטיים ועוד"), which also carries the same
+ * address, phone, fax and email the site uses. Liron confirmed it is current.
+ *
+ * This is the single strongest trust signal on the property. On a site with no
+ * prices, no portfolio and no testimonials, "the police and the Ministry of
+ * Defence print here" does work that no amount of copywriting can.
+ *
+ * These are categories, not named accounts — deliberately. Naming a specific
+ * municipality or hi-tech company would need that client's permission.
+ */
+export const clientTypes = [
+  "משרד הביטחון",
+  "משטרת ישראל",
+  "עיריות ורשויות מקומיות",
+  "בתי ספר וגני ילדים",
+  "חברות הייטק",
+  "משרדי רו״ח ועו״ד",
+  "מוסדות וארגונים",
+  "עסקים פרטיים",
+];
+
+/**
  * Empty on purpose — these were invented quotes shown under five-star ratings.
  * Add real ones only with the customer's permission, using their actual words.
  */

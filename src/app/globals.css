@@ -883,6 +883,20 @@ fieldset { border: 0; margin: 0; padding: 0; }
 /* The shop's own address, set the way the shop would print it: a card waiting
    to be trimmed, crop marks and all. This is the one place on the site where
    the press-sheet idea is also literally true — it is Reuven's own card. */
+/* Who prints here. Set as a run of trimmed cards, not badges — these are
+   categories of customer, and a pill would make them look like tags. */
+.client-list {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule);
+  border-radius: var(--trim); overflow: hidden;
+}
+@media (min-width: 700px) { .client-list { grid-template-columns: repeat(4, 1fr); } }
+.client-list li {
+  background: #fff; padding: 22px 18px;
+  font-family: var(--ff-display); font-size: 1.02rem; color: var(--ink);
+  display: flex; align-items: center; min-height: 84px;
+}
+
 .directions {
   background: #fff; border: 1px solid var(--rule);
   border-radius: var(--trim); padding: 40px 34px 34px;

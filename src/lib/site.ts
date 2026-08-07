@@ -35,8 +35,12 @@ export const site = {
   whatsapp: "972527210118",
   whatsappDisplay: "052-721-0118",
 
-  // ⚠️ STILL A PLACEHOLDER — verify this mailbox exists on the new domain.
-  email: "info@dfusreuven.co.il",
+  // Verified: printed on two of the shop's own flyers (the "כל סוגי ההדפסות
+  // במקום אחד" capabilities sheet and the מבצעי PRINT price sheet), alongside
+  // the same phone, fax and address the site already carries. Replaces
+  // info@dfusreuven.co.il, which was a placeholder for a mailbox nobody had
+  // confirmed exists — a contact page that bounces is worse than a Gmail.
+  email: "R88000@gmail.com",
 
   // Display hours come from lib/hours.ts so they can never disagree with the
   // open/closed badge on the mobile bar.

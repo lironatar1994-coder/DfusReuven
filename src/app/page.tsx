@@ -9,7 +9,7 @@ import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import { Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
 import { featuredProducts, services } from "@/data/catalog";
-import { benefits, portfolio, processSteps, stats, testimonials } from "@/data/content";
+import { benefits, clientTypes, portfolio, processSteps, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
 import { whatsappProof } from "@/data/proof";
 
@@ -157,6 +157,30 @@ export default function HomePage() {
           </div>
         </section>
       ) : null}
+
+      {/* ---------------- 3 · Who prints here ----------------
+          Straight after the catalogue: this is what we make, and this is who
+          trusts us to make it. With no prices, no portfolio and no
+          testimonials on the site, this list carries the trust argument
+          almost single-handed — so it sits high, not buried on /about. */}
+      <section className="section section--tight" id="clients">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              title="מי מדפיס אצלנו"
+              lead="גופים ציבוריים, מוסדות חינוך, חברות ועסקים קטנים — אלה סוגי הלקוחות שחוזרים אלינו."
+              ruled
+            />
+          </Reveal>
+          <Reveal delay={60}>
+            <ul className="client-list">
+              {clientTypes.map((client) => (
+                <li key={client}>{client}</li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ---------------- 3 · Situations ---------------- */}
       <section className="section">

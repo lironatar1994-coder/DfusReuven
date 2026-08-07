@@ -30,3 +30,6 @@ Desktop.ini
 # misc
 *.log
 *.tar.gz
+
+# Reference material pulled from the client's Facebook - not site assets
+.fb-source/
