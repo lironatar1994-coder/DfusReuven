@@ -575,8 +575,11 @@ a.card:hover { color: inherit; }
   display: grid; place-items: center;
 }
 .benefits svg { width: 20px; height: 20px; }
-.benefits strong { display: block; font-family: var(--ff-display); font-size: 1.06rem; color: var(--ink); }
-.benefits span { color: var(--muted); font-size: .95rem; }
+/* The title has to win. At 1.06 vs .95rem the two lines were near enough in
+   weight that the eye read both or neither; the whole argument lives in the
+   titles, so they get the size and the body drops back to a caption. */
+.benefits strong { display: block; font-family: var(--ff-display); font-size: 1.2rem; line-height: 1.3; color: var(--ink); margin-bottom: 3px; }
+.benefits span { color: var(--muted); font-size: .92rem; }
 
 .media-stack { position: relative; }
 .media-stack img { border-radius: var(--trim-lg); border: 1px solid var(--rule); box-shadow: var(--sh-sm); }

@@ -8,7 +8,7 @@ import ContactBlock from "@/components/ContactBlock";
 import WhatsAppProofStrip from "@/components/WhatsAppProof";
 import { Reveal, SectionHead, SpecLine } from "@/components/ui";
 import { benefitIcons, CheckIcon, PressStrip, ShieldIcon, Stars } from "@/components/icons";
-import { featuredProducts, services } from "@/data/catalog";
+import { featuredProducts, products, services } from "@/data/catalog";
 import { benefits, clientTypes, portfolio, processSteps, stats, testimonials } from "@/data/content";
 import { situations } from "@/data/situations";
 import { whatsappProof } from "@/data/proof";
@@ -109,10 +109,12 @@ export default function HomePage() {
           rather than two overlapping ones. */}
       <section className="section section--paper" id="products">
         <div className="container">
+          {/* The counts are counted, not typed. This lead said "שנים־עשר
+              מוצרים" and went stale the moment five products were added. */}
           <Reveal>
             <SectionHead
               title="מה אנחנו מדפיסים"
-              lead="שישה תחומים, שנים־עשר מוצרים נפוצים. אם מה שאתם צריכים לא כאן, כנראה שאנחנו בכל זאת עושים אותו — שאלו."
+              lead={`${services.length} תחומים, ${products.length} מוצרים. לא מצאתם? כנראה שאנחנו עושים את זה בכל זאת.`}
               ruled
             />
           </Reveal>
@@ -234,10 +236,14 @@ export default function HomePage() {
           the shop is trustworthy, each with its own image. One block now. */}
       <section className="section" id="why">
         <div className="container split">
+          {/* No lead here on purpose. The one that was — "כל עבודה נבדקת לפני
+              שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל" — was the
+              first and third benefit restated in advance, so a reader met the
+              same two claims twice before reaching the list, and a scanner read
+              a paragraph that said nothing the titles below did not. */}
           <Reveal>
             <SectionHead
               title="למה דפוס ראובן?"
-              lead="אנחנו מדפיסים בבני ברק לעסקים, למוסדות ולמשפחות. כל עבודה נבדקת לפני שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל."
               ruled
             />
             <ul className="benefits">

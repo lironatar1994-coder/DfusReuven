@@ -49,31 +49,43 @@ export const processSteps = [
  * something this shop can actually be held to. "איכות ללא פשרות" fails both:
  * no printer claims the opposite, so it carries no information.
  */
+/**
+ * Titles carry the argument; the line under each is a kicker, not a paragraph.
+ *
+ * These bodies used to run two sentences each — 70 words across five items,
+ * 40% of all the reading on the homepage. The first sentence of every one of
+ * them restated its own title ("עיצוב והדפסה באותו מקום" / "אין העברות בין מעצב
+ * לבית דפוס"), so a reader was told everything twice and a scanner read
+ * neither. Each body is now the one phrase worth remembering, and nothing else.
+ *
+ * Read the five titles alone and the whole case is there. That is the test any
+ * replacement has to pass.
+ */
 export const benefits = [
   {
     icon: "shield" as const,
     title: "בודקים את הקובץ לפני שמדפיסים",
-    text: "רזולוציה, בליד וצבעים נבדקים לפני שהמכונה מתחילה. אם משהו ייצא מטושטש — תדעו לפני, לא אחרי.",
+    text: "אם משהו ייצא מטושטש — תדעו לפני, לא אחרי.",
   },
   {
     icon: "palette" as const,
     title: "עיצוב והדפסה באותו מקום",
-    text: "אין העברות בין מעצב לבית דפוס, ואין על מי להאשים כשמשהו יוצא לא נכון.",
+    text: "אין על מי להאשים כשמשהו יוצא לא נכון.",
   },
   {
     icon: "users" as const,
     title: "מדברים עם מי שמדפיס",
-    text: "לא מוקד ולא טופס אוטומטי — אותו איש קשר מתחילת העבודה ועד המסירה.",
+    text: "אותו איש קשר מהשיחה הראשונה ועד המסירה.",
   },
   {
     icon: "check" as const,
     title: "גם 100 יחידות זו הזמנה",
-    text: "כמות קטנה מקבלת את אותו יחס. לא צריך להזמין אלפים כדי שנתייחס אליכם.",
+    text: "לא צריך להזמין אלפים כדי שנתייחס אליכם.",
   },
   {
     icon: "clock" as const,
     title: "אפשר לבוא לראות ולגעת",
-    text: "דוגמאות נייר, פויל וגימור נמצאות אצלנו בחנות בבני ברק. נייר נבחר ביד, לא במסך.",
+    text: "נייר נבחר ביד, לא במסך.",
   },
 ];
 
