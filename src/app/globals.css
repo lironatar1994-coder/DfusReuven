@@ -188,7 +188,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .sheet { position: relative; }
 .sheet::before, .sheet::after {
   content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
-  border-color: var(--rule-ink); border-style: solid; border-width: 0;
+  /* --rule-ink is a 0.14 alpha meant for hairlines *inside* a card; on the page
+     background it measured out at roughly #DDE0E3 and simply could not be seen.
+     A crop mark nobody can see is decoration with the decoration removed. */
+  border-color: rgba(16, 32, 51, 0.34); border-style: solid; border-width: 0;
   z-index: 2;
 }
 .sheet::before { top: -7px; inset-inline-start: -7px; border-top-width: 1px; border-inline-start-width: 1px; }
