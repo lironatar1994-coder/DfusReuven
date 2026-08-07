@@ -680,6 +680,10 @@ a.card:hover { color: inherit; }
   background-repeat: no-repeat; background-position: left 16px center; padding-inline-end: 42px;
 }
 .field input::placeholder, .field textarea::placeholder { color: #9AA3AE; }
+/* A phone number and a date type left-to-right, but the UA's `text-align:
+   start` then parks them against the left edge while every Hebrew field hugs
+   the right — the column of text zig-zags. Keep the LTR run, keep the edge. */
+.field input[type="tel"], .field input[type="date"] { text-align: right; }
 .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--muted-light); }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(23,105,224,.13);
@@ -839,6 +843,12 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .info-list strong { display: block; color: var(--ink); font-size: .88rem; letter-spacing: .04em; }
 .info-list a, .info-list p { color: var(--ink-body); font-size: 1.02rem; margin: 0; }
 .info-list a:hover { color: var(--blue); }
+/* The phone number and the WhatsApp number are the point of this page, and a
+   24px line of text is a thumb-sized miss. Only a finger needs the extra
+   height, so a mouse keeps the tighter rhythm. */
+@media (pointer: coarse) {
+  .info-list a { display: inline-flex; align-items: center; min-height: 44px; }
+}
 
 .map {
   border-radius: var(--trim-lg); border: 1px dashed var(--blue-edge);
@@ -963,7 +973,14 @@ fieldset { border: 0; margin: 0; padding: 0; }
   box-shadow: 0 -4px 20px rgba(16,32,51,.08);
 }
 .mobile-bar__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.mobile-bar .btn { min-height: 48px; font-size: .98rem; box-shadow: none; }
+/* The 28px inline padding a full-width button wants leaves ~115px for the
+   label in a half-width bar button, so "שלחו הודעה" wrapped and the bar grew
+   to 112px — a seventh of a phone screen permanently spent on chrome. */
+.mobile-bar .btn {
+  min-height: 48px; font-size: .95rem; box-shadow: none;
+  padding-inline: 10px; gap: 7px; white-space: nowrap;
+}
+.mobile-bar .btn svg { width: 18px; height: 18px; }
 
 /* Live open/closed state: "call now" at 22:00 is a dead end, so the bar says so. */
 .mobile-bar__status {
@@ -1125,6 +1142,11 @@ fieldset { border: 0; margin: 0; padding: 0; }
 
 /* --- Phone layout --- */
 @media (max-width: 767px) {
+  /* A phone shows ~800px at a time. At 68px top and bottom, every section
+     boundary was a 136px void — on the small screens that is a sixth of the
+     viewport of nothing. Sections still breathe, they just stop shouting. */
+  :root { --sect: 52px; }
+
   /* Two products per row: eight one-up cards read as an endless scroll. */
   .grid--4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .product-card .card__body { padding: 22px 14px 14px; }
@@ -1136,7 +1158,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
   /* Services and testimonials stay one-up — they carry real copy. */
   .grid--3 { gap: 16px; }
 
-  .section-head { margin-bottom: 30px; }
+  .section-head { margin-bottom: 26px; }
   .hero { padding-block: 30px 44px; }
   .hero__grid { gap: 28px; }
   .hero .btn-row { margin-bottom: 22px; }
@@ -1170,6 +1192,16 @@ fieldset { border: 0; margin: 0; padding: 0; }
 
   .quick-actions { gap: 10px; }
   .footer-inner { padding-block: 40px 0; }
+
+  /* The form's two actions are a stacked pair on a phone, not a row that
+     happens to wrap: half-width ragged buttons read as an accident. */
+  .form-wrap .btn-row { gap: 10px; }
+  .form-wrap .btn-row .btn { flex: 1 1 100%; }
+
+  /* WhatsApp already leads the fixed bottom bar. A second green circle in the
+     header is the loudest thing on screen and points to the same conversation,
+     so the header keeps the logo and the menu and nothing else. */
+  .header-actions .icon-btn--wa { display: none; }
 }
 
 @media (max-width: 400px) {

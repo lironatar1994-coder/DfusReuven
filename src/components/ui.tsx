@@ -13,7 +13,10 @@ import { PhoneIcon, PressStrip, WhatsAppIcon } from "./icons";
  * Content is visible by default and only ever hidden once JS has confirmed it
  * can reveal it again — so a failed script, a bot, or a slow phone shows a
  * complete page rather than a blank one. Anything already on screen at mount
- * is never hidden at all, which also avoids a flash above the fold.
+ * is never hidden at all, which also avoids a flash above the fold, and
+ * neither is anything taller than 70% of the viewport: the worst case for a
+ * small card is a missing card, but for a full-height block it is a blank
+ * screen, and no entrance animation is worth that trade.
  */
 export function Reveal({
   children,
@@ -40,6 +43,15 @@ export function Reveal({
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) return;
 
+    // Never hide a block that is most of the screen. The quote form is 1,700px
+    // and the contact panel 700px; on a phone that is one to two full
+    // viewports. If the observer is late for any reason — a flick scroll, a
+    // busy main thread, a browser that throttles callbacks in a background
+    // tab — the cost is a screen of white where the page should be. A fade is
+    // worth it on a card entering the corner of the eye; it is not worth it on
+    // something the reader is about to fill in.
+    if (rect.height > window.innerHeight * 0.7) return;
+
     setArmed(true);
     const io = new IntersectionObserver(
       (entries) => {
@@ -50,10 +62,33 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      // Positive bottom margin, not negative: fire 200px before the block
+      // reaches the fold, so the fade has finished by the time it is read
+      // rather than starting once it is already on screen.
+      { threshold: 0, rootMargin: "0px 0px 200px 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // The height above is measured at mount, when a block may not be its final
+    // size yet: the quote form arrives inside <Suspense> and is 0px until it
+    // does. Watch for it growing past the same limit and let it go — a block
+    // that outgrew the fade should stop waiting for one.
+    let ro: ResizeObserver | undefined;
+    if ("ResizeObserver" in window) {
+      ro = new ResizeObserver(() => {
+        if (el.getBoundingClientRect().height > window.innerHeight * 0.7) {
+          setVisible(true);
+          io.disconnect();
+          ro?.disconnect();
+        }
+      });
+      ro.observe(el);
+    }
+
+    return () => {
+      io.disconnect();
+      ro?.disconnect();
+    };
   }, []);
 
   // reveal-wrap is stable so grid layout never depends on the animation state.
