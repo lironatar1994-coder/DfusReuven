@@ -75,6 +75,13 @@ export default function ReorderForm() {
         </div>
       ) : null}
 
+      {/* Bot trap — see the note in QuoteForm. The server has always checked
+          this field and no form ever rendered it. */}
+      <div className="hp-field" aria-hidden="true">
+        <label htmlFor="company">חברה</label>
+        <input type="text" id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="form-grid">
         <div className={`field${errors.phone ? " is-invalid" : ""}`}>
           <label htmlFor="phone">

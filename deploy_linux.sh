@@ -18,6 +18,12 @@ ALLOW_INDEXING="${NEXT_PUBLIC_ALLOW_INDEXING:-false}"
 # Quote submissions and customer artwork live outside the repo so a deploy never wipes them.
 QUOTE_STORAGE_DIR="${QUOTE_STORAGE_DIR:-/var/lib/dfus-reuven/quotes}"
 QUOTE_WEBHOOK_URL="${QUOTE_WEBHOOK_URL:-}"
+# Secrets — the admin password hash, the mail API key, the webhook signing key —
+# come from a root-owned chmod 600 file outside the release directory, not from
+# the pm2 command line where `ps aux` and `pm2 describe` would print them. The
+# file is optional: without it the app runs exactly as before, and /admin
+# returns 503 rather than opening up.
+ENV_FILE="${ENV_FILE:-/etc/dfus-reuven/app.env}"
 NGINX_CONF="${NGINX_CONF:-/etc/nginx/sites-available/vee-app.co.il.conf}"
 NGINX_SNIPPET="${NGINX_SNIPPET:-/etc/nginx/snippets/dfus-reuven-locations.conf}"
 # Customers upload print-ready PDF/AI artwork; Nginx defaults to 1MB and would 413.
@@ -76,6 +82,14 @@ NEXT_BASE_PATH="$ROUTE_BASE" NEXT_PUBLIC_BASE_PATH="$ROUTE_BASE" \
 
 log "Starting/restarting PM2 process $PROCESS_NAME on port $FRONTEND_PORT..."
 pm2 delete "$PROCESS_NAME" > /dev/null 2>&1 || true
+# `set -a` exports everything the file defines, so pm2 inherits it rather than
+# receiving it as visible argv. The explicit assignments below still win.
+if [ -f "$ENV_FILE" ]; then
+    log "Loading runtime secrets from $ENV_FILE..."
+    set -a; . "$ENV_FILE"; set +a
+else
+    log "No $ENV_FILE — /admin will return 503 and lead emails are off." "WARN"
+fi
 PORT="$FRONTEND_PORT" NEXT_BASE_PATH="$ROUTE_BASE" NEXT_PUBLIC_BASE_PATH="$ROUTE_BASE" \
     NEXT_PUBLIC_SITE_URL="$PUBLIC_SITE_URL" \
     NEXT_PUBLIC_ALLOW_INDEXING="$ALLOW_INDEXING" \

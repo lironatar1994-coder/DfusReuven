@@ -141,6 +141,22 @@ export default function QuoteForm({
     data.delete("file");
     files.forEach((file) => data.append("files", file));
 
+    // Send what the browser worked out about the artwork along with it.
+    // checkArtwork already read each file's real pixel dimensions to tell the
+    // customer whether it will print — and that answer used to die here, so the
+    // shop re-derived it by hand the next morning. Only files still attached
+    // are included; verdicts are keyed by filename and a removed file leaves
+    // its verdict behind in state.
+    const hints = files
+      .map((file) => ({ file: file.name, verdict: verdicts[file.name] }))
+      .filter((entry) => entry.verdict)
+      .map(({ file, verdict }) => ({
+        file,
+        level: verdict.level,
+        headline: verdict.headline,
+      }));
+    if (hints.length) data.set("artworkHints", JSON.stringify(hints));
+
     setStatus("sending");
     try {
       // assetPath keeps this correct when the app is served under a basePath.
@@ -181,6 +197,37 @@ export default function QuoteForm({
           {serverMessage}
         </div>
       ) : null}
+
+      {/* The short form renders no product select, and validate() knows not to
+          require one — but the server requires `product` unconditionally, so
+          every homepage submission came back 400 with "נא לבחור את סוג המוצר":
+          an error naming a field the customer was never shown. The homepage
+          form has been failing silently for its entire life.
+
+          Fixed here rather than by relaxing the server check. Making the
+          server's contract conditional on a client-supplied `source` string
+          would mean the only thing standing between a bot and an unvalidated
+          record is a value the bot chooses. The payload is completed instead,
+          which is what ReorderForm already does for exactly this reason. */}
+      {short ? (
+        <>
+          <input type="hidden" name="product" value="פנייה כללית מהעמוד הראשי" />
+          <input type="hidden" name="source" value="homepage-short" />
+        </>
+      ) : null}
+
+      {/* Bot trap. route.ts has always checked `company` and silently discarded
+          any submission that fills it — but no component ever rendered the
+          field, so the check could not fire and the trap caught nothing.
+
+          Positioned off-screen rather than display:none or hidden: bots skip
+          fields they can tell are invisible, which defeats the point. Kept out
+          of the accessibility tree and the tab order so it stays invisible to
+          the people IS 5568 is about. */}
+      <div className="hp-field" aria-hidden="true">
+        <label htmlFor="company">חברה</label>
+        <input type="text" id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <div className="form-grid form-grid--2">
         <div className={fieldClass("fullname")}>

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { mkdir, appendFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { notifyShop } from "@/lib/notify";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,6 +62,52 @@ function fail(message: string, status = 400) {
   return NextResponse.json({ ok: false, message }, { status });
 }
 
+type ArtworkHint = { file: string; level: string; headline: string };
+
+/**
+ * The browser sends these as JSON. Everything about that is untrusted — the
+ * shape, the length, the count, whether it is JSON at all — so nothing here
+ * throws and nothing here is believed. A malformed hint costs the shop a
+ * convenience, not a submission.
+ */
+function parseArtworkHints(raw: FormDataEntryValue | null): ArtworkHint[] {
+  if (!raw) return [];
+  try {
+    const parsed: unknown = JSON.parse(String(raw));
+    if (!Array.isArray(parsed)) return [];
+    return parsed.slice(0, MAX_FILES).flatMap((entry) => {
+      if (!entry || typeof entry !== "object") return [];
+      const e = entry as Record<string, unknown>;
+      const level = clean(String(e.level ?? ""), 10);
+      if (!["ok", "warn", "info"].includes(level)) return [];
+      return [{
+        file: clean(String(e.file ?? ""), 120),
+        level,
+        headline: clean(String(e.headline ?? ""), 200),
+      }];
+    });
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Sign the webhook body so the receiver can tell our POST from anyone else's.
+ *
+ * Without this the endpoint is a URL, and a URL leaks — into a Zapier history,
+ * a Slack integration screen, a browser devtools tab someone screenshots.
+ * Anyone holding it could inject fake leads into whatever it feeds.
+ *
+ * HMAC is computed over the exact string that gets sent, not over a re-encoded
+ * object, because the receiver can only verify the bytes it actually received.
+ */
+async function signBody(body: string): Promise<string | null> {
+  const secret = process.env.QUOTE_WEBHOOK_SECRET;
+  if (!secret) return null;
+  const { createHmac } = await import("node:crypto");
+  return `sha256=${createHmac("sha256", secret).update(body, "utf8").digest("hex")}`;
+}
+
 export async function POST(request: Request) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
@@ -97,6 +144,20 @@ export async function POST(request: Request) {
     budget: clean(form.get("budget"), 60),
     details: clean(form.get("details"), MAX_TEXT),
     source: clean(form.get("source"), 80) || "website",
+    /**
+     * What the browser made of the attached artwork, from lib/artwork.ts.
+     *
+     * That check reads each raster file's real pixel dimensions and works out
+     * the largest size it can print at 300dpi — genuinely useful, and it was
+     * computed, shown to the customer, and then dropped on the floor at submit.
+     * The shop opened the file next day and worked it out again by hand.
+     *
+     * Advisory only, and labelled so. It is a filename-and-dimensions
+     * heuristic that never opens a PDF, so it must never be mistaken for
+     * prepress. Untrusted client input: parsed defensively, capped, and
+     * never used for a decision.
+     */
+    artworkHints: parseArtworkHints(form.get("artworkHints")),
     ip,
     files: [] as { original: string; stored: string; size: number }[],
   };
@@ -150,18 +211,27 @@ export async function POST(request: Request) {
     return fail("לא הצלחנו לשמור את הבקשה. נסו שוב או שלחו לנו הודעה בוואטסאפ.", 500);
   }
 
+  // Everything below this line is best-effort. The submission is already on
+  // disk and the customer is already owed a 200; nothing here may change that.
   if (WEBHOOK_URL) {
     try {
+      const body = JSON.stringify({ ...submission, ip: undefined });
+      const signature = await signBody(body);
       await fetch(WEBHOOK_URL, {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...submission, ip: undefined }),
+        headers: {
+          "content-type": "application/json",
+          ...(signature ? { "x-dr-signature": signature } : {}),
+        },
+        body,
       });
     } catch (error) {
       // The submission is already safely on disk; a webhook outage must not fail the request.
       console.error("[quote] webhook delivery failed", error);
     }
   }
+
+  await notifyShop(submission);
 
   return NextResponse.json({
     ok: true,

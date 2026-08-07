@@ -896,6 +896,19 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .form-alert--ok { background: #EDF7F0; border: 1px solid #B5DEC3; color: #17632F; }
 .form-alert--err { background: #FDF2F1; border: 1px solid #F0C4BF; color: #A5342A; }
 
+/* Bot trap. Moved off-screen rather than display:none, visibility:hidden or
+   the hidden attribute — a bot worth trapping checks for all three and skips
+   the field, which is the entire failure mode this is meant to avoid. Screen
+   readers are handled by aria-hidden on the wrapper and tabindex="-1" on the
+   input, not by hiding it from the render tree. */
+.hp-field {
+  position: absolute;
+  inset-inline-start: -9999px;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* ---------- Chips / spec blocks ---------- */
 .pd-spec-heading {
   font-size: 1.15rem; margin: 34px 0 18px;
@@ -1537,4 +1550,62 @@ body.no-scroll { overflow: hidden; }
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Admin
+   Not part of the design system and deliberately not styled like the site.
+   This is a back office for two or three people; it needs to be legible and
+   fast to scan, and it must never be mistaken for a customer-facing page.
+   ========================================================================== */
+/* Strip the marketing chrome. The admin sits under the root layout, so it
+   inherited the sticky header, the seventeen-link footer and the fixed
+   call/WhatsApp bar — which on a phone covers the bottom 93px of the very
+   table you came to read. Done with :has() rather than by splitting the app
+   into route groups: one rule against a restructure of every route. */
+body:has(.admin) .site-header,
+body:has(.admin) .site-footer,
+body:has(.admin) .mobile-bar,
+body:has(.admin) .wa-float { display: none; }
+body:has(.admin) { padding-bottom: 0; }
+
+.admin { padding-block: 32px 64px; max-width: 1100px; }
+.admin__bar {
+  display: flex; align-items: baseline; gap: 20px;
+  padding-bottom: 14px; margin-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+.admin__bar nav { display: flex; gap: 14px; }
+.admin h1 { font-size: 1.7rem; margin-bottom: 4px; }
+.admin h2 { font-size: 1.1rem; margin: 28px 0 10px; }
+.admin__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.admin__count, .admin__note { color: var(--muted); font-size: .9rem; }
+.admin__empty { color: var(--muted); padding: 40px 0; }
+.admin__back { margin-bottom: 12px; font-size: .9rem; }
+
+/* The table is wider than a phone and that is fine — scroll it rather than
+   wrap every cell into unreadability. */
+.admin__scroll { overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+.admin__table { width: 100%; border-collapse: collapse; font-size: .92rem; white-space: nowrap; }
+.admin__table th, .admin__table td { text-align: start; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+.admin__table th { font-size: .78rem; color: var(--muted); font-weight: 700; }
+.admin__table tbody tr:hover { background: var(--paper-warm); }
+.admin__when a { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+.admin__dl { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--trim); overflow: hidden; }
+.admin__dl > div { background: #fff; display: grid; grid-template-columns: 140px 1fr; gap: 14px; padding: 11px 16px; }
+.admin__dl dt { color: var(--muted); font-size: .88rem; }
+.admin__dl dd { margin: 0; }
+.admin__details { white-space: pre-wrap; background: var(--paper-warm); padding: 16px 18px; border-radius: var(--trim); max-width: 70ch; }
+
+.admin__files { display: grid; gap: 8px; margin-bottom: 10px; }
+.admin__files li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.admin__filemeta { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.admin__hint { font-size: .82rem; padding: 3px 9px; border-radius: var(--trim); }
+.admin__hint--ok { background: #EDF7F0; color: #17632F; }
+.admin__hint--warn { background: #FDF4E7; color: #8A5A0B; }
+.admin__hint--info { background: #EDF3FD; color: #1B4A8F; }
+
+@media (max-width: 560px) {
+  .admin__dl > div { grid-template-columns: 1fr; gap: 2px; }
 }

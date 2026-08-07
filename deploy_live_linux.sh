@@ -20,6 +20,11 @@ PUBLIC_SITE_URL="https://$CANONICAL_DOMAIN"
 # the staged swap below never takes them with it.
 QUOTE_STORAGE_DIR="${QUOTE_STORAGE_DIR:-/var/lib/dfus-reuven/quotes}"
 QUOTE_WEBHOOK_URL="${QUOTE_WEBHOOK_URL:-}"
+# Secrets live outside the release directory, in a root-owned chmod 600 file,
+# not on the pm2 command line where `ps aux` would print them. Optional: with
+# no file the app runs as before and /admin returns 503 rather than opening up.
+# Production and staging must use SEPARATE files — never share credentials.
+ENV_FILE="${ENV_FILE:-/etc/dfus-reuven/app.env}"
 NGINX_CONF="/etc/nginx/sites-available/dfusreuven.co.il.conf"
 NGINX_ENABLED="/etc/nginx/sites-enabled/dfusreuven.co.il.conf"
 CERT_DIR="/etc/letsencrypt/live/dfusreuven.co.il"
@@ -107,6 +112,10 @@ if [ "$BUILD_ROOT" != "$APP_ROOT" ]; then
 fi
 
 start_app() {
+    # Exported, so pm2 inherits them instead of taking them as visible argv.
+    if [ -f "$ENV_FILE" ]; then
+        set -a; . "$ENV_FILE"; set +a
+    fi
     PORT="$FRONTEND_PORT" NEXT_BASE_PATH="" NEXT_PUBLIC_BASE_PATH="" \
         NEXT_PUBLIC_SITE_URL="$PUBLIC_SITE_URL" NEXT_PUBLIC_ALLOW_INDEXING=true \
         QUOTE_STORAGE_DIR="$QUOTE_STORAGE_DIR" \
