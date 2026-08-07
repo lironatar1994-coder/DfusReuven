@@ -20,9 +20,10 @@ export default function ServicesPage() {
           {/* Was "כל שירותי הדפוס והעיצוב במקום אחד" over a lead ending
               "תחת קורת גג אחת" — the same idea twice, in two dead idioms. */}
           <h1>מה אנחנו יודעים לעשות</h1>
+          {/* "שישה תחומים, אותו בניין, אותו איש קשר" — the middle clause is the
+              one-building claim and is not true, so the trio came out. */}
           <p>
-            עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, מדבקות, אריזות ומוצרי פרסום. שישה תחומים,
-            אותו בניין, אותו איש קשר.
+            עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, מדבקות, אריזות ומוצרי פרסום.
           </p>
         </div>
       </section>

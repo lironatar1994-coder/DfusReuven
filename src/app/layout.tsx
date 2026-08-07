@@ -46,8 +46,9 @@ export const metadata: Metadata = {
   // This is the Google snippet, so it was the single most-seen sentence on the
   // property — and it ended "שירות אישי וזמני ביצוע מהירים", the exact phrase
   // the owner called slop. Named the city instead: it is what people search.
+  // It used to close "עיצוב והדפסה באותו מקום". Removed: not true of this shop.
   description:
-    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, כרטיסי ביקור, פליירים, הזמנות, מדבקות, שילוט לעסקים ומוצרי פרסום. עיצוב והדפסה באותו מקום.",
+    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, כרטיסי ביקור, פליירים, הזמנות, מדבקות, שילוט לעסקים ומוצרי פרסום.",
   authors: [{ name: site.name, url: site.domain }],
   creator: site.name,
   publisher: site.name,
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: defaultTitle,
     description:
-      "עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום — בבני ברק, בבניין אחד.",
+      "עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות ומוצרי פרסום — בבני ברק.",
     siteName: site.name,
     url: site.domain,
     locale: site.locale,

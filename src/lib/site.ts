@@ -13,8 +13,13 @@ export const site = {
   // most-read sentence on the property. It used to end "עם ליווי אישי משלב
   // הרעיון ועד למוצר המוגמר", which is true of every print shop in the country
   // and therefore says nothing. Every clause here is one this shop can be held to.
+  // The final sentence read "עיצוב והדפסה באותו מקום, ומדברים ישירות עם מי
+  // שמדפיס". The first half is not true of this shop and the second half was
+  // welded to it, so the whole sentence came out rather than leaving a clause
+  // starting on a stranded ו. If "מדברים ישירות עם מי שמדפיס" is true and worth
+  // keeping, it goes back as its own sentence — but it needs confirming first.
   description:
-    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות, מדבקות ומוצרי פרסום. עיצוב והדפסה באותו מקום, ומדברים ישירות עם מי שמדפיס.",
+    "בית דפוס בבני ברק — עיצוב גרפי, דפוס אופסט ודיגיטלי, שילוט, הזמנות, מדבקות ומוצרי פרסום.",
   domain: (configuredDomain || "https://www.dfusreuven.co.il").replace(/\/+$/, ""),
   locale: "he_IL",
   language: "he-IL",

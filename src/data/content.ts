@@ -67,11 +67,25 @@ export const benefits = [
     title: "בודקים את הקובץ לפני שמדפיסים",
     text: "אם משהו ייצא מטושטש — תדעו לפני, לא אחרי.",
   },
-  {
-    icon: "palette" as const,
-    title: "עיצוב והדפסה באותו מקום",
-    text: "אין על מי להאשים כשמשהו יוצא לא נכון.",
-  },
+  /*
+   * REMOVED 2026-08-07 — "עיצוב והדפסה באותו מקום" / "אין על מי להאשים כשמשהו
+   * יוצא לא נכון".
+   *
+   * The owner confirmed the one-place claim is not true of this shop, and the
+   * same sentence was standing in eight places across the site: the hero lead,
+   * this benefit, three lines on /about, the meta and OG descriptions, the
+   * services page lead, and site.description. All eight are gone. Nothing was
+   * written in their place, because nothing verified was available to write —
+   * the reason the first one shipped is that someone filled the gap by guessing.
+   *
+   * Four benefits, not five. The list is stronger for it: every remaining title
+   * is a claim this shop can be held to.
+   *
+   * Still unverified and left standing, because they are about contact rather
+   * than location and may well be true — confirm before relying on them:
+   * "מדברים עם מי שמדפיס" below, and "מדברים ישירות עם בית הדפוס" in the
+   * homepage trust line.
+   */
   {
     icon: "users" as const,
     title: "מדברים עם מי שמדפיס",

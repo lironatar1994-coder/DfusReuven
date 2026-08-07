@@ -45,9 +45,14 @@ export default function HomePage() {
             <h1>
               בית דפוס וגרפיקה בבני ברק <em>מכרטיס ביקור ועד שלט חזית</em>
             </h1>
+            {/* "הכול נעשה בבניין אחד בז׳בוטינסקי, מול האנשים שמדפיסים בפועל"
+                was here and is gone: it is not true of this shop. The lead is
+                a capability list now and makes no claim about where the work
+                happens. The same claim is still standing on /about, in the meta
+                description and in the benefits list — see the note in
+                data/content.ts. */}
             <p className="hero__lead">
-              עיצוב גרפי, דפוס אופסט ודיגיטלי, הזמנות, מדבקות, שילוט ומוצרי פרסום. הכול נעשה
-              בבניין אחד בז׳בוטינסקי, מול האנשים שמדפיסים בפועל.
+              עיצוב גרפי, דפוס אופסט ודיגיטלי, הזמנות, מדבקות, שילוט ומוצרי פרסום.
             </p>
           </div>
 
@@ -198,8 +203,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- 3 · Situations ---------------- */}
-      <section className="section" id="situations">
+      {/* ---------------- 3 · Situations ----------------
+          Paper, so the ink band has a sheet on both sides of it rather than
+          running dark straight into white. */}
+      <section className="section section--paper" id="situations">
         <div className="container">
           <Reveal>
             <SectionHead
@@ -259,7 +266,10 @@ export default function HomePage() {
       {/* ---------------- 5 · Why here ----------------
           Was two adjacent sections — "why us" and "about" — both arguing that
           the shop is trustworthy, each with its own image. One block now. */}
-      <section className="section section--paper" id="why">
+      {/* White. This is the photography section — two large plates and five icon
+          rows — and photographs want white behind them. It is also the one
+          place on the page where a long white expanse earns itself. */}
+      <section className="section" id="why">
         <div className="container split">
           {/* No lead here on purpose. The one that was — "כל עבודה נבדקת לפני
               שהיא נכנסת למכונה, וכל לקוח מדבר עם מי שמטפל בה בפועל" — was the
@@ -369,8 +379,16 @@ export default function HomePage() {
           actually is. processSteps still runs on /services and /quote, where a
           visitor has asked for the detail. */}
 
-      {/* ---------------- 6 · Quote form ---------------- */}
-      <section className="section" id="quote">
+      {/* ---------------- 6 · Quote form ----------------
+          The one blue ground on the page, and the only section that gets it.
+          The ask was previously plain white between two paper sections, and on
+          a phone .form-wrap is also white with its border stripped and full-
+          bleed margins — so the single most important moment on the page was
+          white on white with no edge. On the blue ground that same untouched
+          form becomes a white sheet on colour, which is the press-sheet idea
+          arriving exactly where it is asked to do some work. It also closes the
+          hero's blue wash, which until now appeared once and never again. */}
+      <section className="section section--tint" id="quote">
         <div className="container">
           <Reveal>
             <SectionHead

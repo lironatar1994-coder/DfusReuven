@@ -7,8 +7,12 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "אודות בית הדפוס",
+  // Ends on the capability list. It used to close "— הכול בבניין אחד, לצד
+  // מחלקת העיצוב", which is not true of this shop; see the note in
+  // data/content.ts. Nothing replaced it, because nothing verified was
+  // available to replace it with.
   description:
-    "דפוס ראובן, ז'בוטינסקי 84 בבני ברק. דפוס אופסט, דפוס דיגיטלי, הדפסה רחבה ומחלקת גימור — הכול בבניין אחד, לצד מחלקת העיצוב.",
+    "דפוס ראובן, ז'בוטינסקי 84 בבני ברק. דפוס אופסט, דפוס דיגיטלי, הדפסה רחבה ומחלקת גימור.",
 };
 
 /**
@@ -49,9 +53,13 @@ export default function AboutPage() {
               This one names the street instead — a thing no competitor can copy
               and the one detail a Bnei Brak local will recognise. */}
           <h1>בית הדפוס ברחוב ז׳בוטינסקי</h1>
+          {/* The second sentence — "מכונות הדפוס, מחלקת הגימור והמעצבים נמצאים
+              באותו בניין" — is gone. It is the same claim the hero was carrying
+              and it is not true. What is left is the address and who we print
+              for, both of which are. */}
           <p>
             אנחנו יושבים ב{site.addressShort} ב{site.city}, ומדפיסים לעסקים, למוסדות ולמשפחות
-            באזור. מכונות הדפוס, מחלקת הגימור והמעצבים נמצאים באותו בניין.
+            באזור.
           </p>
         </div>
       </section>
@@ -74,11 +82,13 @@ export default function AboutPage() {
             />
           </Reveal>
           <Reveal delay={100}>
-            <SectionHead
-              title="מה יש כאן"
-              lead="ארבע יכולות בבניין אחד. זה מה שמאפשר להגיד לכם בטלפון אם משהו אפשרי, בלי לבדוק מול ספק."
-              ruled
-            />
+            {/* No lead. It read "ארבע יכולות בבניין אחד. זה מה שמאפשר להגיד לכם
+                בטלפון אם משהו אפשרי, בלי לבדוק מול ספק" — both sentences are the
+                one-building claim, the second one explicitly ("without checking
+                with a supplier"). The four capabilities below say what there is;
+                they do not need a sentence in front of them making a claim about
+                where they sit. */}
+            <SectionHead title="מה יש כאן" ruled />
             <ul className="benefits">
               {capabilities.map((item) => (
                 <li key={item.title}>

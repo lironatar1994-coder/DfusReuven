@@ -15,15 +15,36 @@
   --blue: #1769E0;
   --blue-dark: #0F55BD;
   --blue-tint: #EAF2FF;
+  /* A section ground, not a tint. --blue-tint measures 1.00:1 against
+     --paper-warm — identical luminance — so a tint section next to a paper one
+     is a hue shift with no lightness step, which on a phone in daylight reads
+     as a smudge rather than a boundary. This is 1.14:1 against paper, matching
+     the white/paper step exactly, and still clears AA for --muted at 4.54:1.
+     --blue-tint keeps the hero wash and the icon discs, where it belongs. */
+  --blue-ground: #D6E4F8;
   /* decorative hairline only — never a perceivable boundary or text */
   --blue-line: #C9DCF7;
   /* borders and numerals that must clear 3:1 against white (measured: 3.2 / 4.2) */
   --blue-edge: #6491D6;
   --blue-quiet: #4E7CC4;
 
-  /* Paper */
+  /* Paper.
+     --paper-warm is the alternating section ground and ran #F2F1EC, a warm
+     beige. It is cool now at the owner's direction: the client list is
+     ministries, police, municipalities, hi-tech and accountancy firms, and a
+     cool ground reads as an institutional supplier where a warm one reads as a
+     craft shop.
+
+     The value matters more than the direction. #EEF2F5 measures 1.13:1 against
+     white — the same step the warm ground had, so every section boundary
+     survives — and 1.14:1 against --blue-ground, so the quote section still
+     separates from the contact section below it. The rejected candidate was
+     #F9FFFF, which is 1.01:1 against white: not a cooler ground, a whiter one,
+     and it would have erased the section rhythm completely. Anything put here
+     has to clear roughly 1.12 against #FFFFFF or the alternation stops working
+     on a phone in daylight. */
   --paper: #F7F7F5;
-  --paper-warm: #F2F1EC;
+  --paper-warm: #EEF2F5;
   --white: #FFFFFF;
 
   /* Rules */
@@ -190,7 +211,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .section { padding-block: var(--sect); }
 .section--tight { padding-block: calc(var(--sect) * .62); }
 .section--paper { background-color: var(--paper-warm); background-image: var(--grain); }
-.section--tint { background: var(--blue-tint); }
+/* Grain, like paper. A flat blue panel reads as screen; blue stock reads as
+   something that came off a press, which is the whole conceit. */
+.section--tint { background-color: var(--blue-ground); background-image: var(--grain); }
 .section--ink { background: var(--ink); color: #B9C6D6; }
 .section--ink h2, .section--ink h3 { color: #fff; }
 .section--ink .section-head p { color: #B9C6D6; }
@@ -199,15 +222,18 @@ p { margin: 0 0 1em; text-wrap: pretty; }
    The head rule's tick was --blue on all eight section heads. The CMYK press
    marks — the most ownable thing in the palette — appeared three times each on
    the entire page, which is to say the "press sheet" idea was legible only to
-   someone reading this stylesheet. The tick now walks the plates down the
-   homepage: cyan, yellow, magenta, black, and round again. Yellow is placed on
-   the one dark band, where #F5D400 is brilliant rather than invisible. */
-#products   { --tick: var(--c); }
-#clients    { --tick: var(--y); }
-#situations { --tick: var(--m); }
-#why        { --tick: var(--k); }
-#quote      { --tick: var(--c); }
-#contact    { --tick: var(--m); }
+   someone reading this stylesheet. The tick now walks the plates down the page.
+
+   Placement is by what reads on the ground underneath, not by rote rotation:
+   yellow only ever lands on the ink band, where #F5D400 is brilliant instead of
+   invisible, and the ask — the one blue ground — takes magenta, because cyan on
+   #D6E4F8 is blue on blue. All four plates get used. */
+#products   { --tick: var(--c); }  /* cyan on warm paper */
+#clients    { --tick: var(--y); }  /* yellow on navy */
+#situations { --tick: var(--m); }  /* magenta on warm paper */
+#why        { --tick: var(--k); }  /* black on white */
+#quote      { --tick: var(--m); }  /* magenta on the blue ground */
+#contact    { --tick: var(--c); }  /* cyan on warm paper */
 
 /* Crop marks — used sparingly, only where a "sheet" is the point.
    This class sat here defined and applied to nothing at all, which meant the
